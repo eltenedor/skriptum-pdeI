@@ -1,0 +1,48 @@
+\section{Der Raum der Testfunktionen $D(\Omega)$ und der Raum der Distributionen $D'(\Omega)$}
+
+In diesem Abschnitt sei $\Omega \subseteq \R^n$ offen.
+Wir setzen $D(\Omega) := C_c^\infty(\Omega)$.
+
+\begin{ex}
+  $$
+  \varphi(x) := \begin{cases} e^{-\frac{1}{1 - |x|^2}} &\colon |x| < 1 \\
+    0 &\colon \text{sonst}
+  \end{cases} 
+  $$
+  Dann gilt $\varphi \in D(\R^n)$.
+\end{ex}
+
+\begin{defn}
+Seien $(\varphi_j) \subseteq D(\R^n)$, $\varphi \in D(\Omega)$.
+Wir sagen $\varphi \to \varphi$ in $D(\Omega)$, fall
+\begin{enumerate}[i)]
+  \item es existiert $K \subseteq \Omega$ kompakt mit $\supp \varphi_j \subseteq K$ für alle $j \in \N$.
+  \item $\lim_{j \to \infty} \| D^\alpha \varphi_j - D^\alpha \varphi \|_{\infty} = 0$ für alle Multiindizes $\alpha$.
+\end{enumerate}
+\end{defn}
+
+\begin{bem}
+  $D(\Omega)$ mit diesem Konvergenzbegriff \underline{nicht} metrisierbar. 
+\end{bem}
+
+\begin{thm}
+  Seien $\varphi_j \to \varphi$, $\psi_j \to \psi$ in $D(\Omega)$. Dann:
+  \begin{enumerate}[i)]
+  \item für $\beta_1, \beta_2 \in \R$ gilt: 
+    $$\beta_1 \varphi_j + \beta_2 \psi_j 
+    \to \beta_1 \varphi + \beta_2 \psi.
+    $$
+  \item $D^\alpha \varphi \to D^\alpha \varphi$ in $D(\Omega)$ für alle Multiindices $\alpha$, mit anderen Worten: $D^\alpha$ sit stetige Abbildung auf $D(\Omega)$
+  \end{enumerate}
+\end{thm}
+
+\begin{defn}
+  Wir setzen $D'(\Omega) := \{T \colon D(\Omega) \to \C \text{ stetig, linear} \}$.
+  Die Elemente von $D'(\Omega)$ heißen \underline{Distributionen}.
+\end{defn}
+
+\begin{ntion}
+  $\langle \varphi, T\rangle := T(\varphi)$ für $\varphi \in D(\Omega)$.
+\end{ntion}
+
+
