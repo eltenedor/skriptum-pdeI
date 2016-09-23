@@ -21,7 +21,7 @@
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{cor}[thm]{Korollar}
 \newtheorem{prop}[thm]{Proposition}
-\newtheorem{ex}[thm]{Beispiel}
+\newtheorem*{ex}{Beispiel}
 \newtheorem*{ntion}{Notation}
 
 \theoremstyle{definition}
@@ -34,3 +34,12 @@
 \def\Satzrefname{Satz}
 
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\loc}{loc}
+\DeclareMathOperator{\pv}{pv}
+
+\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\mathrm{div\,} #1} % for divergence
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 

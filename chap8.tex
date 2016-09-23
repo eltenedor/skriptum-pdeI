@@ -12,20 +12,20 @@ Wir setzen $D(\Omega) := C_c^\infty(\Omega)$.
   Dann gilt $\varphi \in D(\R^n)$.
 \end{ex}
 
-\begin{defn}
+\subsection{Definition}
 Seien $(\varphi_j) \subseteq D(\R^n)$, $\varphi \in D(\Omega)$.
 Wir sagen $\varphi \to \varphi$ in $D(\Omega)$, fall
 \begin{enumerate}[i)]
   \item es existiert $K \subseteq \Omega$ kompakt mit $\supp \varphi_j \subseteq K$ für alle $j \in \N$.
   \item $\lim_{j \to \infty} \| D^\alpha \varphi_j - D^\alpha \varphi \|_{\infty} = 0$ für alle Multiindizes $\alpha$.
 \end{enumerate}
-\end{defn}
+
 
 \begin{bem}
   $D(\Omega)$ mit diesem Konvergenzbegriff \underline{nicht} metrisierbar. 
 \end{bem}
 
-\begin{thm}
+\subsection{Satz}
   Seien $\varphi_j \to \varphi$, $\psi_j \to \psi$ in $D(\Omega)$. Dann:
   \begin{enumerate}[i)]
   \item für $\beta_1, \beta_2 \in \R$ gilt: 
@@ -34,15 +34,409 @@ Wir sagen $\varphi \to \varphi$ in $D(\Omega)$, fall
     $$
   \item $D^\alpha \varphi \to D^\alpha \varphi$ in $D(\Omega)$ für alle Multiindices $\alpha$, mit anderen Worten: $D^\alpha$ sit stetige Abbildung auf $D(\Omega)$
   \end{enumerate}
-\end{thm}
 
-\begin{defn}
+\subsection{Defintion}
   Wir setzen $D'(\Omega) := \{T \colon D(\Omega) \to \C \text{ stetig, linear} \}$.
   Die Elemente von $D'(\Omega)$ heißen \underline{Distributionen}.
-\end{defn}
 
 \begin{ntion}
   $\langle \varphi, T\rangle := T(\varphi)$ für $\varphi \in D(\Omega)$.
 \end{ntion}
 
+\subsection{Satz}
+  Sei $T \colon D(\Omega) \to \C$ linear. Dann sind äquivalent:
+  \begin{enumerate}[i)]
+  \item $T \in D'(\Omega)$, d.h. $T$ stetig.
+  \item für $K \subseteq \Omega$ kompakt gibt es $C \geq 0$, $N = N(K,T)$, sodass für $\varphi \in D(\Omega)$ mit $\supp \varphi \subseteq K$ gilt:
+    \begin{displaymath}
+      |T(\varphi)| \leq C \sum_{|\alpha| \leq N} \|D^\alpha \varphi\|_\infty \tag{$\ast$}
+    \end{displaymath}
+  \end{enumerate}
 
+\begin{proof}
+  ii) $\Rightarrow$ i) \checkmark
+
+  i) $\Rightarrow$ ii): Ang. Beh. falsch. Dann gibt es $K \subseteq \R^n$ kompakt, sodass für alle $N \in \N$ ein $\varphi_N \in D(\Omega)$ ex. mit $\supp \varphi_N \subseteq K$ und $|T \varphi_N > N \sum_{|\alpha| \leq N} \|D^\alpha \varphi_N \|_{\infty}$.
+  Sei $\phi_j := \frac{\varphi_j}{|T\varphi_j|}$.
+  Dann $\phi_j \to 0$ in $D(\Omega)$ aber $|T\phi_j| = 1$.
+  Widerspruch.
+
+  \tiny{
+    Denn für alle Multiindices $\alpha$ gilt $ \| D^\alpha \phi_j \|_\infty < \frac{1}{j} $, falls $\|D^\alpha(\varphi_j)\|_{\infty} \neq 0$.
+  }
+\end{proof}
+
+\subsection{Definition}
+  Falls ($\ast$) gilt, so heißt \underline{$T$ von Ordnung $N$ auf $K$}.
+  Falls $T$ für alle kompakten $K \subseteq \Omega$ von Ordnung $N$ auf $K$ ist, so heißt \underline{$T$ von Ordnung $N$ auf $\Omega$}.
+  Falls $T$ von Ordnung $N\in \N$ auf $\Omega$ ist, so heißt \underline{$T$ von endlicher Ordnung auf $\Omega$}.
+
+\subsection{Die Diracsche Distribution $\delta_a$}
+
+Sei $a \in \Omega$.
+Wir setzen $\langle \varphi, \delta_y\rangle := \varphi(a)$ für $\varphi in D(\Omega)$.
+dann ist $\delta_a \in D'(\Omega)$, denn: Sei $\varphi_j \to \varphi in D(\Omega)$, dann $|langle \varphi_j, \delta_a \rangle| = |\varphi_j(a) - \varphi(a)| \leq \|\varphi_j - \varphi\|_\infty \overset{\alpha = \emptyset}{\to} 0$.
+
+\begin{ntion}
+  $\delta := \delta_0$
+\end{ntion}
+
+\subsection{Der Cauchysche Hauptwert}
+Sei $\Omega = \R$.
+Dann $f(x) = \frac{1}{x} \in L^1_{\loc}(\R\setminus\{0\}$, aber $\int_\R \frac{\varphi(x)}{x} dx$ existiert nicht für alle $\varphi \in D(\R)$.
+Man setze:
+$$
+\langle \varphi,\pv \frac{1}{x} \rangle := \lim_{\varepsilon \to 0} \int_{|x| \geq \varepsilon} \frac{\varphi(x)}{x} dx, \quad \varphi \in D(\R).
+$$
+
+Dann ist $\pv \frac{1}{x} \in D'(\R)$, denn:
+
+Sei $\varphi_j \to 0$ in $D(\R)$.
+Dann ex. $a > 0$, sodass für $j \in \N gilt: \supp \varphi_j \in [-a,a]$.
+Nun:
+\begin{align*}
+\lim_{\varepsilon \to 0} \int_{|x| \geq \varepsilon} \frac{\varphi_j(x)}{x} dx 
+&= \lim_{\varepsilon \to 0} \left[ \varphi_j(0) \underbrace{\int_{\varepsilon \leq |x| \leq a} \frac{1}{x} dx}_{= 0 \text{ Symmetrie}}
++ \int_{\varepsilon \leq |x| \leq a} \frac{\varphi_j(x) - \varphi_j(0)}{x} dx \right] \\
+&= \int_{-a}^a \frac{\varphi_j(x) - \varphi_j(0)}{x} dx,
+\end{align*}
+denn $|\frac{\varphi_j(x) - \varphi_j(0)}{x}|\leq \|\varphi_j'\|_{C([-a,a])}$.
+
+Da $\pv \frac{1}{x} \colon D(\R) \to \C$ linear folgt aus
+$$
+| \lim_\varepsilon \to 0 \int_{|x| \geq \varepsilon} \frac{\varphi_j(x)}{x} dx | \overset{\leq}{\text{MWS}} 2a \| \varphi_j'\|_\infty \to 0,
+$$
+dass $\pv \frac{1}{x}$ stetig und somit Distribution ist.
+
+\subsection{Weiteres Beispiel}
+
+$$\langle \varphi, \frac{1}{x \pm i0} \rangle := \lim_{\varepsilon \to 0} \int_{-\infty}^\infty \frac{1}{x \pm i\varepsilon} \varphi(x) dx, \quad \varphi \in D(\R)$$
+Dann $\frac{1}{x \pm i0} \in D'(\R)$ und $\frac{1}{x \pm i0} = \pv \frac{1}{x} \pm i\pi\delta$.
+
+Beweis siehe Übung 9.
+
+\subsection{Satz}
+
+Sei $f \in L^1_{\loc}(\Omega)$.
+\begin{enumerate}[a)]
+  \item Dann def. die Abbildung $T_f \colon D(\Omega) \to \C$ gegeben durch:
+    $$ \langle \varphi, T_f\rangle := \int_\Omega f\varphi dx $$
+    eine Distribution $T_f$ in $D'(\Omega)$.
+  \item $T_f = 0$ in $D'(\Omega)$ $\iff$ $f = 0$ f.ü.
+\end{enumerate}
+
+\begin{proof}
+a) Sei $\varphi_j \to \varphi$ in $D(\Omega)$.
+Dann ex. $K \subseteq \Omega$ kompakt, sodass $\supp \varphi_j \subseteq K$ für $j \in \N$, $\supp \varphi \subseteq K$ und $\|\varphi_j - \varphi\|_\infty \to 0$.
+$$\implies |\langle \varphi_j - \varphi, T_f \rangle| = |\int_\Omega (\varphi_j - \varphi)f| \leq \| \varphi_j - \varphi\| \int_K f dx \to 0.$$
+
+b) Fundamentallemma.
+\end{proof}
+
+\subsection{Lemma}
+Sei $f \in L^1_{\loc}(\Omega)$ mit $\int_\psi f = 0$ für alle $\psi \in C_c(\Omega)$.
+Dann $f = 0$ f.ü.
+
+\subsection{Definition}
+
+Seien $T_j, T \in D'(\Omega)$ für $j \in \N$. 
+dann $T_j \to T$ in $D'(\Omega)$, falls $T_j(\varphi) \to T(\varphi)$ für $\varphi \in D(\Omega)$.
+Der Konvergenzbegriff auf $D'(\Omega)$ ist also der der schwach-*-Konvergenz.
+
+\subsection{Beispiele}
+
+\begin{enumerate}[a)]
+  \item Sei $(f_j) \subseteq C(\R^n)$ mit $f_j \to f$ gleichmäßig auf allen $K \subseteq \R^n$ kompakt. Dann:
+    $$ \lim_j \int_{\R^n} f_j(x) \varphi(x) dx = \int_{\R^n} f(x)\varphi(x) dx$$
+    für alle $\varphi \in D(\R^n)$, d.h. $T_{f_j} \to T_f$ in $D'(\R^n)$.
+
+  \item Sei $f \in L^1(\R)$ mit $\norm{f}_{L^1} = 1$ und $f \geq 0$.
+    Für $\varepsilon > 0$ setze $\varphi_\varepsilon(x) = \frac{1}{\varepsilon^n}f(\frac{x}{\varepsilon}).$
+    Dann
+    $$
+    T_{f_\varepsilon} \to \delta$$
+    in $D(\R^n)$.
+
+  \item expliziges Beispile: Gauß Kern
+    $$
+    K(x) = \frac{1}{(2\pi)^{\frac{n}{2}}} e^{-\frac{|x|^2}{2}}
+    $$
+    Dann $\norm{K}_{L^1} = 1$ und 
+    $$
+    \frac{1}{\varepsilon^n}\frac{1}{(2\pi)^{frac{n}{2}}} e^{-\frac{|x|^2}{2\varepsilon}} \to \delta
+    $$
+
+  \item
+    $$
+    \langle \varphi, T_j \rangle := \int_{|x| > \frac{1}{j}} \frac{\varphi(x)}{x} dx.
+    $$
+    Dann $T_j \to \pv \frac{1}{x}$ in $D'(\Omega)$. (Trick wie in 8.7 benutzen)
+\end{enumerate}
+
+\subsection{Elementare Operationen mit Distributionen: Multiplikation mit einer Funktion}
+
+Sei $a \in C^\infty(\Omega), T \in D'(\Omega)$. 
+Man setzt:
+$$
+\langle aT, \varphi\rangle := \langle T, a \varphi\rangle \quad \text{für } \varphi \in D(\Omega).
+$$
+
+
+\begin{ex}
+  \begin{enumerate}[i)]
+    \item $(a\delta) = a(0)\delta$ für alle $a \in C^\infty(\R^n)$, denn:
+      $$
+      \langle a\delta, \varphi\rangle  = \langle \delta, a\varphi\rangle = a(0)\varphi(0) = a(0)\langle \delta, \varphi\rangle.
+      $$
+
+    \item
+      $x \pv \frac{1}{x} = 1$, denn
+      $$
+      \langle x \pv \frac{1}{x}, \varphi \rangle
+      = \langle \pv \frac{1}{x}, x\varphi\rangle
+      = \lim_{\varepsilon \to 0} \int_{|x| > \varepsilon} \frac{x \varphi(x)}{x} dx
+      = \lim_{\varepsilon \to 0} \int_{|x| > \varepsilon} \varphi(x) dx
+      = \int_\R \varphi(x) dx
+      = \langle 1, \varphi \rangle,
+      $$
+      für alle $\varphi \in D(\R)$.
+  \end{enumerate}
+\end{ex}
+
+\subsection{Ableitung einer Distribution}
+
+Sei $f \in C^1(\R^n) \implies T_f \in D'(\R^n)$. Also für $\varphi \in D(\R^n)$:
+$$
+\langle T_{D_j f}, \varphi \rangle \overset{\text{Def}}{=} \int_{\R^n}(D_j f) \varphi dx = - \int_{\R^n} f D_j \varphi ds = - \langle T_f, D_j \varphi  \rangle
+$$
+
+Allgemein: $f \in C^k(\R^n), |\alpha| \leq k$. Dann
+$$
+\langle T_{D^\alpha f}, \varphi \rangle = \int_{\R^n} (D^\alpha f) \varphi dx = (-1)^{|\alpha|} \int_{\R^n} f D^\alpha \varphi dx = (-1)^{|\alpha|} \langle T_f, D^\alpha \varphi \rangle.
+$$
+
+Daher ist folgende Definition natürlich:
+
+\subsection{Definition}
+
+Sei $T \in D'(\Omega)$. Dann ist $D\alpha T$ definiert durch
+$$
+\langle D^\alpha T, \varphi\rangle := (-1)^{|\alpha|} \langle T, D^\alpha \varphi \rangle \quad, \varphi \in D(\Omega), \alpha \text{ Multiindex}.
+$$
+
+\subsection{Bemerkung}
+
+\begin{enumerate}[a)]
+  \item $T \in D'(\Omega)$, dann $D^\alpha T \in D'(\Omega)$ für jedes $\alpha$, denn:
+    \begin{itemize}
+      \item $D^\alpha T$ linear \checkmark
+      \item $D^\alpha T$ stetig. Z.z.: $\varphi_j \to \varphi$ in $D(\Omega)$ $\implies$ $D^\alpha \varphi_j \to D^\alpha \varphi$ in $D(\Omega)$.\\
+        $T$ stetig $\implies$ $(-1)^{|\alpha|} \langle T, D^\alpha \varphi_j \rangle \to (-1)^{|\alpha|} \langle T, D^\alpha \varphi \rangle$\\
+        $\implies \langle D^\alpha T, \varphi_j \rangle \to \langle D^\alpha T, \varphi \rangle$
+    \end{itemize}
+
+  \item Leibniz-Regel/Produktregel:\\
+    Seien $a \in C^\infty(\Omega), T \in D'(\Omega)$.
+    Dann $aT \in D'(\Omega)$ (8.13) und
+    $$
+    D^\alpha(aT) = \sum_{\beta \subseteq \alpha} {\alpha\choose\beta} D^\beta a D^{\alpha - \beta} T
+    $$
+    Beweis Übungsaufgabe.
+
+  \item Sei $f \in C^k(\Omega)$ und $|\alpha| \leq k$.
+    Dann stimmt $D^\alpha f$ im distributionellen Sinne mit der klassischen Ableintung $f^{(\alpha)}$ überein, denn
+    $$
+    \langle T_{D^\alpha f}, \varphi \rangle = \int_{\R^n} (D^\alpha f) \varphi dx = \int_{\R^n} f^{(\alpha)} \varphi =  \langle T_{f^(\alpha)}, \varphi \rangle.
+    $$
+\end{enumerate}
+
+\subsection{Beispiele}
+
+\begin{enumerate}[a)]
+  \item Die Heavyside-Funktion ist gegeben durch
+    $$
+    H(x) = \begin{cases} 1, x > 0 \\ 0, x \leq 0 \end{cases}.
+    $$
+    Dann $H \in D'(\R)$
+    $$
+    \implies \langle H', \varphi\rangle \overset{\text{Def}}{=} -\langle H, \varphi'\rangle = -\int_0^\infty \varphi'(x) dx = \varphi(0) = \langle \delta, \varphi \rangle,
+    $$
+    für alle $\varphi \in D(\Omega)$ $ \implies H' = \delta $
+
+  \item $\langle D^\alpha \delta, \varphi \rangle = (-1)^{|\alpha} \langle \delta, D^\alpha \varphi \rangle = (-1)^{|\alpha|} D^\alpha \varphi(0)$
+
+  \item $D(\ln(|x|)) = \pv(\frac{1}{x})$, denn:
+    \begin{align*}
+      \langle D(\ln|x|), \varphi \rangle 
+      &= -\langle \ln|x|, D\varphi \rangle = -\int_\R \ln|x| \varphi'(x) dx \\
+      &= -\lim_{\varepsilon \to 0} \left[ \varphi(-\varepsilon) \ln(\varepsilon) - \int_{-\infty}^{-\varepsilon} \frac{\varphi(x)}{x} dx - \ln(\varepsilon) \varphi(\varepsilon) - \int_\varepsilon^\infty \frac{\varphi(x)}{x} dx \right] \\
+      &= \lim_{\varepsilon \to 0} \left[ -\underbrace{(\varphi(\varepsilon) - \varphi(-\varepsilon))\ln(\varepsilon)}_{\to 0} + \int_{\infty}^{-\varepsilon} \frac{\varphi(x)}{x} dx + \int_\varepsilon^\infty \frac{\varphi(x)}{x} dx \right]\\
+      &= \lim_{\varepsilon \to 0} \int_{|x| \geq \varepsilon} \frac{\varphi(x)}{x} dx 
+      = \langle \pv \frac{1}{x}, \varphi \rangle, \quad \varphi \in D(\R).
+    \end{align*}
+    \tiny{
+    Der vorletzte Schritt folgt aus Mittelwertsatz und l'Hospital, denn
+    $$
+    \frac{2\varepsilon (\varphi(\varepsilon)- \varphi(-\varepsilon))}{2\varepsilon}\ln(\varepsilon)
+    \leq 2 \sup_{x \in [-\varepsilon, \varepsilon]} |\varphi'(x)| \varepsilon \ln(\varepsilon)
+    \to 0
+    $$
+    }  
+\end{enumerate}
+
+\subsection{Der adjungierte Operator}
+
+Sei $A := \sum_{|\alpha| \leq m} a_\alpha D^\alpha$ ein Differentialoperator mit konstanten Koeffizienten $a_\alpha \in \C$.
+Sei $T \in D'(\Omega)$. Dann:
+\begin{align*}
+  \langle AT, \varphi \rangle
+  &= \langle \sum_{|\alpha| \leq m} a_\alpha D^\alpha T, \varphi \rangle
+  \overset{\text{8.10,8.13}}{=} \sum_{|\alpha| \leq m} (-1)^{|\alpha|} a_\alpha \langle T, D^\alpha \varphi \rangle \\
+  &= \langle T, \sum_{|\alpha| \leq m} (-1)^{|\alpha|} a_\alpha D^\alpha \varphi \rangle 
+  = \langle T, A^* \varphi \rangle
+\end{align*}
+mit $A^* := \sum_{|\alpha| \leq m} (-1)^{|\alpha|} a_\alpha D^\alpha$ \underline{Adjungierte von $A$}.
+
+Also $\langle AT, \varphi \rangle = \langle T, A^* \varphi \rangle$ für $\varphi \in D(\Omega)$.
+
+\begin{ex}
+  $\Delta$. Dann $\Delta* = \Delta$.
+\end{ex}
+
+\subsection{Translation}
+
+Für $a \in \R^n, T \in D'(\R^n)$ sei $\tau_a$ gegeben durch $\tau_a \varphi(x) := \varphi(x - a), \varphi \in D(\R^n)$.
+Definiere daher die \underline{Translation von $T$} via
+$$
+\langle \tau_a T, \varphi \rangle := \langle T, \tau_{-a} \varphi \rangle, \quad \varphi \in D(\R^n)
+$$
+
+{\tiny{
+  Zur Motivation betrachte $f \in L^1_{\loc}$. Dann gilt mit der Substitution $y = x - a$:
+  $$
+  \langle \tau_a T_f, \varphi \rangle = \int_\R \tau_a f(x) \varphi(x) dx = \int_\R f(y) \varphi(y + a) dy = \langle f, \tau_{-a} \varphi \rangle.
+  $$
+  }
+}
+
+\subsection{Spiegelung}
+
+Sei  $\varphi \colon \R^n \to \C$ und $\tilde\varphi(x) := \varphi(-x)$.
+Setze dann 
+
+$$\langle \tilde T, \varphi \rangle := \langle T, \tilde \varphi\rangle \quad \varphi D(\R^n), T \in D'(\R^n)$$
+
+{\tiny{Motivation analog zu Translation}}
+
+Sei $f \in L^1_{\loc}(\R^n), g \in D(\R^n)$.
+Setze $h(y) := f(y)g(x-y)$.
+Falls $h \in L^1(\R^n)$, so ist
+$$
+(f \ast g)(x) = \int_{\R^n} g(x - y)f(y) dy
+$$
+wohldefiniert.
+
+Betrachte $\varphi \mapsto \langle T_f, \varphi \rangle = \int f(y) \varphi(y) dy$.
+Dann $(f \ast g)(x) = T_f(\tilde \tau_x g)$ mit $\tilde\tau_x g(y) = g(x - y)$.
+
+Daher ist die folgende Definition natürlich:
+
+\subsection{Definition}
+Sei $T \in D'(\R^n), \varphi \in D(\R^n)$.
+Definiere $T \ast \varphi$ durch
+$$
+(T \ast \varphi)(x) := \langle T, \tilde \tau_x \varphi \rangle, \quad x \in \R^n
+$$
+
+\subsection{Beispiel (Faltung mit $\delta$)}
+
+$$
+(\delta \ast \varphi)
+\overset{\text{Def}}{=} \langle \delta, \tilde\tau_x \varphi \rangle
+= (\tilde\tau_x \varphi)(0)
+= \varphi(x),
+$$
+das heißt $\delta \ast \varphi = \varphi$.
+Mit anderen Worten: $\delta$ ist Identität bezüglich $\ast$.
+
+\subsection{Satz}
+
+Seien $T \in D'(\R^n), \varphi \in D(\R^n)$.
+Dann $T \ast \varphi \in C^\infty(\R^n)$ und 
+$$
+D_j(T \ast \varphi) = (D_j T) \ast \varphi = T \ast (D_j \varphi).
+$$
+
+\begin{proof}
+  a) $T \ast \varphi$ stetig:
+  \begin{align*}
+  &(\tilde\tau_{x'}\varphi)(y) - (\tilde\tau_x\varphi)(y)
+  = \varphi(x' - y) - \varphi(x - y)\\
+  &\implies \tilde\tau_{x'} \varphi \to \tilde\tau_x \varphi \text{ in } D(\R^n) \text{ für } x' \to x
+  &\overset{\text{T Dist.}}{\implies} \langle T, \tilde\tau_{x'} \varphi \rangle \to \langle T, \tilde\tau_x \varphi \rangle,
+  \end{align*}
+  das heißt $\lim_{x' \to x} (T \ast \varphi)(x') = (T \ast \varphi)(x)$.
+  {\tiny{Zur Stetigkeit der Abbildung $x \mapsto \tau_x \varphi$ vergleiche Roch S.83}}
+
+  b) Sei $h \in \R\setminus\{0\}$. Dann
+  \begin{align*}
+    &\frac{1}{h} (\tilde\tau_{x + he_i} \varphi - \tilde\tau_x \varphi)(y)
+    = \frac{1}{h} (\varphi(x + he_i - y) - \varphi(x - y)) \\
+    &= \frac{1}{h} (\varphi(x - y + he_i) - \varphi(x - y)) \to (\frac{\partial}{\partial_i} \varphi)(x - y)\\
+    &\implies \frac{1}{h} ( \tilde\tau_{x + he_i} \varphi - \tilde\tau_x \varphi) \to \tilde\tau_x (\frac{\partial}{\partial_i} \varphi) \text{ in } D(\R) \\
+    &\implies D_i(T \ast \varphi)(x) 
+    = \lim_{h \to 0} \frac{1}{h} ( \langle T, \tilde \tau_{x + he_i} \varphi - \tilde\tau_x \varphi \rangle) \\
+    &= \lim_{h \to 0} \langle T, \frac{1}{h} ( \tilde \tau_{x + he_i} \varphi - \tilde\tau_x \varphi )\rangle 
+    \overset{T \text{ stetig}}{=} \langle T, \tilde\tau_x \frac{\partial}{\partial_i} \varphi \rangle \\
+    &\overset{\text{Def}}{=} (T \ast \frac{\partial}{\partial_i} \varphi)(x)
+  \end{align*}
+
+  $\implies (T \ast \varphi)$ besitzt pratielle Ableitung und 
+  $$
+  \frac{\partial}{\partial_i} (T \ast \varphi) = T \ast (\frac{\partial}{\partial_i} \varphi)
+  $$
+
+  Iteriere
+  $$
+  \frac{partial}{\partial x_j} \frac{\partial}{\partial x_i} (T \ast \varphi) = T \ast (\partial_j \partial_i \varphi) \implies T \ast \varphi \in C^\infty(\R^n)
+  $$
+  und damit
+  \begin{align*}
+    \frac{\partial}{\partial_i} (T \ast \varphi)(x) 
+    &= (T \ast \frac{\partial}{\partial_i} \varphi)(x)
+    \overset{\text{Def}}{=} \langle T, \tilde\tau_x (\frac{\partial}{\partial_i} \varphi) \rangle \\
+    &= \langle T, -\frac{\partial}{\partial_i}(\tilde\tau_x \varphi) \rangle
+    \overset{\text{Def Abl}}{=} \langle \frac{\partial}{\partial_i} T, \tilde\tau_x \varphi \rangle
+    =(\frac{\partial}{\partial_i} T \ast \varphi)(x)
+  \end{align*}
+\end{proof}
+
+Zusammenfassend gilt
+
+\subsection{Theorem}
+
+Sei $A = \sum_{|\alpha| \leq m} a_\alpha D^\alpha$ ein Differentialoperator mit konstanten Koeffizienten $a_\alpha \in \C$.
+Sei $T \in D'(\R^n)$ mit $AT = \delta$ und sei $f \in D(\R^n)$.
+Dann ist die Funktion 
+$$
+u := T \ast f \in C^\infty(\R^n)
+$$
+und eine Lösung der Gleichung $Au = f$ im Sinne von Distributionen.
+
+
+\begin{proof}
+  $$ Au = A(T \ast f) \overset{\text{8.23}}{=} AT \ast f \overset{\text{Vor.}}{=} \delta \ast f \overset{\text{8.22}}{=} f \qedhere$$
+\end{proof}
+
+\subsection{Definition}
+
+Sei $A = \sum_{|\alpha| \leq m} a_\alpha D^\alpha, \alpha \in \C$ ein Differentialoperator. Dann heißt $T \in D'(\R^n)$ mit Eigenschaft $AT = \delta$ \underline{Fundamentallösung von A}.
+
+\begin{ex}
+  \begin{enumerate}[i)]
+    \item $A = \Delta$
+    \item $A = \partial_t - \Delta$
+    \item $A = \partial_{tt} - \Delta = \square $
+    \item $A = \partial_t - i\Delta$
+  \end{enumerate}
+\end{ex}
