@@ -1,0 +1,245 @@
+\section{Sovolevräume und Randwertprobleme II}
+
+Sei $\Omega \subseteq \R^n$ offen.
+
+\subsection{Definition}
+
+Der Sobolevraum $H^1(\Omega)$ ist definiert durch\\
+$$
+H^1(\Omega) := \{u \in L^2(\Omega) \colon \text{ es ex. } g_1, \dots, g_n \in L^2(\Omega), \text{ sodass für } \varphi \in C_c^\infty(\Omega) \text{ und } 1 \leq i \leq n \text{ gilt: } \int_\Omega u \frac{\partial \varphi}{\partial x_i} = - \int_\Omega g_i \varphi \}
+$$
+
+\begin{bem}
+  \begin{enumerate}[a)]
+  \item Das Fundamentallemma impliziert, dass die $g_i$ eindeutig bestimmt sind.
+  \item Für $u \in H^1(\Omega)$ definiert man $\frac{\partial u}{\partial x_i} := g_i$ und $\nabla u := ( \frac{\partial u}{\partial x_1}, \dots, \frac{\partial u}{\partial x_n}) = \grad u$.
+\end{enumerate}
+\end{bem}
+
+Wir versehen $H^1(\Omega)$ mit dem Skalarprodukt
+$$
+(u,v)_{H^1} := (u,v)_{L^2} + \sum_{i = 1}^n (\frac{\partial u}{\partial x_i}, \frac{\partial v}{\partial x_i})_{L^2}
+$$
+und der zugehörigen Norm
+$$
+\norm{u}_{H^1(\Omega)} = \left(\norm{u}_{L^2}^2 + \sum_{i = 1}^n \norm{\frac{\partial u}{\partial x_i}}_{L^2}^2 \right)^{\frac{1}{2}}.
+$$
+
+\subsection{Satz}
+
+Der Raum $H^1(\Omega)$ ist ein Hilbertraum.
+
+Beweis Übung.
+
+Sei $m \geq 2$. Der Raum $H^m(\Omega)$ sei definiert durch
+
+\begin{align*}
+H^m(\Omega) 
+&:=  \{ u \in H^{m - 1}(\Omega) \colon \text{ für } 1 \leq i \leq u \text{ gilt: } \frac{\partial u}{x_i} \in H^{m-1}(\Omega) \} \\
+& = \{u \in L^2(\Omega) \colon \text{ für Multiindex } \alpha \text{ mit } |\alpha| \leq m \text{ existiert } g_\alpha \in L^2(\Omega) \text{ sodass für } \varphi \in C_c^\infty(\Omega) \text{ gilt: } \int_\Omega u D^\alpha \varphi = (-1)^{|\alpha|} \int_\Omega g_\alpha \varphi \}
+\end{align*}
+
+Mit Skalalprodukt
+
+$$
+(u,v)_{H^m(\Omega)} := \sum_{|\alpha| \leq m} (D^\alpha u, D^\alpha v)_{L^2}
+$$
+ist $H^m(\Omega)$ ein Hilbertraum.
+
+\subsection{Definition}
+Wir definieren den Raum $H_0^1(\Omega)$ durch $$H_0^1(\Omega) := \overline{C_c^\infty}_{\norm{\cdot}_{H^1(\Omega)}}.$$
+
+\begin{bem}
+  \begin{enumerate}[a)]
+    \item Mit der von $H^1$ induzierten Norm ist $H_0^1(\Omega)$ ein Hilbertraum.
+    \item Im Allgemeinen gilt $H_0^1(\Omega) \neq H^1(\Omega)$.
+  \end{enumerate}
+\end{bem}
+
+\subsection{Dirichlet-Problem}
+
+Sei $\Omega \subseteq \R^n$ offen, beschränkt. Finde $u \colon \overline\Omega \to \R$ mit
+$$
+\text{(DP)}\; \begin{cases}
+  -Delta u &= f \text{ in } \Omega \\
+  u = 0 \text{ auf } \partial\Omega
+\end{cases}
+$$
+wobei $\Delta u := \sum_{i = 1}^n \frac{\partial^2 u}{\partial x_i^2}$ der Laplace-Operator angewand auf u sei. 
+Die Bedingung $u|_{\partial \Omega} = 0$ heißt \underline{Dirichlet-Randbedingung}.
+
+\begin{ntion}
+  Eine \underline{klassische Lösung von (DP)} ist eine Funktion $u \in C^2(\overline\Omega)$, die (DP) löst.
+  Eine \underline{schwache Lösung von (DP)} ist eine Funktion $u \in H_0^1(\Omega)$ mit
+  $$
+  \int_\Omega \nabla u \nabla v = \int_\Omega fv \quad\text{ für } v \in H_0^1(\Omega).
+  $$
+\end{ntion}
+
+\subsection*{Schritt A: klassische Lösung $\implies$ schwache Lösung}
+\subsection{Lemma}
+Sei $\Omega \subseteq \R^n$ mit glattem Rand, $u \in H^1(\Omega) \cap C(\overline\R)$.
+Dann gilt:
+$$
+u \in H_0^1(\Omega) \iff u = 0 \text{ auf } \partial\Omega
+$$
+
+\begin{proof}
+  Siehe Evans S.273.
+\end{proof}
+
+Sei $u$ klassische Lösung. 
+Dann $u \in H^1(\Omega) \cap C(\overline\Omega) \overset{\text{7.5}}{\implies} u \in H_0^1(\Omega).$
+
+Ferner: Für $v \subseteq C_c^\infty(\Omega)$ gilt nach Divergenz-Satz (z.B. Evans S.712):
+\begin{align*}
+  &0 = \int_{\partial \Omega} v \frac{\partial u}{\partial \nu} d\sigma = \int_\Omega \div(v \nabla u) = \int_\Omega \nabla v \nabla u + \int_\Omega v \Delta u\\
+  &\implies \text{ für } v \in C_c^\infty(\Omega) \colon \int_\Omega \nabla v \nabla u = \int_\Omega f v \\
+  &\overset{\text{Dichtheit}}{\implies} u \text{ schwache Lösung von (DP)}.
+\end{align*}
+
+\subsection*{Schritt B: Dirichletsches Prinzip}
+Für $f \in L^2(\Omega)$ existziert genau ein $u \in H_0^1(\Omega): u$ schwache Lösung von (DP).
+
+zum Beweis:
+\subsection{Satz (Poincaresche Ungleichung)}
+
+Sei $\Omega \subseteq \R^n$ offen, beschränkt. Dann existiert $C = C(\Omega) > 0$, sodass für $u \in H_0^1(\Omega)$ gilt
+$$
+\norm{u}_{L^2(\Omega)} \leq C \norm{\nabla u}_{L^2}.
+$$
+
+\begin{proof}
+  Siehe Übung 6
+\end{proof}
+
+Betrachte auf $H_0^1$ die Bilinearform $a(u,v) := \int_\Omega \nabla u \nabla v$ und die Linearform $\varphi(v) := \int_\Omega fv$.
+
+Dann: $a,\varphi$ stetig: klar (Hölder)
+
+a koerzitiv: 
+\begin{align*}
+  a(u,u) &= \int_\Omega |\nabla u|^2 = \frac{1}{2} \int |\nabla u|^2 + \frac{1}{2} \int |\nabla u|^2 \\
+  &\overset{\text{Poincare}}{\geq} \frac{1}{2} \int |\nabla u|^2 + \frac{1}{2C^2} |u|^2 \geq \text{const}\cdot \norm{u}_{H^1}^2 \quad\text{ für alle } u \in H_0^1
+\end{align*}
+
+Mit Lax-Milgram folgt: Es existiert genau ein $u \in H_0^1(\Omega)$ mit $a(u,v) = \varphi(v)$ für alle $v \in H_0^1(\Omega)$.
+
+\subsection*{Schritt C: Regularität der schwachen Lösung}
+
+ohne Beweis: Sei $f \in L^2$ und $u$ schwache Lösung von (DP), $\partial \Omega$ glatt. Dann
+\begin{enumerate}[a)]
+  \item Sei $f \in H^m(\Omega)$. Dann $u \in H^{m+2}$ und $\norm{u}_{H^{m+2}} \leq c \norm{f}_{H^m}$.
+  \item Sei $m > \frac{n}{2}$. Dann $H^{m+2}(\Omega) \hookrightarrow L^2(\Omega)$ (Sobolevsche Einbettungssätze).
+\end{enumerate}
+
+\subsection*{Schritt D: Rückkehr zur klassischen Lösung}
+
+Sei $f \in H^m$ mit $m > \frac{n}{2}$ $\overset{\text{Bew. (*)}}\implies$ schwache Lösung $u \in H_0^1(\Omega) \cap C^2(\overline\Omega)$ $\overset{\text{Lemma 7.5}}{\implies} u = 0$ auf $\partial \Omega$.
+
+Weiter: für $v \in C_c^\infty(\Omega) \colon \int -\Delta u = \int fv$.
+
+$\overset{\text{Fundamentallemma}}{\implies} -\Delta u = f$ fast überall in $\Omega$
+
+$\overset{u \in C^2}{\implies} -\Delta u = f$, d.h. $u$ ist klassische Lösung von (DP).
+
+Beweis von (*):
+\begin{lem}[Lemma von Sobolev]
+  Sei $\Omega \subseteq \R^n$ offen, $m > \frac{n}{2} + k$, $u \in H^m(\Omega)$, dann existiert $g \in C^k(\Omega)$ mit $g = u$ fast überall.
+  Mit anderen Worten: $H^m(\Omega) \hookrightarrow C^k(\Omega)$, falls $m > \frac{n}{2} + k$.
+\end{lem}
+
+\begin{proof}
+  Für $\Omega = \R^n$ via Fourier-Trafo:
+
+Bekannt: $g \in L^1(\R^n), x^\alpha g \in L^1(\R^n)$ für $|\alpha|\leq k$, dann $\hat g \in C^k(\R^n)$ (**).
+
+Idee: Zeige $f \in H^m(\R^n) \overset{!}{\implies} \xi^\alpha \hat f \in L^1(\R^n) (\implies f \in C^k(\R^n))$.
+
+\begin{align*}
+  \int_{\R^n} |\xi^\alpha \hat f(\xi) |d\xi 
+  &\leq \int_{\R^n} (1 + |\xi|^2)^{\frac{|\alpha|}{2}} |\hat f(\xi)| d\xi \\
+  &= \int_{\R^n} ( 1 + |\xi|^2)^{\frac{m}{2}} |\hat f(\xi)| \frac{1}{(1 + |\xi|^2)^{\frac{m - |\alpha|}{2}}} d \xi \\
+  &=\left( \int_{\R^n} (1 + |\xi|^2 )^m |\hat f(\xi) |^2 d\xi \right)^{\frac{1}{2}} \left( \int_{\R^n} \frac{1}{(1 + |\xi|^2)^{m - |\alpha|}} d\xi \right)^{\frac{1}{2}}
+\end{align*}
+
+Also gilt $\xi^\alpha \hat f \in L^1(\R^n) \overset{(**)}{\implies} f \in C^k(\R^n)$. 
+
+Für $\Omega \subseteq \R^n$ setze f glatt auf $R^n$ fort.
+\end{proof}
+
+\subsection{Störung niedriger Ordnung}
+
+Sei $\Omega \subseteq \R^n$ offen, beschränkt.
+Finde $u \colon \overline\Omega \to \R$ mit
+$$
+\text{(P)} 
+\begin{cases}
+  -\Delta u + \lambda u = f \text{ in } \Omega \\
+  u = 0 \text{ auf } \partial \Omega
+\end{cases}
+$$
+für ein $\lambda \in \R$.
+
+Eine schwache Lösung von (P) ist $u \in H_0^1(\Omega)$ mit
+$$
+\int_\Omega \nabla u \nabla v + \int_\Omega \lambda uv = \int_\Omega fv \text{ für alle } v \in H_0^1(\Omega).
+$$
+
+Wie erhält man eine schwache Lösung?
+$$
+a(u,v) := \int_\Omega \nabla u \nabla v + \int_\Omega \lambda u v, \quad \varphi(v) = \int_\Omega fv, \quad u,v \in H_0^1, f \in L^2.
+$$
+
+$a,\varphi$ stetig auf $H_0^1(\Omega)$: nachrachnen \checkmark
+
+$a$ koerziv: 
+\begin{align*}
+a(u,u) 
+&= \int_\Omega |\nabla u|^2 + \lambda \int_\Omega |u|^2 \\
+&= \norm{nabla u}_2^2 + \lambda \norm{u}_2^2 + \varepsilon \left( \int u^2 + \int |\nabla u|^2 - \int u^2 - \int |\nabla u|^2 \right) \quad (0 < \varepsilon < 1) \\
+&= \varepsilon \norm{u}_{H^n}^2 + (1 - \varepsilon) \norm{\nabla u}_2^2 + (\lambda - \varepsilon) \norm{u}_2^2 \\
+&\overset{\text{Poincare}}{\geq} \varepsilon \norm{u}_{H^1}^2 + \frac{1 - \varepsilon}{c^2} \norm{u}_2^2 + (\lambda - \varepsilon) \norm{u}_2^2 \\
+&= \varepsilon \norm{u}_{H^1}^2 + \left[ \frac{1}{c^2} + \lambda - \varepsilon (1 + \frac{1}{c^2}) \right] \norm{u}_2^2.
+\end{align*}
+d.h., falls $\frac{1}{c^2} > -\lambda$ (betrachte den Vorfaktor vor der Norm), so ist für hinreichend kleine $\varepsilon$ die Bilinearform koerziv.
+{\tiny{$\frac{1}{c^2} > -\lambda \implies \frac{1}{c^2} + \lambda > 0$}}
+
+Wir haben gezeigt:
+\subsection{Lemma}
+Falls $\frac{1}{c^2} > - \lambda$, so ist $a$ koerzive, stetige Bilinearform auf $H_0^1(\Omega)$.
+
+Mit Lax-Milgram: $\frac{1}{c^2} > -\lambda \implies$ es existiert genau ein $u \in H_0^1(\Omega)$, schwache Lösung von (P).
+
+Fixiere nun $\lambda_0 > -\frac{1}{c^2}$ und $a_{\lambda_0} := \int_\Omega \nabla u \nabla v + \lambda_0 \int uv$.
+Dan gibt es für jedes $f \in L^2$ ($\implies \varphi$ stetige Linearform) eine eindeutige schwache Lösung $u^* \in H_0^1(\Omega)$ von (P), d.h.
+$$
+a_{\lambda_0}(u^*, v) = (f,v)_{L^2}
+$$
+
+Die Abbildung $f \mapsto u^*$ induziert einen Operator $R_{\lambda_0} \colon L^2(\Omega) \to H_0^1(\Omega)$ mit folgenden Eigenschaften:
+\begin{enumerate}[i)]
+  \item für $f \in L^2(\Omega), v \in H_0^1(\Omega)$ gilt $a_{\lambda_0}(R_{\lambda_0} f, v) = (f,v)_{L^2}$
+  \item $R_{\lambda_0} \colon L^2(\Omega) \to H_0^1(\Omega)$ ist linear und stetig.
+  \item $R_{\lambda_0} \colon L^2(\Omega) \to L^2(\Omega)$ ist kompakt.
+\end{enumerate}
+
+\begin{proof}
+  i) nach Definition
+
+  ii) Linearität: Seien $\alpha_1, \alpha_2 \in \C$, $f_1,f_2 \in L^2, v \in H_0^1$. Dann
+  \begin{align*}
+  a_{\lambda_0}(R_{\lambda_0}(\alpha_1 f_1 + \alpha_2 f_2) - \alpha_1 R_{\lambda_0}(f_1) - \alpha_2 R_{\lambda_0}(f_2), v) \\
+  \overset{\text{i)}}{=} (\alpha_1 f_1 + \alpha_2 f_2, v) - \alpha_1 (f_1, v) - \alpha_2(f_2, v) = 0 
+  \end{align*}
+\end{proof}
+
+  Stetigkeit: z.z: $\norm{R_{\lambda_0} f}_{H_0^1} \leq \text{const.} \cdot \norm{f}_{L^2}$
+
+  $a_{\lambda_0}$ koerziv, d.h. es ex $\varepsilon_0 > 0$: $\alpha_{\lambda_0}(w,w) \geq \varepsilon_0 \norm{w}_{H_0^1}^2$ für $w \in H_0^1$.
+
+\subsection{Satz (Rellich)}
+
+Sei $\Omega \subseteq \R^n$ offen, beschränkt. Dann ist $H_0^1(\Omega) \hookrightarrow L^2(\Omega)$ kompakt.
+
+Beweis: Literatur.

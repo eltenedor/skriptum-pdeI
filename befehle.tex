@@ -18,7 +18,7 @@
 
 \theoremstyle{plain}
 \newtheorem{thm}{Satz}[section]
-\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem}{Lemma}
 \newtheorem{cor}[thm]{Korollar}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem*{ex}{Beispiel}
@@ -36,8 +36,8 @@
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\loc}{loc}
 \DeclareMathOperator{\pv}{pv}
+\DeclareMathOperator{\grad}{grad}
 
-\newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
 \let\divsymb=\div % rename builtin command \div to \divsymb
 \renewcommand{\div}[1]{\mathrm{div\,} #1} % for divergence
 \newcommand{\norm}[1]{\lVert #1 \rVert}
