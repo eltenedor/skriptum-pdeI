@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,a4paper]{report}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -20,6 +20,8 @@
 
 \include{befehle}
 
+\renewcommand\thesection{\arabic{section}}
+
 
 \title{Partielle Differentialgleichungen I -- Prof. Hieber WS15/16}
 \author{Fabian Gabel}
@@ -28,6 +30,7 @@
 
 \maketitle
 
+\input{chap6}
 \input{chap7}
 \input{chap8}
 %\input{chap9}

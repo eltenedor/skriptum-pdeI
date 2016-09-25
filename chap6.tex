@@ -1,0 +1,269 @@
+\chapter*{Schwache Lösungstheorie in Sobolevräumen}
+\section{Elliptische Randwertprobleme: Der Fall $n = 1$}
+
+$$
+\text{Dirichletproblem}
+\begin{cases}
+  -u'' = f \text{ auf } [0,1], f \in ([0,1]) \\
+  u(0) = u(1) = 0
+\end{cases}
+$$
+
+klassische Lösung: $u \in C^2([0,1])$, welches (DP) erfüllt.
+
+Zugang in 4 Schritten
+
+\begin{enumerate}[(A)]
+  \item Einführung einer schwachen Lösung $\leadsto$ Sobolevraum
+  \item Existenz und Eindeutigkeit einer schwachen Lösung
+  \item Reularität der schwachen Lösung
+  \item Rückkehr zur klassischen Lösung
+\end{enumerate}
+
+$I = (a,b) \subseteq \R, -\infty \leq a < b \leq \infty$
+
+Sei $u \in C^1(\overline I), \varphi \in C_c^\infty(I)$
+
+$$ \int_I u' \varphi dx = \underbrace{u \varphi|_a^b}_{= 0 \text{ wegen kompaktem Träger}} - \int_I u \varphi' dx$$
+
+\subsection{Definition}
+
+Wir definieren \underline{Sobolevraum} $H_1(I)$ via
+$$
+H^1(I) := \left\{ u \in L^2(\Omega) \colon \text{ es existiert } g \in L^2(I) \text{ mit } \int_I u\varphi' dx = - \int_I g\varphi dy \text{ für alle } \varphi \in C_c^\infty(I)\right\}
+$$
+
+Für $u \in H^1(I)$ heißt $Du := g$ die \underline{schwache Ableitung} von $u$.
+
+\begin{bem}
+Die Funktion $g$ ist eindeutig bestimmt (Fundamentallemma).
+\end{bem}
+
+\begin{ex}
+  $u(x) = \frac{1}{2}(|x| + x)$
+  
+  $\implies u \in H^1(I)$ und $Du = H$ mit $H(x) = 
+  \begin{cases}
+    1,\quad 0 < x < 1 \\
+    0,\quad -1 < x < 0
+  \end{cases}$
+\end{ex}
+
+Versehe $H^1(I)$ mit Skalarprodukt: $$(u,v)_{H^1} := (u,v)_{L^2} + (u', v')_{L^1}$$ und Norm $$\norm{u}_{H^1} := \left(\norm{u}_{L^2}^2 + \norm{u'}_{L^2}^2\right)^\frac{1}{2}$$
+
+\subsection{Lemma}
+
+$H^1(I)$ ist ein Hilbertraum. Übungsaufgabe.
+
+\subsection{Satz}
+
+Sei $u \in H^1(I)$.
+Dann existiert $\tilde u \in C(\overline I)$ mit $\tilde u = u$ fast überall auf $I$ und 
+$$
+\tilde u(x) - \tilde u(y) = \int_y^x u'(s) ds, \quad x,y \in \overline I.
+$$
+
+Beweis: Übungsaufgabe
+
+\subsection{Satz}
+
+Sei $-\infty < a < b < \infty$. Dann ist die Einbettung
+$$
+H^1(a,b) \hookrightarrow C([a,b])
+$$
+kompakt.
+
+\begin{proof}
+  Zu besprechen
+\end{proof}
+
+\subsection{Korollar (partielle Integration in $H^1$)}
+
+Seien $u,v, \in H^1(a,b)$.
+Dann $u\cdot v \in H^1(a,b)$ und es gilt:
+$$ (uv)' = u'v + u v' \quad\text{sowie}\quad \int_y^x u'v = uv|_y^x - \int_y^x u v'$$
+für $x,y \in [a,b]$.
+
+\subsection{Satz}
+
+Sei $-\infty < a < b < \infty, u \in L^2(a,b)$. 
+Dann
+$$
+u \in H^1(a,b) \iff \text{ es existiert } C > 0 \text{ mit } |\int_a^b u\varphi'| \leq C \norm{\varphi}_{L^2}$$
+für alle $\varphi \in C_c^\infty(a,b)$.
+
+\begin{proof}
+  $\Rightarrow$: \checkmark
+
+  $\Leftarrow$: Betrachten Abbildung
+  $$
+  f \colon C_c^\infty(I) \ni \varphi \mapsto -\int_a^b u \varphi' dx
+  $$
+
+  Dann ist $f$ Linearform, definiert auf dichtem Teilraum von $L^2$
+
+  $\implies$ es existiert stetige Fortsetzung auf $L^2(a,b)$.
+
+  $\overset{\text{R.F.}}{\implies}$ es existiert genau ein $g \in L^2(a,b)$ mit $f(\varphi) = (g,\varphi), \varphi \in L^2$.
+
+  Insb. $-\int u \varphi' = \int g \varphi $ für alle $\varphi \in C_c^\infty(I)$.
+
+  $\overset{\text{Def.}}{\implies} u \in H^1(a,b)$
+\end{proof}
+
+\subsection{Definition}
+
+Seien $\infty < a < b < \infty$.
+Setze
+$$
+H_0^1(a,b) := \overline{C_c^\infty(a,b)}_{\norm{\cdot}_{H^1(a,b)}}
+$$
+und versehe $H_0^1(a,b)$ mit der induzierten Topologie.
+
+\begin{bem}
+  Dann ist auch $H_0^1(a,b)$ ein Hilbertraum.
+\end{bem}
+
+\subsection{Satz}
+
+Sei $u \in H^1(a,b)$ mit $-\infty < a < b < \infty$.
+Dann
+$$ u \in H_0^1(a,b) \iff u(a) = u(b) = 0.$$
+
+Beweis Übungsaufgabe.
+
+\subsection{Satz (Poincare)}
+
+Seien $-\infty < a < b < \infty$.
+Dann existiert $C > 0$ mit $\norm{u}_{L^2(a,b)} \leq C \norm{u'}_{L^2(a,b)}$ für $u \in H_0^1(a,b)$.
+
+\begin{proof}
+  Sei $u \in H_0^1(a,b)$, $a < x < b$.
+
+  $u(x) \overset{\text{6.8}}{=} u(x) - u(a) \overset{\text{6.3}} \int_a^x 1\cdot u'(x) ds$
+
+  $|u(x)|^2 \overset{\text{C.S.}}{\leq}\left( \int_a^x 1 ds \right) \left( \int_a^x |u'(s)|^2 ds \right) \leq (b-a) \norm{u'}_2^2$
+
+  $\implies \norm{u}_2^2 \leq (b-a)^2 \norm{u'}_{L^2}^2 \implies \norm{u}_2 \leq (b-a) \norm{u'}_2$
+\end{proof}
+
+\subsection{Definition}
+
+Sei $m \geq 2$.
+Setze
+$H^m(I) := \{ u \in H^{m-1}(I) \colon u' \in H^{m-1}(I)\}$
+
+\begin{bem}
+  $u \in H^m(I) \iff$ es gibt $g_1,\dots,g_m \in L^2(I)$ mit
+  $$
+  \int_I uD^j \varphi = (-1)^j \int_I g_j \varphi, \quad\varphi \in C_c^\infty(I), j = 1,\dots,m
+  $$
+\end{bem}
+
+\begin{ntion}
+  $D^2u := u'' := (u')', D^mu$ analog.
+\end{ntion}
+
+\begin{bem}
+  Versehen mit Skalarprodukt
+  $$
+  (u,v)_{H^m} := (u,v)_{L^2} + \sum_{j = 1}^m (D^j u, D^j v)_{L^2}
+  $$
+  und zugehöriger Norm
+  $$
+  \norm{u}_{H^m} := \left( \sum_{j \leq m} \norm{D^j u }_{L^2}^2 \right)^{\frac{1}{2}}
+  $$
+  ist $H^m(I)$ ein Hilbertraum.
+\end{bem}
+
+\subsection{Lemma (Fundamentallemma der Variationsrechnung)}
+
+Sei $\Omega \subseteq \R^n$ offen, $f \in L^1_{\loc}(\Omega$.
+Falls
+$$\int_\Omega f \varphi = 0 \quad \text{für } \varphi \in C_c^\infty(\Omega),$$
+dann: $f = 0$ fast überall in $\Omega$.
+
+Beweis findet sich in Alt Funktionalanalysis.
+
+Zurück zum Dirichletproblem
+
+\subsection{Definition}
+
+Eine \underline{schwache Lösung des (DP)} ist eine Funktion $u \in H_0^1(a,b)$ mit
+$$
+\int u' v' = \int fv, \quad v \in H_0^1(a,b).
+$$
+
+\subsection*{Schritt A: klassische Lösung $\implies$ schwache Lösung}
+
+Sei $v \in H_0^1(a,b), f \in L^2(a,b)$. Dann
+
+$\overset{\text{6.5}}{\implies} -\int u'' v = -u' v |_a^b + \int u' v' = \int f v$
+
+\subsection*{Schritt B: Existenz und Eindeutigkeit einer schwachen Lösung}
+
+Z.z.: Für $f \in L^2(a,b)$ existiert genau ein $u \in H_0^1(a,b)$ mit 
+\begin{displaymath}
+  \int u' v' = \int f v \tag{$\ast$}
+\end{displaymath}
+
+\begin{proof}
+  Definiere $a(u,v) := \int_I u' v', u,v \in H_0^1(a,b)$.
+
+  Dann ist $a$ stetige und koerzive Bilinearform auf $H_0^1$, denn
+
+  $|a(u,v)|^2 \overset{\text{Hölder}}{\leq} (\int (u')^2) (\int (v')^2) \leq \norm{u}_{H^1}^2 \norm{v}_{H^1}^2 \implies$ $a$ stetig.
+
+  $a$ koerziv, denn
+
+  $a(u,u) = \int_a^b |u'|^2 = \frac{1}{2} \int |u'|^2 + \frac{1}{2} \int |u'|^2$ 
+  
+  $\overset{\text{Poincare}}{\geq} \frac{1}{2} \int |u'|^2 + \frac{1}{2c} \int_a^b |u|^2 \geq \tilde C \norm{u}_{H^1}^2, u \in H_0^1(I)$.
+
+  Also ist $a$ stetige, koerzive Bilinearform.
+
+  Betrachte rechte Seite von ($\ast$): Linearform $\varphi \colon v \mapsto \int f v$.
+  
+  Lax-Milgram $\implies$ es existiert genau ein $u \in H_0^1(a,b)$ mit $a(u,v) = \varphi(v)$ für alle $v \in H_0^1(a,b)$.
+
+  D.h.: $\int_a^b u' v' = \int f v, v \in H_0^1(a,b)$, also schwache Lösung des (DP).
+\end{proof}
+
+\subsection*{Schritt C: Regularität}
+
+Zeige: $f \in L^1(a,b), u \in H_0^1(a,b)$ schwache Lösung $\implies$ $u \in H^2(a,b)$.
+
+Denn: $\int u' v = \int f v, v \in C_c^\infty(a,b)$.
+
+$\overset{\text{Satz 6.6 + Hölder}}{\implies} u' \in H^1(a,b) \implies u \in H^2(a,b)$
+
+Weiter $f \in L^2(a,b) \cap C[a,b] \implies u \in C^2[a,b]$, denn:
+
+$u' \in H^1 \implies \int_a^b u' v' = u' v |_a^b - \int_a^b u'' v = \int_a^b fv$
+
+$\implies \int_a^b (f + u'') v = 0, v \in C_c^\infty(a,b)$
+
+$\overset{\text{Fundamentallemma}}{\implies} -u'' = f $ fast überall und da $f$ stetig folgt $u \in C^2([a,b])$.
+
+\subsection*{Schritt D: Rückkehr zur klassischen Lösung}
+
+Sei $u \in C^2(\overline I)$ schwache Lösung des (DP) $\implies$ $u$ klassische Lösung von (DP)
+
+\begin{proof}
+  Da $u \in H_0^1(a,b)$ gilt nach Satz 6.8: $u(a) = u(b) = 0$ und 
+
+  $\int u' v' = \int fv, v \in C_c^\infty(a,b) \overset{\text{part. Int}}{\implies} \int (-u'' - f) v = 0, v \in C_c^\infty(a,b)$
+
+  $\overset{\text{Fundamentallemma}}{\implies} -u'' - f = 0$ fast überall.
+
+  $u \in C^2[a,b] \implies -u'' = f$
+\end{proof}
+
+Zusammenfassend gilt:
+
+\subsection{Theorem}
+
+\begin{enumerate}[a)]
+  \item für alle $f \in L^2(a,b)$ existiert genau eine schwache Lösung des (DP)
+  \item ist $f$ zusätzlich stetig, so existiert genau eine klassische Lösung des (DP)
+\end{enumerate}

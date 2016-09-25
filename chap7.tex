@@ -238,6 +238,18 @@ Die Abbildung $f \mapsto u^*$ induziert einen Operator $R_{\lambda_0} \colon L^2
 
   $a_{\lambda_0}$ koerziv, d.h. es ex $\varepsilon_0 > 0$: $\alpha_{\lambda_0}(w,w) \geq \varepsilon_0 \norm{w}_{H_0^1}^2$ für $w \in H_0^1$.
 
+  $\implies \norm{R_{\lambda_0} f}_{H_0^1}^2 \leq \frac{1}{\varepsilon_0} a_{\lambda_0} (R_{\lambda_0} f, R_{\lambda_0} f) \overset{\text{i)}}{=} \frac{1}{\varepsilon_0} (f, R_{\lambda_0}f)_{L^2} 
+    \overset{\text{C.S.}}{\leq} \frac{1}{\varepsilon_0} \norm{f}_{L^2} \norm{R_{\lambda_0} f}_{L^2} \leq \frac{1}{\varepsilon} \norm{f}_{L^2} \norm{R_{\lambda_0} f}_{H_0^1}$
+
+  $\implies$ für $f \in L^2$: $\norm{R_{\lambda_0} f}_{H_0^1} \leq \frac{1}{\varepsilon} \norm{f}_{L^2}$
+
+  $\implies$ $R_{\lambda_0}$ stetig.
+
+  (iii) Es gilt: 
+  $$
+  L^2(\Omega) \underset{\text{stetig}}{\overset{R_{\lambda_0}}{\to}} H_0^1(\Omega) \underset{\text{7.10}}{\overset{\text{kompakt}}{\hookrightarrow}} L^2(\Omega)
+  $$
+
 \subsection{Satz (Rellich)}
 
 Sei $\Omega \subseteq \R^n$ offen, beschränkt. Dann ist $H_0^1(\Omega) \hookrightarrow L^2(\Omega)$ kompakt.
