@@ -1,0 +1,83 @@
+\section{Faltung von Distributionen mit kompaktem Träger}
+
+In diesem Abschnitt: $\Omega = \R^n, D = D(\R^n), D' = D'(\R^n).$
+
+Faltng von $T \in D'$ mit $\varphi \in D$: 
+$$
+(T \ast \varphi)(x) = \langle T, \tilde\tau_x \varphi \rangle, \quad x \in \R^n.
+$$
+
+Ziel: Ausdehnung obiger Definitio auf große Klasse!
+
+\subsection{Beispiele (Vorsicht)}
+
+Sei $H$ Heaviside-Funktio, dann:
+
+\begin{enumerate}[a)]
+  \item $(H \ast \varphi)(x) = \int_{-\infty}^x \varphi(s) ds, \quad \varphi \in D$
+  \item $\delta' \ast H = \delta$
+  \item $1 \ast \delta' = 0$
+  \item $1 \ast (\delta' \ast H) = 1 \delta = 1$
+  \item $(1 \ast \delta') \ast H = 0 \ast H = 0$
+\end{enumerate}
+
+also ist $\ast$ nicht assoziativ.
+
+\subsection{Lemma}
+
+Sei $T \in D', \varphi, \varphi_1, \varphi_2 \in D$.
+
+\begin{enumerate}[a)]
+  \item $\tau_x(T \ast \varphi) = (\tau_x T) \ast \varphi = T \ast (\tau_x \varphi)$
+  \item $T \ast (\varphi_1 \ast \varphi_2) = (T \ast \varphi_1) \ast \varphi_2$.
+\end{enumerate}
+
+Beweis Übungsaufgabe.
+
+\subsection{Definition}
+
+Sei $T \in D'$ mit kompatkem Träger.
+Nach 10.6 existiert eine eindeutige Fortsetzung zu stetiger Linearform auf $C^\infty$, ebenfalls bezeichnet mit $T$.
+Setze:
+$$
+(T \ast \varphi)(/x) := T(\tilde\tau_x \varphi), \quad \varphi \in C^\infty(\R^n), \quad x \in R^n.
+$$
+
+\subsection{Satz (Eigenschaften)}
+
+Sei $T \in D'$ mit $\supp T$ kompakt, $\varphi \in C^\infty(\R^n)$.
+Dann
+\begin{enumerate}[a)]
+  \item $\tau_x(T\ast \varphi) = (\tau_x T) \ast \varphi = T \ast (\tau_x \varphi)$
+  \item $T \ast \varphi \in C^\infty$ und $D^\alpha (T\ast \varphi) = (D^\alpha T) \ast \varphi = T \ast (D^\alpha \varphi)$
+  \item $\varphi \in D \implies T\ast \varphi \in D$
+  \item $\varphi_1 \in D \implies T \ast (\varphi \ast \varphi_1) = (T \ast \varphi ) \ast \varphi_1 = (T \ast \varphi) \ast \varphi$
+\end{enumerate}
+
+\subsection{Definition}
+
+Seien $S,T \in D'$ und mindestens eine habe kompakten Träger.
+Setze
+$$
+\langle S \ast T, \varphi \rangle := (S \ast (T \ast \tilde \varphi))(0), \quad \varphi \in D
+$$
+
+Übungsaufgabe: Faltung ist wohldefiniert.
+
+\subsection{Theorem}
+
+Seiein $R,S,T \in D'$.
+Dann:
+
+\begin{enumerate}[a)]
+  \item Falls mindestens eine der Distributionen $R$ und $S$ kompakten Träger hat, so gilt $R \ast S = S \ast R$.
+  \item Falls mindestens eine der Distributionen $R$ und $S$ kompakten Träger hat, so gilt $\supp(R \ast S) \subset \supp R + \supp S$.
+  \item Falls midestens 2 der Distributionen $R,S,T$ kompakten Träger hat, so gilt: $(R \ast S) \ast T = R \ast (S \ast T)$.
+  \item $D^\alpha T = (D^\alpha \delta) \ast T$.
+  \item Falls mindestens eine der Distributionen $R,S$ kompakten Träger hat, gilt:
+    $$
+    D^\alpha(R\ast S) = (D^\alpha R)  \ast S = R \ast (D^\alpha S)
+    $$
+\end{enumerate}
+
+Beweis Übung.

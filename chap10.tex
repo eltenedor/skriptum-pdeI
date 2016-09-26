@@ -1,0 +1,78 @@
+\section{Distributionen mit kompaktem Träger und Faltung}
+
+\subsection{Definition}
+
+Sei $T \in D'(\Omega)$, $\Omega \subseteq \R^n$ offen. 
+Für $\omega \subseteq  \Omega$ definitieren wir die Einschränktung $T_\omega$ von $T$ auf $D(\omega)$ via
+$$
+\langle T_\omega, \varphi \rangle := \langle T, \varphi \rangle \quad \text{für alle } \varphi \in D(\omega).
+$$
+
+Setze 
+$$
+O_T := \{ x \in \Omega \colon \text{ex ex. offene Umg. } V \text{ von } x \text{ mit } T_V = 0\}
+$$
+{\tiny{ Alternativ lässt sich $O_T$ auch als Vereinigung aller Umgebungen schreiben, auf denen die Einschränktung von $T$ verschwindet. (Z.B. Rudin S.164)}}
+
+Dann heißt 
+$$
+\supp T := \Omega \setminus O_T
+$$
+der Träger von $T$.
+
+\begin{bem}
+  $\supp T$ ist (relativ) abgeschlossen in $\Omega$.
+\end{bem}
+
+\subsection{Satz}
+
+Sei $\varphi \in D(\Omega)$, $T \in D'(\Omega)$ mit $\supp \varphi \cap \supp T = \emptyset$.
+Dann gilt $\langle T, \varphi \rangle = 0$.
+
+\subsection{Bemerkung}
+
+\begin{enumerate}[a)]
+  \item Sei $f \in L^1_{\loc}(\Omega)$.
+    Dann gilt $\supp T_f := \supp f$.
+  \item $\supp \delta_a = \{a\}$
+
+    $\supp D^\alpha = \{a\}$
+
+    $\supp H = [0,\infty)$
+\end{enumerate}
+
+\subsection{Definition}
+
+Setze $\E := C^\infty(\Omega)$ versehen mit der folgenden Konvergenz:
+
+$\varphi_j \to \varphi $ in $ \E(\Omega) \iff $ für $K \subset \Omega$ kompakt, $\alpha$ Multiindex: $\norm{D^\alpha \varphi_j - D^\alpha \varphi}_{L^\infty(K)} \to 0$ für $j \to \infty$.
+
+\subsection{Lemma}
+
+\begin{enumerate}[a)]
+  \item $D(\Omega)$ ist dicht in $\E(\Omega)$.
+  \item Die Einbettung $D(\Omega) \hookrightarrow$ ist stetig.
+\end{enumerate}
+
+\begin{proof}
+  b) trivial
+
+  a) Sei $\psi \in \E(\Omega)$. 
+  Wähle $w_n \subset \Omega$ mit $w_n \subset w_{n+1}$ und $\bigcup_{n \in \N} = \Omega$.
+  Sei weiterhin $\varphi_n \in D(\Omega)$ mit $\varphi_n|_{w_n} = 1$.
+
+  $\varphi_n \psi \in D(\Omega), \varphi_n \psi \to \psi$ in $\E(\Omega)$.
+\end{proof}
+
+\subsection{Satz}
+
+Sei $T \in D'(\Omega)$ mit $\supp T$ kompakt.
+Dann existiert genau ein $\tilde T \in \E'(\Omega)$ mit $\langle \tilde T, \varphi \rangle = \langle T , \varphi \rangle$ für alle $\varphi \in D(\Omega)$.
+
+\subsection{Satz}
+
+Sei $\tilde T \in \E'(\Omega)$ und $T \in D'(\Omega)$ Einschärnktung von $\tilde T$ auf $D'(\Omega)$.
+Dann ist $\supp T$ kompakt.
+
+\subsection{Bemerkung}
+Die letzten beiden Sätze besagen, dass wir $\E'(\Omega)$ mit dem Raum der Distributionen mit kompaktem Träger identifizieren können.
