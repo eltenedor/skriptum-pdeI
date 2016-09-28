@@ -1,0 +1,211 @@
+\section{Fouriertransformation auf $\Sc(\R^n)$}
+
+\subsection{Definition}
+
+Der Raum $\Sc(\R^n)$ ist definiert durch
+$$
+\Sc = \Sc(\R^n) = \left\{f \in C^\infty(\R^n) \colon |f|_{\alpha,\beta} = \sup_{x \in \R^n} |x^\beta D^\alpha f(x)| \leq \infty \text{ für alle } \alpha, \beta \right\}
+$$
+und heißt \underline{Raum der schnell fallenden Funktionen}.
+
+\begin{ntion}
+  $|f|_m := \sup{|\alpha|\leq m, |\beta| \leq m} |f|_{\alpha, \beta}$
+\end{ntion}
+
+\subsection{Definition}
+
+Eine Folge $(F_j) \subseteq \Sc$ konvergiert gegen $f \in S, f_j \to f$ in $\Sc$, falls
+
+$|f_n - f|_m \to 0$ für alle $m \in \N$.
+
+\begin{bem}
+  \begin{enumerate}[a)]
+    \item $\Sc(\R^n)$ ist Frechet-Raum.
+    \item $D(\R^n) \subset \Sc(\R^n)$.
+    \item $x \mapsto e^{-|x|^2} \in \Sc \setminus D$.
+  \end{enumerate}
+\end{bem}
+
+\subsection{Definition}
+
+Sei $u \in \Sc$.
+Die Fouriertrafo von $u$ ist definiert durch
+$$
+\hat u(\xi) \F u(\xi) := \int_{\R^n} e^{-i \langle x, \xi \rangle} u(x) dx, \xi \in \R^n
+$$
+
+\subsection{Lemma (Eigenschafen)}
+
+\begin{enumerate}[a)]
+  \item $\F$ ist lineare, stetige Abbildung von $\Sc$ nach $\Sc$.
+  \item $(D^\alpha)^{\hat{}} (\xi) = (i\xi)^\alpha \hat u(\xi), \xi \in \R^n, u \in \Sc$.
+  \item $((-ix)^\alpha u)^{\hat{}} (\xi) = D^\alpha \hat u (\xi), u \in \Sc, x, y \in \R^n$.
+\end{enumerate}
+
+Beweis: Übungsaufgabe.
+
+\subsection{Beispiel}
+
+Sei $f(x) := e^{-\frac{|x|^2}{2}}, x \in \R^n$.
+Dann: 
+$$
+\hat f(\xi) = (2\pi)^{\frac{n}{2}} e^{-\frac{|\xi|^2}{2}}, \xi \in \R^n
+$$
+
+Mit anderen Worten: $(2\pi)^{\frac{n}{2}}$ ist Eigenwert der Fouriertransformation zum Eigenvektor $f$.
+
+Beweis Übungsaufgabe.
+
+\subsection {Lemma}
+
+Seien $f,g \in \Sc(\R^n)$. Wir definieren
+
+$\tau_y f(x) := f(x-y)$
+
+$m_y f(x) := e^{i \langle x, y \rangle}$
+
+$d_a f(x) := f(ax)$
+
+Dann gilt
+\begin{enumerate}[i)]
+  \item $(\tau_y f)^{\hat{}} (\xi) = (m_{-y} \hat f) (\xi)$
+  \item $(m_y f)^{\hat{}} = (\tau_y \hat f)(\xi)$
+  \item $(d_a f)^{\hat{}}(\xi) = |a|^{-n} (d_{\frac{1}{a}} \hat f) (\xi)$
+  \item $\int \hat f(x) g(x) = \int f(x) \hat g(x)$
+\end{enumerate}
+
+Beweis Übungsaufgabe.
+
+\subsection{Definition (inverse Fouriertransformation)}
+
+Für $f \in \Sc(\R^n)$ definieren wir die inverse Fouriertransformation via
+$$
+(\F^{-1}(f))(x) = \check f(x) := \frac{1}{(2\pi)^n} \int_{\R^n} e^{i \langle x, \xi \rangle} f(\xi) d\xi.
+$$
+
+\subsection{Theorem}
+
+Die Fouriertransformation ist ein Isomorphismus von $\Sc$ nach $\Sc$
+
+Mit anderen Worten $(\hat f)^{\check{}} = f$ f+r alle $f \in S(\R^n)$.
+
+\begin{proof}
+  $(\hat f)^{\check{}} (x) := \frac{1}{(2\pi)^n} \int e^{i \langle x, \xi \rangle} \hat f(\xi) d\xi \overset{!}{=} f(x)$.
+
+  Für $\varepsilon > 0$ definieren wir:
+
+  $I_\varepsilon(x) := \frac{1}{(2\pi)^n} \int e^{i\langle x, \xi \rangle} e^{-\frac{\varepsilon^2 |\xi|^2}{2}} \hat f(\xi) d\xi
+  = \frac{1}{(2\pi)^n} \int g(\xi)  \hat f(\xi) d\xi$
+
+  Mit $g(\xi) = (m_x d_\varepsilon \varphi) (\xi)$ mit $\varphi(\xi) = e^{-\frac{|\xi|^2}{2}}$.
+
+  $\underset{\text{Beispiel 12.5}}{\overset{\text{Lemma}}{\implies}} \hat g(\eta) = \varepsilon^{-n} (2\pi)^{\frac{n}{2}} e^{-\frac{|\eta - x|^2}{2\varepsilon^2}}$
+
+  Also 
+  \begin{align*}
+    I_\varepsilon(x) 
+    &= \frac{1}{(2\pi)^n} \int g(\xi) \hat f(\xi) d\xi = \frac{1}{(2\pi)^n} \int \hat g(\xi) f(\xi) d\xi \\
+    &= \varepsilon^{-n} \frac{1}{(2\pi)^n} \int_{\R^n} e^{-\frac{|\xi - x|^2}{2 \varepsilon^2}} f(\xi) d\xi \\
+    &= \frac{1}{(2\pi)^{\frac{n}{2}}} (f\ast \varphi_\varepsilon)(x), \quad \varphi(x) = \frac{1}{\varepsilon^n} \varphi(\frac{x}{\varepsilon}), \varphi(x) = e^{-\frac{|x|^2}{2}}
+  \end{align*}
+
+  $(\varphi_\varepsilon)$ Mollifier, d.h.  $I_\varepsilon \to f$ in $\L^p(\R^n)$.
+
+  $\implies$ es existiert $(\varepsilon_l) \subset \R_+ \colon I_{\varepsilon_l}(x) \to f(x)$ fast überall.
+
+  $\overset{\text{Lebesgue}}{\implies} I_\varepsilon(x) \to \frac{1}{(2\pi)^n} \int e^{i\langle x, \xi \rangle} \hat f(\xi) d\xi$ $\implies$ Behauptung.
+\end{proof}
+
+\subsection{Bemerkung}
+
+Sei $\tilde f$ gegeben durch $\tilde f(x) = f(-x), f\in \Sc(\R^n)$.
+Dann:
+$$
+\hat{\hat{f}} = (2\pi)^n \tilde f.
+$$
+
+\subsection{Theorem}
+
+\begin{enumerate}[(i)]
+  \item Seien $f, g \in \Sc$, dann $f \ast g \in \Sc$ mit $(f \ast g)^{\hat{}} = \hat f \cdot \hat g$.
+  \item $(f \cdot g)^{\hat{}} = \hat f \ast \hat g$
+  \item $\int f \overline g dx = (2 \pi)^{-n} \in \hat f \overline{\hat g} d\xi$ (Parseval/Plancherel)
+\end{enumerate}
+
+\begin{proof}
+  (i) $f\ast g \in \Sc$ (Übungsaufgabe)
+\begin{align*}
+    (f \ast g)^{\hat{}}(\xi) &= \int_{\R^n} e^{-i \langle x, \xi\rangle} \int_{\R^n} f(x - y) g(y) dy dx \\
+    &= \int_{\R^n} \int_{\R^n} e^{-i \langle (x-y), \xi \rangle} f(x-y) dx e^{-i \langle y, \xi\rangle } g(x) dy  \\
+    &= \hat f \cdot \hat g (\xi)
+\end{align*}
+
+(ii) Aus (i): $(\hat f \ast \hat g)^{\hat{}} = \hat{\hat{f}} \cdot \hat{\hat{g}} \implies \hat f \ast \hat g = (\tilde f \cdot \tilde g)^{\check{}} (2\pi)^{2n} = (2\pi)^{2n} (f \cdot g)^{\hat{}}$
+
+(iii) Sei $h = (2\pi)^{-n} \overline{\hat g} \implies \hat h(\xi) = (2\pi)^{-n} \int e^{-i \langle x, \xi \rangle} \overline{\hat g}(x) dx$
+
+$\implies \overline{\hat h} = g(\xi)$
+
+$\implies \int f \overline g dx = \int f \hat h = \int \hat f \cdot h = (2\pi)^{-n} \int \hat f \overline{\hat g}$
+\end{proof}
+
+\subsection{Beispiel: Wärmeleitungsgleichung}
+
+\begin{enumerate}[a)]
+  \item Sei $K_t(x) := \frac{1}{(4\pi t)^{\frac{n}{2}}} e^{-\frac{|x|^2}{4t}} \implies \hat K_t(\xi) = e^{-t|\xi|^2}.$
+
+  \item Betrachte
+    $$
+    \text{(WLG)} 
+    \begin{cases}
+      u_t(t,x) - \Delta u(t,x) = 0 &\text{für } t > 0, x \in \R^n \\
+      u(0,x) = u_0(x) &\text{für } x \in \R^n
+    \end{cases}
+    $$
+\end{enumerate}
+
+Sei $u_0 \in L^2(\R^n), 1 \leq p < \infty$. 
+Wir definieren $u(t,x) = K_t \ast u_0$.
+
+Dann gilt
+\begin{enumerate}
+  \item $(t,x)  \mapsto u(t,x) \in C^\infty(\R^n \times (0,\infty), \C)$
+  \item $(\partial_t - \Delta) u = 0$
+  \item $u(t, \cdot) \overset{t \to 0}{\to} u_0$ in $L^p$.
+  \item Definiere für $t > 0$: $T(t) \colon L^p \to L^p$ durch $(T(t)u_0)(x) = u(t,x)$.
+    Dann löst $T(\cdot)u_0$ (WLG).
+  \item $K_s \ast K_t = K_{s + t}$ für alle $s,t > 0$.
+  \item $T(t)T(s) = T(t + s)$ für alle $s, t >0$ (Halbgruppeneigenschaft).
+  \item $u_0 \in BUC(\R^n) \implies u \in BUC([0,\infty) \times \R^n)$ und $u(0,x) = u_0(x)$.
+\end{enumerate}
+
+\subsection{Satz}
+
+Die inverse Fouriertrafo der Funktion$\xi \to e^{-t|\xi|} ( t > 0, \xi \in \R^n)$ ist gegeben durch:
+$$
+P_t(x) = \frac{\Gamma(n + \frac{1}{2})}{\pi^{\frac{n+1}{2}} \cdot \frac{t}{(t^2 + |x|^2)^{\frac{n + 1}{2}},\quad t > 0, x \in \R^n
+$$
+
+\begin{proof}
+  1. Schritt: $e^{-\beta} = \int_0^\infty \frac{e^{-s}}{\sqrt{\pi s }} e^{- \frac{\beta^2}{4s}} ds (\beta > 0)$
+
+  2. Schritt: 
+  \begin{align*}
+    (e^{-t|\xi|}^{\check{}}(x) 
+    &= (2\pi)^{-n} \int_{\R^n} e^{i \langle \xi, x \rangle} e^{-t|\xi|} d \xi \\
+    &= (2 \pi)^{-n} \int_{\R^n} e^{i \langle \xi, x\rangle} \int_0^\infty \frac{e^{-s}}{\sqrt{\pi s}} e^{-\frac{t^2|\xi|^2}{4s}} ds d\xi \\
+    &= \int_0^\infty \frac{e^{-s}}{\sqrt{4\pi s}}(2\pi)^{-n} \int_{\R^n} e^{i \langle x, \xi \rangle} e^{- \frac{|\xi|^2 t^2}{4s}} d\xi ds\\
+    &= \int_0^\infty \frac{e^{-s}{\pi s} \frac{s^{\frac{n}{2}}}{(\pi t)^{\frac{n}{2}} e^{-\frac{|x|^2 s}{t^2}} ds \\
+    &= \frac{1}{\pi^{\frac{n+1}{2}} \frac{1}{t^{\frac{n}{2}}} \int_0^\infty s^{\frac{n-1}{2}} e^{-s(1 + \frac{|x|^2}{t^2})} ds \\
+    &= P_t(x),  \quad \text{ mit } \int_0^\infty e^{-\lambda t} t^\alpha dt = \frac{\Gamma(\alpha + 1)}{\lambda^{\alpha + 1}}
+  \end{align*}
+\end{proof}
+
+\subsection{Beispiel (Dirichlet-Problem im Halbraum)}
+
+Wir setzen $\R_+^{n+1} := \{ (x,t) \in \R^n \times \R, t > 0\}$.
+
+Dirichlet-Problem: Sei $f \in \Sc(\R^n)$. Finde $u$ mit 
+$$\begin{cases} (\Delta_x + \partial_t^2)u = 0, (x,t) \in \R^{n+1} \\ u(x,0) = f(x) \end{cases}.$$
+
+Fouriertrafo bezgl. x liefert: 
