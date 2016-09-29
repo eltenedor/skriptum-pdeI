@@ -1,0 +1,271 @@
+\section{Temperierte Distributionen und Fouriertransformation}
+
+\subsection{Definition}
+
+Eine temperierte Distribution ist eine stetige Linearform auf $\Sc(\R^n)$.
+
+Wir setzen
+$$
+\Sc'(\R^n) := \{T \colon \Sc \to \C, T \text{ temperierte Distribution}\}.
+$$
+
+\subsection{Satz}
+
+Es sei $T \colon \Sc \to \C$ linear. Äquivalent:
+\begin{enumerate}
+  \item $T \in \Sc'(\R^n)$
+  \item Es existiert $m \in \N, C>0$, sodass $|\langle T, \varphi \rangle| \leq C \norm{\varphi}_m$, wobei
+    $$
+    \norm{\varphi}_m = \sup_{|\alpha|, |\beta| \leq m} \sup_{x \in \R^n} |x^\alpha D^\beta \varphi(x)|
+    $$
+\end{enumerate}
+
+\begin{proof}
+  (a) $\Rightarrow$ (b): Angenommen Behauptung falsch, d.h. für alle $m \in \N$ existiert $\varphi_m \in \Sc$:
+
+  $\norm{\varphi_m}_m \leq \frac{1}{m}$ und $|\langle T, \varphi_m \rangle| = 1$.
+
+  $\implies \varphi_m \to 0$ in $\Sc(\R^n)$, $\langle T, \varphi_m \rangle \not\to 0$.
+  Widerspruch.
+
+  (b) $\Rightarrow$ (a): klar.
+\end{proof}
+
+\subsection{Definition (schwache Topologie in $\Sc'$)}
+
+Seien $T \in \Sc(\R^n), (T_j) \subset \Sc'(\R^n)$. 
+Wir setzen 
+$$
+T_j \to T \text{ in } \Sc'(\R^n) \colon \iff \text{ für alle } \varphi \in \Sc(\R^n) \colon \langle T_j, \varphi \rangle \to \langle T, \varphi \rangle.
+$$
+
+\subsection{Satz}
+
+Sei $1 \leq p \leq \infty$. 
+Dann
+$$
+D(\R^n) \underset{\text{dicht}}{\hookrightarrow} \Sc(\R^n) \hookrightarrow L^p(\R^n) \hookrightarrow \Sc'(\R^n) \hookrightarrow D'(\R^n)
+$$
+und $\E'(\R^n) \hookrightarrow \Sc'(\R^n)$.
+
+\begin{proof}
+  a) $D \hookrightarrow \Sc$ klar. Dichtheit:
+
+  Sei $\varphi \in \Sc$. 
+  Definiere zu $\psi \in D$ mit $\psi \equiv 1$ in einer Umgebung von $0$ die Funktion $\psi_n(x) = \psi(\frac{x}{n})$.
+
+  $\implies \varphi\psi_n \to \phi$ in $\Sc$.
+
+  b) $S \hookrightarrow L^1$.
+
+  Sei $f \in \Sc$ und $K > n$. 
+  Dann ist
+  \begin{align*}
+  &  \int_{\R^n} (1 + |x|^K)^{-1} dx < \infty \\
+  &\implies \int_{\R^n} |f(x) dx = \int_{R^n} (1 + |x|^K)^{-1} (1 + |x|^K)(f(x)) dx \\
+  &\quad\leq \sup_{x \in \R^n} (1 + |x|^K) |f(x)| \underbrace{\int_{\R^n} (1 + |x|^K)^{-1} dx}_{< \infty} \implies \norm{f}_{L^1} \leq C \cdot \norm{f}_K
+  \end{align*}
+
+  $\norm{f}_{L^\infty} \leq C \norm{f}_K$ klar.
+\end{proof}
+
+c) $S \hookrightarrow L^1 \cap L^\infty \hookrightarrow L^p$, denn:
+$$
+\int |f|^p dx \leq \sup_{x \in \R^n} |f(x)|^{p-1} \norm{f}_{L^1} < \infty
+$$
+
+d) $S \hookrightarrow L^p \overset{text{FA}}{\implies} {L^{p}}' = L^q \hookrightarrow \Sc', 1 < p \leq \infty, \frac{1}{p} + \frac{1}{q} = 1$.
+
+e) $L^1 \hookrightarrow \Sc'$: Sei $f \in L^1 \implies $ für $ \varphi \in \Sc(\R^n): |\int f \varphi| \leq \norm{\varphi}_\infty \cdot \norm{f}_{L^1}$
+
+f) $D \hookrightarrow \Sc \implies \Sc' \hookrightarrow D', \quad \Sc \hookrightarrow \E \implies \E' \hookrightarrow S'$
+
+\subsection{Beispiele}
+
+\begin{enumerate}[a)]
+  \item $\delta \in \Sc'(\R^n)$
+  \item $x \mapsto e^x \in D'(\R^n) \setminus \Sc'(\R^n)$
+  \item Sei $m \in \N$ und $f \colon \R^n \to \C$ derart, dass
+    $$
+    \int(1 + |x|^2)^{-m} |f(x)| dx < \infty
+    $$
+    Dann definiert $T_f$ auf $\Sc$ durch
+    $$
+    \langle T_f, \varphi\rangle := \int f \cdot \varphi dx
+    $$
+    eine temperierte Distribution, d.h. es ist $T_f \in \Sc'$.
+
+  \item Sei $u \in L^1_{\loc}(\R^n)$ derart, dass es $M > 0, m \in \N$ gibt:
+
+    $ |u(x)| \leq M(1 + |x|^2)^m$ für alle $x \in \R^n$.
+
+    Dann $u \in \Sc'(\R^n)$.
+\end{enumerate}
+
+\subsection{Definition und Bemerkung}
+
+Seien $T \in \Sc'$, $p$ Polynom und $\psi \in \Sc$.
+Wir definieren $D^\alpha T, pT, \psi T \in \Sc'$ durch
+\begin{align*}
+  \langle D^\alpha t, \varphi \rangle &:= (-1)^{|\alpha|} \langle T, D^\alpha \varphi \rangle \\
+  \langle pT, \varphi \rangle &:= \langle T, p \varphi \rangle \\
+  \langle \psi T, \varphi \rangle &:=  \langle T, \psi \varphi \rangle
+\end{align*}
+
+\subsection{Definition}
+
+Sei $T \in \Sc'$.
+Dann definiert man $\hat T$ oder $\F(T)$ durch
+
+$$
+\langle \hat T, \varphi \rangle := \langle T, \varphi \rangle
+$$
+
+Da $\varphi \in \Sc$, ist $\hat \varphi \in \Sc$ und somit $\langle T, \hat\varphi \rangle$ wohldefiniert.
+
+\subsection{Satz}
+
+Die Abbildung $\F \colon \Sc'(\R^n) \to \Sc'(\R^n)$ ist stetig.
+
+\begin{proof}
+  $T_n \to T$ in $\Sc'$, dann $\langle \hat T_n - \hat T, \varphi \rangle = \langle T_n - T, \hat \varphi \rangle \to 0 \implies \hat T_n \to \hat T$
+\end{proof}
+
+\subsection{Theorem}
+
+Die Fouriertransformation ist ein Isomorphismus auf $\Sc'(\R^n)$.
+Die inverse Fouriertransformation $\F^{-1}$ oder $\check{\cdot}$ ist gegeben durch
+$$
+\langle \check T, \varphi \rangle = \langle T, \check \varphi \rangle, T \in \Sc', \varphi \in S
+$$
+
+Es gilt: $\F^{-1}(T) = (2\pi)^{-n} \F \tilde T$  und $\hat{\hat T} = (2\pi)^n \tilde T$ mit $\langle \tilde T, \varphi \rangle = \langle T, \tilde \varphi \rangle$.
+
+\begin{proof}
+  Sei $T \in \Sc'(\R^n)$.
+  Dann
+  $$
+  \langle \F \F^{-1} T, \varphi \rangle = \langle \F^{-1} T, \F \varphi \rangle = \langle T, \F^{-1} \F \varphi \rangle = \langle T, \varphi \rangle,
+  $$
+
+  $ \langle \F^{-1} \F T, \varphi \rangle = \langle T, \varphi \rangle$, d.h. $\F$ ist Isomorphismus.
+\end{proof}
+
+\subsection{Satz}
+
+Sei $T \in \Sc'(\R^n)$. 
+Dann gilt:
+\begin{enumerate}[a)]
+  \item $\F(D^\alpha T) := (i x )^\alpha \F(T)$
+  \item $\F((-iy)^\beta T) = D^\beta \F(T)$
+  \item Falls $T \in \Sc(\R^n)$, so stimmen die beiden Definitionen der Fouriertransformation überein.
+  \item $R \in S'(\R^n)$ mit kompaktem Träger $\implies$ $T \ast T \in \Sc'$ und  $(T \ast R)^{\hat{}} = \hat T \cdot \hat R$. (Da Träger von $R$ kompakt, ist $\hat R$ glatte Funktion.
+\end{enumerate}
+
+\begin{proof}
+  a) + b) Eigenschaften der Fouriertransformation auf $\Sc$.
+  
+  c) klar
+
+  d) wir ausgespart.
+\end{proof}
+
+\subsection{Beispiele (Fouriertransformation der Dirac-Distribution und von Polynomen)}
+
+\begin{enumerate}[a)]
+  \item Sei $\varphi \in \Sc$. 
+    $$
+    \langle \hat \delta, \varphi \rangle = \langle \delta, \hat \varphi \rangle = \hat\varphi(0) =  \int e^{-i0x}\varphi(x) dx = \int \varphi = \langle 1, \varphi \rangle.
+    $$
+
+    $\implies \F(\delta = 1$ und $\F(1) = \F^2(\delta) = (2\pi)^n \tilde \delta = (2\pi)^n \delta.$
+
+  \item Sei $p(x) = \sum_{|\alpha| \leq m} a_\alpha x^\alpha, a_\alpha \in \C.$ Dann:
+
+    $\hat p = \sum_{|\alpha| \leq m} a_\alpha (x^\alpha 1)^{\hat{}} = \sum_{\alpha \leq m} i^{|\alpha|} a_\alpha D^\alpha \delta$
+
+\end{enumerate}
+
+\subsection{Fundamentallösung und Fouriertransformation}
+
+Sei $A = \sum_{|a| \leq m} a_\alpha D^\alpha$ Differentialoperator mit $a_\alpha \in \C$.
+Finde Fundamentallösung $T$ für $A$, d.h. $AT = \delta$.
+
+Satz 13.10 und Bsp. 13.11 $\implies 1 = \hat \delta = (AT)^{\hat{}} = p(i\xi) \hat T$ ($\ast$).
+
+Ist ($\ast$) lösbar, so ist $T = \F^{-1}$ eine Fundamentallösung.
+
+Beispliel: Wärmeleitungsgleichung.
+
+Sei $(t, x) \in \R^{n+1}$ und $g(t,x) = t_+^{\frac{n}{2}} e^{-\frac{|x|^2}{nt}}$, wobei $t_+ = \begin{cases} t, t>0 \\ 0, \text{ sonst}\end{cases}$.
+
+$\implies \hat g(\tau, \xi) = \int_\R e^{-i\tau t} t_+^{-\frac{n}{2}} \int_{\R^n} e^{-ix\xi} e^{-\frac{|x|^2}{4 t}} dx dt$
+
+$ = \int_\R e^{-i\tau t} t_+^{-\frac{n}{2}} (4 \pi t)^{\frac{n}{2}} e^{-t |\xi|^2} dt = (4 \pi)^{\frac{n}{2}} \int_0^\infty e^{-t(i\tau + |\xi|^2)} dt$
+
+$= \frac{(4\pi)^{\frac{n}{2}}}{i\tau + |\xi|^2}$
+
+Für $A = \partial_t - \Delta$ gilt $p(i\tau, i\xi) = i\tau + |\xi|^2$, d.h.
+
+$\hat T(\tau, \xi) = \frac{1}{i\tau + |\xi|^2} = \frac{\hat g(\tau, \xi)}{(4\pi)^{\frac{n}{2}}}$
+
+$\implies T(t, x) = (4\pi t_+)^{-\frac{n}{2}} e^{-\frac{|x|^2}{4t}}$
+
+\begin{bem}
+  $T$ stimmt mit der früher gefundenen Fundamentallösung überein.
+\end{bem}
+
+\subsection{Theorem (Plancherel)}
+
+Sei $f \in L^2(\R^n)$.
+Dann $\hat f \in L^2(\R^n)$ nd es gilt $\langle \hat f, \hat g \rangle = (2\pi)^n \langle f, g\rangle$.
+
+\begin{proof}
+  Sei $f \in L^2(\R^n) \implies $ es existiert $(f_k) \subseteq C_c^\infty(\R^n)$ mit $f_k \to f$ in $L^2$.
+
+  $\overset{\text{Plancherel}}{\implies} \norm{\hat f_k - \hat f_m}_{L^2} \to 0 \implies $ es existiert $F \in L^2 \colon \hat f_k \to F$ in $L^2 \subseteq \Sc'$.
+
+  Ferner $\F \colon \Sc' \to \Sc'$ ist stetig $\implies \F f = \hat f = F$ und 
+  $$
+  \langle f, g\rangle = \lim_{k \to \infty} \langle f_k , g_k \rangle = \lim_{k \to \infty} (2\pi)^{-n} \langle \hat f_k, \hat g_l \rangle = (2 \pi)^{-n} \langle \hat f, \hat g \rangle
+  $$
+\end{proof}
+
+\subsection{Beispiel}
+
+\begin{enumerate}[a)]
+  \item Sei $f = \chi_{[-a,a]}, a  > 0$ und $n = 1$.
+    Dann ist
+    $$
+    \hat f(\xi) = \int_{-a}^a e^{-i\xi x} dx = 2 \frac{\sin(a \xi}{\xi}
+    $$
+    und $\norm{f}_{L^2}^2 = 2a$.
+
+    Plancherel: $\int_{-\infty}^\infty (\frac{\sin(ax)}{ax})^2 dx = \frac{\pi}{a}$
+
+  \item Sei $f \colon \R \to \R$ definiert durch $f(x) = e^{-|x|}$
+
+    $\implies \hat f(\xi) = \int e^{-|x|} e^{-ix\xi} dx = \int_0^\infty e^x (e^{-ix\xi} + e^{ix\xi}) dx = \frac{1}{1 + \xi^2}$
+\end{enumerate}
+
+\subsection{Die Wellengleichung}
+
+Finde Fkt. $u \colon \R \times \R^n \to \R$ mit 
+
+$$
+\begin{cases} (\partial_t^2 - \Delta) u &= 0 \\ u(0,x) &= u_0(x) \\ u_t(0,x) &= u_1(x) \end{cases}
+$$
+
+$\hat  u(t,\xi) = cos(|\xi t) \hat u_0(\xi) + \frac{\sin(t |\xi|}{|\xi|} \hat u_1 (\xi)$, also
+
+$$
+u = \partial_t \omega \ast u_0 + \omega \ast u_1,
+$$
+
+wobei $\omega(t,x) = \F^{-1}\left(\frac{sin(t |\xi|)}{|\xi|}\right).$
+
+\begin{enumerate}[a)]
+  \item $n=1 \colon \omega(t,x) = \frac{1}{2} \chi_{[-x,x]}(t)$
+  \item $n > 1$: kompliziert.
+\end{enumerate}
+
