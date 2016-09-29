@@ -183,7 +183,7 @@ Dann gilt
 
 Die inverse Fouriertrafo der Funktion$\xi \to e^{-t|\xi|} ( t > 0, \xi \in \R^n)$ ist gegeben durch:
 $$
-P_t(x) = \frac{\Gamma(n + \frac{1}{2})}{\pi^{\frac{n+1}{2}} \cdot \frac{t}{(t^2 + |x|^2)^{\frac{n + 1}{2}},\quad t > 0, x \in \R^n
+P_t(x) = \frac{\Gamma(n + \frac{1}{2})}{\pi^{\frac{n+1}{2}}} \cdot \frac{t}{(t^2 + |x|^2)^{\frac{n + 1}{2}}},\quad t > 0, x \in \R^n
 $$
 
 \begin{proof}
@@ -191,12 +191,12 @@ $$
 
   2. Schritt: 
   \begin{align*}
-    (e^{-t|\xi|}^{\check{}}(x) 
+    (e^{-t|\xi|})^{\check{}}(x) 
     &= (2\pi)^{-n} \int_{\R^n} e^{i \langle \xi, x \rangle} e^{-t|\xi|} d \xi \\
     &= (2 \pi)^{-n} \int_{\R^n} e^{i \langle \xi, x\rangle} \int_0^\infty \frac{e^{-s}}{\sqrt{\pi s}} e^{-\frac{t^2|\xi|^2}{4s}} ds d\xi \\
     &= \int_0^\infty \frac{e^{-s}}{\sqrt{4\pi s}}(2\pi)^{-n} \int_{\R^n} e^{i \langle x, \xi \rangle} e^{- \frac{|\xi|^2 t^2}{4s}} d\xi ds\\
-    &= \int_0^\infty \frac{e^{-s}{\pi s} \frac{s^{\frac{n}{2}}}{(\pi t)^{\frac{n}{2}} e^{-\frac{|x|^2 s}{t^2}} ds \\
-    &= \frac{1}{\pi^{\frac{n+1}{2}} \frac{1}{t^{\frac{n}{2}}} \int_0^\infty s^{\frac{n-1}{2}} e^{-s(1 + \frac{|x|^2}{t^2})} ds \\
+    &= \int_0^\infty \frac{e^{-s}}{\sqrt{\pi s}} \frac{s^{\frac{n}{2}}}{(\pi t)^{\frac{n}{2}}} e^{-\frac{|x|^2 s}{t^2}} ds \\
+    &= \frac{1}{\pi^{\frac{n+1}{2}}} \frac{1}{t^{\frac{n}{2}}} \int_0^\infty s^{\frac{n-1}{2}} e^{-s(1 + \frac{|x|^2}{t^2})} ds \\
     &= P_t(x),  \quad \text{ mit } \int_0^\infty e^{-\lambda t} t^\alpha dt = \frac{\Gamma(\alpha + 1)}{\lambda^{\alpha + 1}}
   \end{align*}
 \end{proof}
@@ -209,3 +209,32 @@ Dirichlet-Problem: Sei $f \in \Sc(\R^n)$. Finde $u$ mit
 $$\begin{cases} (\Delta_x + \partial_t^2)u = 0, (x,t) \in \R^{n+1} \\ u(x,0) = f(x) \end{cases}.$$
 
 Fouriertrafo bezgl. x liefert: 
+
+$$
+\begin{cases}
+  -|\xi|^2 \hat u(\xi, t) + \partial_t^2 \hat u(\xi, t) &= 0 \\
+  \hat(\xi, 0) &= \hat f(\xi
+\end{cases}.
+$$
+
+Eine Lösung ist gegeben durch $\hat u(\xi, t) = \hat f(\xi) [ c - e^{-|\xi|t} + (1 - c) e^{|xi|t}]$
+
+Wälen $c = 1$ um Rücktrafo anwenden zu können.
+
+$\implies$ Lösung von (DP) ist
+$$
+u(x,t) = (P_t \ast f) (x).
+$$
+
+\subsection{Folgerung}
+
+\begin{enumerate}[a)]
+  \item Für $f \in \Sc(\R^n)$ ist $u(x,t) := (P_t \ast f)(x), (t,x) \in \R^{n+1}_+$, eine Lösung von $(\Delta_x + \partial_t^2)u = 0$.
+  \item Ferner gilt $u(x,0) = f(x), x \in \R^n$ (d.h. u löst (DP)).
+  \item Es gilt $\hat P_t \cdot \hat P_s = \hat P_{t + s} \implies P(t + s) = P(t)P(s), s,t > 0$ mit $P(t)f = p_t \ast f)$.
+\end{enumerate}
+
+\begin{proof}
+  zu b) $p_t(x) = \frac{1}{t^n} p_1(\frac{x}{t})$ und $\int_{\R^n} p_t(x) dx = 1$, d.h. $(p_t)$ ist Mollifier.
+\end{proof}
+
