@@ -3,4 +3,168 @@
 
 \subsection{Physikalische Interpretation}
 
+$u = u(t,x)$ ``Dichte'' eines Stoffes in ``Röhre'' mit Querschnitt $A$.
+
+$\phi = \phi(t,x)$ Fluss an Stelle $X$ zur Zeit $t$.
+
+Bilanzgleichung:
+$$
+\underbrace{A \phi(t,a)}_{\text{Zufluss}} - \underbrace{A\phi(t,b)}_{\text{Abfluss}} = \frac{d}{dt} \int_a^b u(t,x) A dx
+$$
+
+$\overset{\text{formale}}{\underset{\text{Umformung}}{\leadsto}} \int_a^b u_t(t,x) dx = -\int_a^b \phi_x(t,x) dx$
+
+$\overset{\text{Fundamental-}}{\underset{\text{lemma}}{\implies}} u_t + \phi_x = 0$.
+
+Bestimmung des Flusses: $\phi = \phi(t,x,u)$
+
+\begin{enumerate}[a)]
+  \item lineare Konvektion: $\phi = bu$, d.h. $u_t + bu_x = 0$.
+  \item nichtlineare Konvektion: $\phi = \phi(u)$
+
+    $\leadsto u_t + (\phi(u))_x = 0$
+
+    $\leadsto u_t + \phi'(u)u_x = 0$
+\end{enumerate}
+
 \subsection{Lineare Konvektion}
+
+$\phi = au, a \in \R$.
+
+Betrachte: $u_t + au_x = 0, t > 0, x \in \R$
+
+Setze: $\omega \colon \R \to \R, w(s) := u(t + s, x + sa)$.
+
+$\implies \omega'(s) = u_t(t+s, x + sa) + u_x(t+s, x+sa)a \underset{\text{nach PDE}}{=} 0$ für alle $s$.
+
+$\implies \omega$ konstant, d.h. $u$ ist auf der Geraden durch $(t,x)$ mit Steigung $(1,a)$ konstant!
+
+Betrachte (AWP): $T > 0$
+
+$$
+(\ast) 
+\begin{cases}
+  u_t + a(t,x)u_x &= 0, x \in \R, t \in (0,T) \\
+  u(0,x) &= u_0(x)
+\end{cases}
+$$
+
+Sei $u_0 \colon \R \to \R$ stetig, $a \colon \R \times \R \to \R$ in $C^1$.
+
+\underline{Idee:} Suche Kurve in $\R \times \R$ derart, dass auf dieser jede Lösung von ($\ast$) konstant ist.
+Eine solche Kurve heißt \underline{Charakteristik} von ($\ast$).
+
+Hierzu sei $\Gamma \colon J \to \R^n$ Kurve der Form $\Gamma(s) = (s, \gamma(s))$ mit $J \subset \R$ offenes Intervall, $\gamma \in C^1$.
+
+\underline{Also:} $\Gamma$ Charakteristik $\iff 0 = \frac{d}{ds} u(s,\gamma(s)) = u_t(s,\gamma(s)) + \gamma'(s) u_x(s,\gamma(s))$ für alle Lösungen $u$.
+
+also: $\Gamma$ Charakteristig, falls $\underbrace{\gamma'(s) \overset{(\ast)}{=} a(s,\gamma(s)), s \in J}_{(1)}$
+
+PL $\implies$ (1) besitzt genau eine Lösung $\gamma \in C^1(J)$ mit $\gamma(t) = x$.
+
+Ist $0 \in J$, so haben wir bewiesen:
+
+$u(t,x) = u(t, \gamma(t)) = u(0, \gamma(0)) = u_0(\gamma(0))$
+
+\subsection{Satz}
+
+Sei $u \in C^1([0,T] \times \R)$ Lösung von ($\ast$) und $\gamma \in C^1$.
+Lösung von $\gamma'(s) = a(s,\gamma(s)), \gamma(t) = x$ {\tiny{(Also Kurve durch $(t,x)$)}}. Dann:
+
+$u(t,x) = u_0(\gamma(0))$ und $u$ konstant entlang $\Gamma$.
+
+\subsection{Beispiel: lineare Transportgleichung}
+
+$$
+\begin{cases}
+  u_t + a u_x &= 0, x \in \R, t> 0 \\
+  u(0,x) = u_0(x), a \in \R
+\end{cases}
+$$
+
+obige ODE: $\gamma'(s) = a \implies \gamma(s) = c + as$
+
+Gerade durch $(t,x)$ ist gegeben durch
+
+$$
+\gamma(s) = x + a(s-t)
+$$
+
+$\overset{\text{Satz 1.3}}{\implies} u(t,x) = u_0(\gamma(0)) = u_0(x-at), u_0 \in C^1$
+
+\subsection{Beispiel: Transport mit variablem Koeffizienten}
+
+$$
+\begin{cases}
+  u_t + x u_x &= 0, t > 0, x \in \R \\
+  u(0,x) = u_0(x)
+\end{cases}
+$$
+
+Dann gilt $\gamma'(s) = \gamma(s)$, Lösung $\gamma(s) = c e^s$.
+
+Mit $x = ce^t folgt \gamma(s) = x e^{-t+s}$ und $\gamma(0) = xe^{-t}$.
+
+Also gilt: $u(t,x) = u_0(x e^{-t})$.
+
+$G_c = \{ (x,t) = xe^{-t} = c\}$, $t = \log(\frac{x}{c})$.
+
+\subsection{Beispiel: Burgers Gleichung}
+
+Sei $\phi(u) = \frac{1}{2}u^2$ und betrachte die Gleichung
+
+$$
+\leadsto
+\begin{cases}
+  u_t + u u_x &= 0 \\
+  u(0,x) = u_0(x)
+\end{cases}
+$$
+
+Betrachte
+$$
+(\ast) 
+\begin{cases}
+  \gamma'(s) &= u(s, \gamma(s)) \\
+  \gamma(t) = x
+\end{cases}
+$$
+
+Weitere Ableitung liefert
+$$
+\gamma''(s) = u_t + \gamma'(s) u_x \overset{(\ast)}{=} u_t + u \cdot u_x \overset{\text{PDE}}{=} 0
+$$
+
+$\implies$ Charakteristiken sind Geraden (durch Steigung $\gamma'$ und Punkt ($\gamma(t) = x$) festgelegt) und
+$$
+\gamma(s) = \gamma'(t)(s-t) + x
+= u(t, x)(s-t) + x
+$$
+
+$\implies$ ($\ast$) besitzt Lösung für $s \geq 0$.
+
+Rechne: $\frac{d}{ds} u(s, \gamma(s)) = u_t + \gamma'(s) u_x = u_t + u u_x = 0$ und es gilt:
+
+$$
+u(t,x) = u(t, \gamma(t)) = u(0, \gamma(0)) = u_0(\gamma(0)) = u_0(x - tu(t,x))
+$$
+
+\begin{bem}
+  Dies ist eine implizite Gleichung für $u$.
+  Betrachte spezielles $u_0(x) = \alpha x, \alpha \neq 0$.
+
+  Dann ist $u(t,x) = \alpha x - \alpha t u(t,x)$
+
+  $\implies u(t,x) = \frac{\alpha x}{1 + \alpha t}$.
+
+  Betrachte: 
+
+  \begin{enumerate}[1)]
+    \item $\alpha > 0$: $1 + \alpha t > 0 \implies t = \frac{x}{x} - \frac{1}{\alpha}$ ist implizite Parametrisierung der Niveaulinie zu $c$
+      $$G_c = \{(t,x) \colon t \geq 0, x \in \R, u(t,x) = c\}$$
+
+    \item $\alpha < 0: $ N.R: $ t = 0 \implies x = \frac{c}{\alpha}, x = 0 \implies t = \frac{1}{|\alpha|}$
+
+  \end{enumerate}
+
+\end{bem}
