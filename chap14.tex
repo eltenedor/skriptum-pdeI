@@ -8,5 +8,415 @@ $f \colon \R \to \R$ stetig
 
 \underline{Problem II:}
 
+$$
+\begin{cases}
+  - \Delta u +  \mu u &= b(\nabla u) \text{ in } \Omega \\
+  u &= 0
+\end{cases}
+$$
+mit Wachstumsbedingung an $b$.
 
+\subsection{Satz}
+
+Sei $\Omega \subseteq \R^n$ beschränkt, offen, $f \colon \R \to \R$ stetig (womöglich sogar Lipschitz), es existiere $M > 0$ mit $|f(t)| \leq M, t \in \R$.
+Dann existiert $u \in H_0^1(\Omega) : -\Delta u = f(u)$ in $D'(\Omega)$.
+
+Zum Beweis verwenden wir
+
+\begin{thm}[Fixpunktsatz von Schauder]
+ $X$ Banachraum, $C \subseteq X$ konvex, kompakt, $C \neq \infty, T \colon C \to C$ stetig.
+ 
+ Dann besitzt $T$ einen Fixpunkt.
+\end{thm}
+
+In unserer Situation: 
+
+$X := L^2(\Omega)$
+
+$C := \{u \in H_0^1(\Omega) \colon \norm{\nabla u} \leq M_0\}$ mit noch zu bestimmender Konstante $M_0$.
+
+$T \colon C \to C$ via $v \mapsto u$, wobei $u \in H_0^1(\Omega)$ mit $-\Delta u = f(v)$ in $D'(\Omega)$.
+
+$T$ wohldefiniert, da nach Lax-Milgram eindeutige Lösung von $-\Delta u = f(v)$ existiert ($|f(v)| \leq M$ und Gebiet beschränkt $\implies f(v) \in L^2$.
+
+$T$ stetig, da
+$$
+v \overset{T_1}{\mapsto} f(v) \overset{T_2}{\mapsto} u
+$$
+
+$T_1$ stetig nach Voraussetzung.
+
+$T_2$ stetig nach Lax-Milgram, siehe unten.
+
+$\implies T = T_2 \circ T_1$ stetig von $C \to C$.
+
+Bleibt zu zeigen: $C \neq 0$, konvex, kompakt.
+
+\begin{itemize}
+  \item $C \neq 0$, da $0 \in C$
+  \item Bestimmung von $M_0$:
+
+    Lax-Milgram: Für $v \in H_0^1(\Omega)$ existiert genau ein $u \in H_0^1(\Omega)$:
+    $$
+    \int \nabla u \nabla w = a(u,w) = \int f(v) w, \quad w \in H_0^1(\Omega).
+    $$
+    Insbesondere $w = 1$ liefert:
+    $$
+    \norm{\nabla u}_2^2 = \int|\nabla u|^2 dx \leq M \int 1 \cdot |u| dx \overset{\text{Hölder}}{\leq} M \norm{u}_2 |\Omega|^{\frac{1}{2}} \overset{\text{Poincare}}{\leq} \underbrace{M C^{\frac{1}{2} |\Omega|^{\frac{1}{2}}}}_{=: M_0} \norm{\nabla u}_2
+    $$
+
+    $\implies T$ wohldefiniert.
+
+    Bleibt zu zeigen $C$ konvex, $C$ kompakt.
+  \item $C$ konvex:
+    Z.z.: $u_1, u_2 \in C, t \in [0,1] \implies tu_1 + (1 - t)u_2 \in C$.
+
+    Für $u_1, u_2 \in C$ setze $w := t u_1 + (1 - t)u_2 \in H_0^1(\Omega)$.
+
+    $\norm{\nabla w}_{L^2} \leq M_0$ wegen Dreiecksungleichung.
+
+  \item $C$ kompakt: Z.z: Jede Folge $(x_n) \subseteq C$ besitzt konvergente Teilfolge.
+
+    Sei $(x_n) \subseteq C$. $\norm{\nabla x_n}_2 \leq M_0 \overset{\text{Poincare}}{\implies} (x_n)$ beschränkt in $H_0^1(\Omega)$.
+
+    Mit Banach-Alaoglu und Riesz-Frechet $\implies (x_n)$ besitzt schwach konvergente Teilfolge $(x_n')$ in $H_0^1(\Omega)$ mit $x_n' \to x$.
+
+    Weiter: $H_0^1(\Omega) \overset{\text{kompakt}}{\hookrightarrow} L^2(\Omega) \implies x_n' \to x $ in $L^2(\Omega)$.
+
+    Frage: $x \in C$?
+
+    $x_n \to x$ schwach $\overset{\text{math.SE Q.631110}}{\implies} \norm{x}_{H_0^1(\Omega)} \leq \lim \inf \norm{x_n'}_{H_0^1}$.
+\end{itemize}
+
+Nun: Schauder $\implies$ Behauptung.
+
+Um Fixpunktsatz von Schauder zu zeigen, beginne mit
+
+\subsection{Theorem (Brouwer)}
+
+Sei $B := \{ x \in \R^n \colon \norm{x} \leq 1\}$ und $T \colon B \to B$ stetig.
+Dann besitzt $T$ einen Fixpunkt.
+
+Beweis: Übungsaufgabe.
+
+Ausdehnung des Browerschen Fixpunktsatzes auf Banachräume via Kompaktheit.
+
+\subsection{Theorem (Schauder)}
+
+Sei $X$ Banachraum, $K \subseteq X$ kompakt, konvex, nicht-leer.
+Fall $T \implies K \to K$ stetig, so besitzt $T$ einen Fixpunkt.
+
+\begin{proof}
+  Für $\varepsilon > 0$ wähle endlich viele PUnkte $u_1, \dots, u_{N_\varepsilon}$ in $K$, sodass $K \subseteq \bigcup_{j = 1}^{N_\varepsilon} B_\varepsilon(x_j) (\ast)$.
+
+  Sei $K_\varepsilon = \konv\{u_1, \dots, u_{N_\varepsilon}\}$.
+
+  Definiere Abbildung $S_\varepsilon \colon K \to K_\varepsilon$ via
+
+  $$
+  S_\varepsilon(u) := \frac{ \sum_{i = 1}^{N_\varepsilon} \dist(u, K \setminus B_\varepsilon(u_i)) u_i}{\sum_{i = 1}^{N_\varepsilon} \dist(u, K \setminus B_\varepsilon(u_i))}
+  $$
+
+  Ferner $S_\varepsilon$ stetig und für alle $u \in K$ gilt:
+  $$
+  \norm{S_\varepsilon(u) - u} \leq \frac{ \sum_{i = 1}^{N_\varepsilon} \dist(u, K \setminus B_\varepsilon(u_i)) \norm{u_i - u}}{\sum_{i = 1}^{N_\varepsilon} \dist(u, K \setminus B_\varepsilon(u_i))}
+  \overset{(\ast)}{\leq} \varepsilon
+  $$
+  {\tiny{Denn ist $u \in B_\varepsilon(u_i)$ für ein $i$ so ist $\dist(u, K\setminus B_\varepsilon(u_i)) > 0$ und $\norm{u_i - u} \leq \varepsilon$. Andernfalls ist $\dist(u, K\setminus B_\varepsilon(u_i)) = 0$.}}
+
+  Betrachte $T_\varepsilon \colon K_\varepsilon \to K_\varepsilon$ gegeben durch $$T_\varepsilon(u) := S_\varepsilon(Tu)$$
+
+  Da $K_\varepsilon$ homöomorph zur abgeschlossenen Einheitskugel in $\R^{M_\varepsilon}$ für ein $M_\varepsilon \leq N_\varepsilon$ folgt aus Satz von Brouwer.
+
+  Es existiert $u_\varepsilon \in K_\varepsilon \colon T_\varepsilon u_\varepsilon = u_\varepsilon$.
+
+  Weiter: $T$ stetig, d.h. es existiert Teilfolge $(\varepsilon_j) \to 0$ und $u \in K$ mit $u_{\varepsilon_j} \to u$ in $X$.
+
+  $u$ ist Fixpunkt von $T$, da 
+  $$
+  \norm{u_{\varepsilon_j} - Tu_{\varepsilon_j}} = \norm{T_{\varepsilon_j} u_{\varepsilon_j} - T u_{\varepsilon_j}} = \norm{S_{\varepsilon_j} Tu_{\varepsilon_j} - T u_{\varepsilon_j}} \overset{(\ast)} \leq \varepsilon_j \implies u = Tu.
+  $$
+\end{proof}
+
+Als Anwendung betrachten wir
+
+\subsection{Satz}
+
+Sei $T \colon X \to X$ stetig und kompakt (Bilder beschränkter Folgen sind präkompakt).
+
+Die Menge $\{u \in X \colon u = \alpha Tu \text{ für  ein } \alpha \in [0,1]\}$ sei beschränkt.
+
+Dann besitzt $T$ einen Fixpunkt.
+
+\begin{bem}
+  Im Gegensatz zu Schauder benötigen wir keine explizite kompakte konvexe Menge.
+\end{bem}
+
+\begin{proof}
+  Wähle $M > 0$, sodass $\norm{u} < M$ $(\ast)$, fall $u = \alpha Tu$ für ein $\alpha \in [0,1]$ (Die Menge solcher $u$ ist nach Voraussetzung beschränkt).
+
+  Definiere
+  $$
+  \tilde T u := 
+  \begin{cases}
+    T u, \text{ falls} \norm{T u} \subseteq M \\
+    \frac{M Tu}{\norm{T u}}, \text{ sonst}
+  \end{cases}
+  $$
+
+  Dann $\tilde T \colon \overline{B_M(o)} \to \overline{B_M(0)}$.
+
+  Sei $K$ abgeschlossene konvexe Hülle von $\tilde T(\overline{B_M(0)})$.
+
+  Da $T$ und somit $\tilde T$ kompakt, folgt $K$ kompakte Teilmenge von $X$.  Betrachte nun $\tilde T \colon K \to K$
+
+  Schauder $\implies$ es existiert $u \in K \colon \tilde T u = u$
+
+  Behauptung: $u$ Fixpunkt von $T$.
+
+  Angenommen Behauptung falsch, dann $\norm{Tu} > M$ und $u = \alpha Tu$ mit $\alpha = \frac{M}{\norm{Tu}} < 1$, aber $\norm{u} = \norm{\tilde Tu} = M$. 
+
+  Widerspruch, da nach ($\ast$) gelten müsste $\norm{u} < M$.
+\end{proof}
+
+Zurück zu Problem II:
+
+\subsection{Anwendung auf semilineare Randwertprobleme}
+
+Betrachte
+
+$$
+(\ast)
+\begin{cases}
+  -\Delta u + \mu u &= -b(\nabla u) \text{ in } \Omega \\
+  u &= 0 \text{ auf } \partial \Omega
+\end{cases}
+$$
+wobei $\Omega \subseteq \R^n$ beschränktes Gebiet, $\partial \Omega$ glatt und $b \colon \R^n \to \R$ Lipschitz und es gelte
+$$
+|b(p)| \leq c(|p| + 1), \quad p \in \R^n.
+$$
+
+\subsection{Satz}
+
+Für $\mu > 0$  genügend groß existiert eine Funktion $u \in H^2(\Omega) \cap H_0^1(\Omega)$, welche ($\ast$) löst.
+
+\begin{proof}
+  Schritt 1:
+
+  Für $u \in H_0^1(\Omega)$ setze $f(x) := -b (\nabla u(x))$.
+
+  Wachstumsbedingung an $b \implies f \in L^2(\Omega)$.
+
+  Sei $w$ die eindeutige schwache Lösung des linearen Randwertproblems
+  $$
+  \begin{cases}
+    -\Delta w + \mu w &= f \text{ in } \Omega \\
+    w &= 0 \text{ auf } \partial \Omega
+  \end{cases}
+  $$
+
+  Weiter: $\partial \Omega$ glatt $\implies w \in H^2(\Omega)$ und $\norm{w}_{H^2} \leq C'\norm{f}_2$ (6.3.2 Theorem 4,  Evans)
+
+  Setze $T u := w.$ Dann $\norm{Tu}_{H^2}  \leq C'\norm{f}_2 \overset{(w)}{(\leq)} C''(\norm{u}_{H^1} + 1)$ ($\ast$).
+
+  Schritt 2: $T \colon H_0^1(\Omega) \to H_0^1(\Omega)$ stetig und kompakt.
+
+  a) $T$ stetig: 
+
+  Sei $u_j \to u$ in $H-0^1(\Omega)$
+
+  $\overset{(\ast)}{\implies} \sup_j \norm{w_j}_{H^2} < \infty$ mit $w_j = T u_j$
+
+  $\implies$ es existiert Teilfolge $(w_j)$ und $w \in H_0^1(\Omega)$ mit $w_j \to w$ in $H_0^1(\Omega)$ schwach.
+
+  Weiter $\int_\Omega \nabla w_j \nabla v + \mu \int_\Omega w_j v = - \int_\Omega b(\nabla u_j) v$, $v \in H_0^1(\Omega)$
+
+  $\implies \int_\Omega \nabla w \nabla v + \mu \int_\Omega w v = - \int_\Omega b(\nabla u) v$, $v \in H_0^1(\Omega)$
+
+  $\implies Tu = w$, d.h. $T u_j \to T u$, d.h. $T$ stetig.
+
+  b) $T: H_0^1(\Omega) \to H_0^1(\Omega)$ kompakt: Übungsaufgabe.
+
+  Schritt 3: Zeige 
+  $$
+    \{ u \in H_0^1(\Omega) \colon u = \alpha Tu \text{ für ein } \alpha \in [0,1] \}
+  $$
+  ist beschränkt falls $\mu$ groß.
+
+  Sei $u \in H_0^1(\Omega)$ mit $u = \alpha Tu$, $\alpha \in (0,1]$
+
+  $\implies \frac{u}{\alpha}$
+
+  $\overset{\text{Schritt 1}}{\implies} u \in H^2(\Omega) \cap H_0^1(\Omega)$ und $-\Delta u + \mu u = -\alpha b(\nabla u).$
+
+  $\implies \int_\Omega |\nabla u|^2 + \mu \int u^2 dx = -\alpha \int_\Omega b(\nabla u) u \leq C\int_\Omega (|\nabla u| + 1) |u| \leq \frac{1}{2} \int_\Omega |\nabla u|^2 dx + C\int_\Omega |u|^2 + 1 dx$
+
+  $\implies$ Falls $\mu$ groß genug, so gilt: $\norm{u}_{H_0^1(\Omega)} \leq C$ unabhängig von $\alpha'$.
+
+  Schritt 4: Anwenden von Satz 14.4 auf $X = H_0^1(\Omega)$ impliziert: $T$ hat Fixpunkt $u \in H_0^1(\Omega) \cap H^2(\Omega)$, welcher Problem II löst.
+\end{proof}
+
+\subsection{Methode der Ober- und Unterlösungen}
+
+Betrachte $(\ast) \begin{cases} -\Delta u &= f(u) \text{ in } \Omega \\ u &= 0 \text{ auf } \partial \Omega \end{cases}$
+
+Idee: Finde ``Unterlösung'' $\underline{u}$ bzw. ``Oberlösung'' $\overline{u}$ eines Randwertproblems mit $\underline u \leq \overline u$. 
+Dann existiert Lösung $u$ mit $\underline u \leq u \leq \overline u$.
+
+\underline{Voraussetzung:} $f \colon \R \to \R$ glatt und $|f'(x)| \leq C$ für alle $x \in \R$.
+
+Erinnerung: Eine Funktion $u \in H_0^1(\Omega)$ heißt schwache Lösung von ($\ast$), falls
+$$ \int_\Omega \nabla u \nabla v = \int_\Omega f(u) v, \quad v \in H_0^1(\Omega).$$
+
+\subsection{Definition}
+
+\begin{enumerate}[a)]
+  \item Eine Funktion $\overline{u} \in H^1(\Omega)$ heißt \underline{schwache Oberlösung} von ($\ast$), falls
+    $$
+    \int_\Omega \nabla \overline u \nabla v \geq \int_\Omega f(\overline u) v, \quad v \in H_0^1(\Omega), v \geq 0, \quad \text{ fast überall}
+    $$
+
+  \item Eine Funktion $\underline u \in H^1(\Omega)$ heißt \underline{schwache Unterlösung} von ($\ast$), falls
+    $$
+    \int_\Omega \nabla \underline u \nabla v \leq \int_\Omega f(\overline u) v, \quad v \in H_0^1(\Omega), v \geq 0, \quad \text{ fast überall}
+    $$
+\end{enumerate}
+
+\subsection{Satz (Existenz einer Schwachen Lösung)}
+
+Es existieren schwache Oberlösung $\overline u$ bzw. schwache Unterlösung $\underline u$ von ($\ast$) mit
+\begin{itemize}
+  \item $\underline u \leq \overline u$ fast überall in $\Omega$
+  \item $\underline u \leq 0, \overline u \geq 0$ auf $\partial \Omega$ im Sinne von ``Spur von u'' (Übungsaufgabe).
+\end{itemize}
+
+Dann existiert schwache Lösung von ($\ast$) mit $\underline u \leq u \leq \overline u$ fast überall in $\Omega$.
+
+\begin{proof}
+  Wähle $\alpha > 0$ so groß, dass $x \mapsto f(x) + \alpha x$ monoton wachsend. (Vorzeichen Abl. positiv machen)
+
+  Setze $u_0 := \underline u$ mit $\underline u$ gegebenen Unterlösung und definiere $u_1 \in H_0^1(\Omega)$ als eindeutige schwache Lösung des Randwertproblem
+  $$
+  \begin{cases}
+    -\Delta u_1 + \alpha u_1 &= f(u_0) + \alpha u_0 \text{ in } \Omega \\
+    u_1 &= 0 \text{ auf } \partial \Omega
+  \end{cases}
+  $$
+
+  \underline{Behauptung:} $\underline u = u_0 \leq u_1 \leq u_2 \leq \cdots $ fast überall in $\Omega$.
+
+  Schritt 1: $k = 0$. Dann:
+  $$
+  - \int_\Omega \nabla u_1 \nabla v + \alpha u_1 v = - \int_\Omega(f(u_0) + \alpha u_0) v, \quad v \in H_0^1(\Omega)
+  $$
+
+  \underline{Voraussetzung:} $\int \nabla u_0 \nabla v \leq \int f(u_0) v, v \in H_0^1(\Omega), v \geq 0$.
+
+  Wähle $v := (u_0 - u_1)^+ \in H_0^1(\Omega)$.
+
+  $\implies \int(\nabla (u_0 - u_1) \nabla (u_0 - u_1)^+ + \alpha (u_0 - u_1)(u_0 - u_1)^+ \leq 0$
+
+  Da $$\nabla(u_0 - u_1)^+ \underset{\text{Ü.A.}}{=} \begin{cases} \nabla(u_0 - u_1) & \text{ auf} \{u_0 \geq u_1\} \\ 0 & \text{ sonst}\end{cases}$$ folgt
+
+  $\int_{\{u_0 \geq u_1\}} |\nabla(u_0 - u_1)|^2 + \alpha(u_0 - u_1)^2 \leq 0$
+
+  $\implies u_0 \leq u_1$ fast überall in $\Omega$.
+
+  Schritt 2: $u_k \leq u_{k + 1}$ für alle $k$ (Ü.A.)
+
+  Schritt 3: $u_k \leq \overline u$ fast überall in $\Omega$ für alle $k$.
+
+  Voraussetzung aus dem Satz: $u_0 = \underline u \leq \overline u$, d.h. Behauptung OK für $k = 0$.
+
+  Es gelte $u_k \leq \overline u$, für ein $k$
+
+  $\overline u$ Oberlösung: $\int \nabla \overline u \nabla v \geq \int f(\overline u) v, v := (v_{k + 1} - \overline u)^+$
+
+  und $\int \nabla u_{k + 1} \nabla v + \alpha u_{k + 1} v \overset{(\ast \ast)}{=} \int (f(u_k) + \alpha u_k) v$
+
+  $\implies \int_{\{u_{k + 1} \geq \overline u\}} \nabla (u_{k + 1} - \overline u) \nabla (u_{ k + 1} - \overline u) + \alpha (u_{k + 1} - \overline u)^2 dx$
+
+  $\leq \int \underbrace{[(f(u_k) + \alpha u_k) - f(\overline u) + \alpha \overline u]}_{\leq 0, \text{ da } x \mapsto f(x) + \alpha x \text{ monoton wachsend und } u_k \leq \overline u} (\overbrace{u_{k + 1} - u_k}^{\geq 0})^+ \leq 0$
+
+  $\implies u_{k + 1} \leq \overline u$ fast überall in $\Omega$.
+
+  Schritt 4: Konvergenz
+
+  gezeigt: $\underline u = u_0 \leq u_1 \leq \cdots \leq \overline u$
+
+  Setze $u(x) := \lim_{ k \to \infty } u_k (x)$ fast überall
+
+  $\overset{\text{Lebesgue}}{\implies} u_k \to u $ in $L^2(\Omega)$.
+
+  Weiter: 
+  \begin{itemize}
+    \item $\norm{f(u_k)}_{L^2} \overset{\text{Ü.A.}}{\leq}$
+    \item $\sup_k \norm{u_k}_{H_0^1(\Omega)} < \infty$
+  \end{itemize}
+
+  $\implies$ es existiert schwach konvergente Teilfolge $(u_k)$ in $H_0^1(\Omega)$ it Grenzwert $u \in H_0^1(\Omega)$.
+
+  Schritt 5: $u$ löst ($\ast$) im Schwachen Sinne
+
+  $v \in H_0^1(\Omega) \overset{(\ast\ast)}{\implies}$
+
+  $\int \nabla u_k \nabla v + \alpha u_k = \int (f(u_k) + \alpha u_k) v$
+
+  $\to \int \nabla u \nabla v + \alpha u v = \int f(u) v +  \alpha u v$
+\end{proof}
+
+
+\subsection{Beispiel für Nichtexistenz}
+
+Betrachte die semilineare Wärmeleitungsgleichung
+
+$$
+(\ast)
+\begin{cases}
+  u_t - \nabla u &= u^2 \text{ in } (0, T) \times \Omega \\
+  u &= 0 \text{ auf } (0,T) \times \partial \Omega \\
+  u(0) &= u_0 \text{ in } \Omega  
+\end{cases}
+$$
+
+Ziele: Zeige, dass für $u_0 \geq 0$ ``genügend groß'' keine glatte Lösung von ($\ast$) für $T$ groß existiert.
+
+Betrachte hierzu $\begin{cases} -\Delta w &= \lambda w \text{ in } \Omega (\text{ beschränkt, } \partial\Omega \in C^\infty) \\ w &= 0 \text{ auf } \partial \Omega \end{cases}$
+
+Es gibt $\sigma_p(\Delta) = \sigma(\Delta) = (\lambda_j)_{j \in \N} \subseteq \R$ mit $0 < \lambda_1 \leq \lambda_2 \leq \cdots \to \infty$
+
+$\lambda_1 > 0$ heißt Haupteigenwert (principal value), die zugehörige Eigenfunktion $w_1$ erfüllt $w_1 \in C^\infty, w_1 \geq 0$, sowie $\int w_1 dx = 1$.
+
+Sei nun $u$ eine glatte Lösung von ($\ast$) mit $u_0 \geq 0, u_0 \neq 0$.
+
+$\implies u > 0$ in $(0, T) \times \Omega$.
+
+Setze $h(t) = \int_\Omega u(t,x) w_1(x) dx$
+
+$\implies h'(t) = \int(\Delta u + u^2)w_1 dx = \int u\Delta w_1 + \int u^2 w_1 = - \lambda_1 h(t) + \int u^2 w_1$
+
+Außerdem: $h(t) = \int u(t,x) w_1^{\frac{1}{2}}(x) w_1^{\frac{1}{2}}(x) dx \overset{\text{Hölder}}{\leq} (\int u^2(t,x) w_1(x))^{\frac{1}{2}} (\underbrace{\int w_1}_{=1})^{\frac{1}{2}}$
+
+$\implies h^2(t) \leq \int u^2(t,x) w_(x) dx$ und damit $h'(t) \geq -\lambda_1 h(t) + h^2(t)$
+
+Setze nun $g(t) = e^{\lambda_1 t} h(t)$. Dann
+
+$g'(t) = \dots \geq e^{-\lambda_1 t} g^2(t)$
+
+$\implies (\frac{-1}{g(t)})' = \frac{g'(t)}{g^2(t)} \geq e^{-\lambda_1 t}$
+
+$\implies g(t) \geq \frac{\lambda_1 g(0)}{\lambda_1 - g(0)(1 - e^{-lambda_1 t}}$
+
+Ist nun $h(0) = g(0) > \lambda_1$, so kann keine glatte Lösung von ($\ast$) existieren, genauer:
+
+$$
+\lim_{t \to T^*} \int u(t,x) w_1(x) dx = \infty \text{ mit } T^* = -\frac{1}{\lambda_1} \ln (\frac{h(0) - \lambda_1}{h(0)}).
+$$
+
+Genannt wir dieses Phänomen ``blow-up'' zur Zeit $T^*$.
+
+\subsection{Satz}
+
+Die semilineare Wärmeleitungsgleichung ($\ast$) besitzt für $u_0 \neq 0$ mit $\int u_0 w_1 dx > \lambda_1$ keine glatte Lösung für $t$ hinreichend groß.
 

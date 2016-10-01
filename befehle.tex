@@ -20,25 +20,26 @@
 %\newtheorem{ex}{Beispiel}[chapter]
 
 \theoremstyle{plain}
-\newtheorem{thm}{Satz}[section]
+\newtheorem*{thm}{Satz}
 \newtheorem*{lem}{Lemma}
-\newtheorem{cor}[thm]{Korollar}
-\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Korollar}
+\newtheorem*{prop}{Proposition}
 \newtheorem*{ex}{Beispiel}
 \newtheorem*{ntion}{Notation}
 
 \theoremstyle{definition}
-\newtheorem{defn}[thm]{Definition}
+\newtheorem{defn}{Definition}
 
 \theoremstyle{remark}
 \newtheorem*{bem}{Bemerkung}
-\newtheorem{bemnumber}[thm]{Bemerkung}
 
 \def\Satzrefname{Satz}
 
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\loc}{loc}
 \DeclareMathOperator{\pv}{pv}
+\DeclareMathOperator{\konv}{konv}
+\DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\grad}{grad}
 
 \let\divsymb=\div % rename builtin command \div to \divsymb
