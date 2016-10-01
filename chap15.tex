@@ -1,0 +1,53 @@
+\section{Hopfsches Maximumsprinzip}
+
+Betrachte hier elliptische Operatoren 2. Ordnung, d.h. Operatoren der Form
+
+\begin{enumerate}[1)]
+  \item $Au = - \underbrace{\sum_{i,j = 1}^n \partial_j\left(a_{ij}(x) \partial_i u(x)\right)}_{\div((a_{ij})\nabla u} + \underbrace{\sum_{j = 1}^n b_i(x)}_{b \nabla u} \partial_i u(x) + c(x) u(x)$
+  \item $Au = - \sum_{i,j = 1}^n a_{ij}(x) \partial_j \partial_i u(x) + \sum_{i = 1}^n b_i(x) \partial_i u(x) + x(x) u(x)$.
+\end{enumerate}
+mit gegebenen Funktionen $a_{ij}, b_{ij}, c$ auf einem Gebiet $\Omega$.
+
+Operatoren der Form 1) heißen Operatoren in  Divergenzform, währen Operatoren der Form 2) Operatoren in Nicht-Divergenz-Form heißen.
+
+Wir nehmen Symmetrie an, $a_{ij} = a_{ji}$.
+
+\subsection{Definition}
+
+Der Operator $A$ heißt \underline{gleichmäßig elliptisch}, falls ein $\mu > 0 $ existiert mit
+$$
+\sum_{i,j = 1}^n a_{ij}(x) \xi_i \xi_j \geq \mu |\xi|^2
+$$
+für alle $x \in \Omega, \xi \in \R^n$.
+
+Anmberkung
+\begin{enumerate}[a)]
+  \item Obige Definition besagt, dass die symmetrische Matrix $(a_{ij}) =: A$ positiv definit ist mit kleinstem Eigenwert $\geq \mu$.
+  \item $a_{ij} = \delta_{ij}, b_i = c = 0$, dann $A = -\Delta$.
+  \item Existieren schwache Lösungen von $\begin{cases} Au = f \text{ in } \Omega \\ u = 0 \text{ auf } \partial \Omega\end{cases}$ folgt wie zuvor für $\Delta$.
+\end{enumerate}
+
+Weitere Eigenschaften sind schwieriger (höhere Regularität notwendig).
+
+Wenden uns num dem Maximumsprinzip zu:
+
+Betrachte Operatoren in Nicht-Divergenzform mit $c = 0$, d.h. 
+$$
+Au = - \sum_{i,j = 1}^n a_{ij}(x) \partial_i \partial_j u(x) + \sum_{i = 1}^n b_i(x) \partial_i u(x)
+$$
+mit 
+\begin{itemize}
+  \item stetigen Koeffizienten $a_{ij}, b_i$
+  \item $A$ glm. elliptisch
+  \item $a_{ij} = a_{ji}$
+  \item $\Omega \subseteq \R^n$ offen, beschränkt.
+\end{itemize}
+
+\subsection{Satz (schwaches Maximumsprinzip)}
+
+Sei $u \in L^2(\Omega) \cap C^0(\overline \Omega)$ so, dass $Au \leq 0$ in $\Omega$. Dann $\max_{x \in \overline\Omega} u(x) = \max_{x \in \partial\Omega} u(x).$
+
+\begin{bem}
+  Eine Funktion $u$ mit $Au \leq 0$ in $\Omega$ heißt Unterlösung; analog: $u$ mit $A u \geq 0$ heißt Oberlösung.
+\end{bem}
+
