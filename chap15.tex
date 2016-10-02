@@ -51,3 +51,95 @@ Sei $u \in L^2(\Omega) \cap C^0(\overline \Omega)$ so, dass $Au \leq 0$ in $\Ome
   Eine Funktion $u$ mit $Au \leq 0$ in $\Omega$ heißt Unterlösung; analog: $u$ mit $A u \geq 0$ heißt Oberlösung.
 \end{bem}
 
+\begin{proof}
+  1. Fall: Es gelte die strikte Ungleichung $Au < 0$ in $\Omega$.
+
+  Angenommen es existiert $x_0 \in \Omega$ mit $u(x_0) = \max_{x \in \overline\Omega} u(x)$
+
+  $\implies \nabla u(x_0) = 0, (\partial_i \partial_j u)(x_0)$ ist negativ semi-definit.
+
+  Da $A:=(a_{ij}(x_0))$ symmetrisch und positiv definit, existiert orthogonale Matrix $O$ mit $OAO^T = \diag(d_1,\dots,d_n), d_i > 0$.
+
+  Für $g = x_0 + O(x - x_0)$ gilt: $x - x_0 = O^T(y - x_0)$, daher folgt
+  \begin{align*}
+    \partial_{x_i} u &= \sum_{k = 1}^n \partial_{y_k} uO O_{ik} \\
+    \partial_{x_i} \partial_{x_j} u = \sum_{k,l = 1}^n \partial_{y_k}\partial_{y_l} u O_{i_k} O_{j_l}, \quad\text{also}\\
+    \sum_{i,j=1}^n a_{ij}(x_0) \partial_{x_i} \partial_{x_j} u &= \sum_{k,l = 1}^n \sum_{i,j = 1}^n a_{ij}(x_0) \partial_{y_k} \partial_{y_l} u O_{i_k} O_{j_l} \\
+    &= \sum_{k = 1}^n d_k \partial_{y_k} \partial_{y_k} u \leq 0 \\
+    \implies Au(x_0) \geq 0,
+  \end{align*}
+  ein Widerspruch.
+
+  Fall 2: Es gelte $A u \leq 0$ in $\Omega$
+
+  Setze $u_\varepsilon(x) := u(x) + \varepsilon e^{\lambda x_1}, x \in \Omega, \varepsilon > 0, \lambda > 0.$
+
+  Damit ist 
+  
+  \begin{align*}
+  A u_\varepsilon &= Au + \varepsilon A(e^{\lambda x_1}) = A u + \varepsilon e^{\lambda x_1} (-\lambda^2 a_11 + \lambda b_1) \\
+  &\leq Au + \varepsilon e^{\lambda x_1} (-\lambda^2 \mu + \lambda \norm{b_1}_\infty ) < 0
+  \end{align*}
+  für $\lambda$ hinreichend groß.
+
+  $\overset{\text{Fall 1}}{\implies} \max{x \in \overline\Omega} u_\varepsilon(x)  = \max_{x \in \partial\Omega} u_\varepsilon(x)$.
+
+  $\overset{\varepsilon \to 0}{\implies} \max_{x \in \overline\Omega} u(x) = \max{x \in \partial\Omega} u(x)$.
+\end{proof}
+
+Verstärken die Aussage jetzt noch dahingehend, dass eine Unterlösung kein Maximum im Inneren annehmen kann, solange sie nicht konstant ist.
+
+\subsection{Lemma (Hopf)}
+
+Sei $u \in C^2(\Omega)  \cap C^1(\overline\Omega)$ so, dass $A u \leq 0$ in $\Omega$ und es existiert $x_0 \in \partial\Omega$ mit $u(x_0) > u(x), x \in \Omega$.
+Weiterhin existiert eine offene Kugel $K \subseteq \Omega$ mit $x_0 \in \partial K$ (innere Kugelbedingung).
+
+$\implies \frac{\partial u}{\partial \nu}(x_0) > 0$, wobei $\nu$ die äußere Normale an $K$ in $x_0$ ist.
+
+\begin{proof}
+  Setze $v(x) = e^{-\lambda|x|^2} - e^{-\lambda r^2}$, mit $K = B(0,r), \lambda > 0.$
+  Dann
+  \begin{align*}
+    Av &= e^{-\lambda |x|^2}  \sum_{i,j = 1}^n a_{ij} (- u\lambda^2 x_i x_j + 2 \lambda \delta_{ij}) - e^{- \lambda |x|^2} \sum_{i = 1}^n b_i 2 \lambda x_i \\
+    &\leq e^{-\lambda|x|^2} (-u \lambda^2 \mu |x|^2 + 2 \lambda \Spur(A) + 2 \lambda |b||x|)
+  \end{align*}
+
+  Betrachte nun den Kreisring $R := B(0,r) \setminus B(0,\frac{r}{2})$.
+
+  $\implies Av \leq 0$ in $R$, wenn $\lambda$ genügend groß.
+
+  Aus $u(x_0) > u(x)$ folgt:
+  \begin{align*}
+    u(x_0) \geq u(x) + \varepsilon v(x), x \in \partial B(0,\frac{v}{2}) \\
+    u(x_0) \geq u(x) + \varepsilon \underbrace{v(x)}_{=0}, x \in \partial B(0,r).
+  \end{align*}
+  für $\varepsilon$ klein genug.
+
+  Damit folgt zum Einen:
+  $$
+  A(u + \varepsilon v - u(x_0)) \leq 0 \text{ in } R.
+  $$
+
+  Zum Anderen ist
+  $$
+  u + \varepsilon v - u(x_0) \leq 0 \text{ auf } \partial R.
+  $$
+
+  $\overset{\text{15.2}}{\implies} u + \varepsilon v - u(x_0) \leq 0$ in $R$.
+
+  Wegen $u(x_0) + \varepsilon v(x_0) - u(x_0) = 0$ folgt
+  $$
+  \frac{\partial u}{\partial \nu}(x_0) + \frac{\partial v}{\partial \nu}(x_0) \geq 0,
+  $$
+  also 
+  $$
+  \frac{\partial u}{\partial \nu}(x_0) \geq -\varepsilon \frac{\partial v}{\partial \nu}(x_0) = \varepsilon \nabla v(x_0) \frac{x_0}{r} = 2\lambda \varepsilon r e^{-\lambda r^2} > 0
+  $$
+\end{proof}
+
+\subsection{Theorem (starkes Maximumsprinzip)}
+
+Sei $u \in C^2(\Omega) \cap C(\overline\Omega)$.
+Fall $A u \leq 0$ in $\Omega$ und $\max_{x \in \overline\Omega} u(x)$ in einem inneren Punkt von $\Omega$ angenommen wird, so ist $u$ konstant in $\Omega$.
+
+Beweis: Übungsaufgabe.
