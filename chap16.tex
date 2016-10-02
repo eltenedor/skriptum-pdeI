@@ -1,1 +1,206 @@
 \section{Das Maximumsprinzip für parabolische Gleichungen}
+
+Sei $G \subseteq \R_+ \times \R^n$ ein Gebiet und
+$$
+(Lu)(t,x) := \partial_t u - \sum_{i, j = 1}^n a_{ij}(t,x) \partial_i \partial_j u + \sum_{j = 1}^n b_i(t,x) \partial_i u,
+$$
+wobei $a_{ij}, b \in C(\overline G), a_{ij} = a{ji}$.
+
+Der Operator $L$ heißt gleichmäßig parabolisch, falls ein $\mu > 0$ existiert mit
+$$
+\sum_{i,j = 1}^n a_{ij}(t,x) \xi_i \xi_j \geq \mu |\xi|^2, \xi \in \R^n, (t,x) \in G.
+$$
+
+\subsection{Satz}
+
+Sei $\Omega \subseteq \R^n$ beschränktes Gebiet, $0 < T < \infty$  und $G := (0, T) \times \Omega$. Sei $u \in C^2(G) \cap C(\overline G)$ reellwertige Funktion mi t$Lu \leq 0$ in $G$.
+Dann gilt: $u$ hat Maximum in $\overline G$ auf $\Omega \times \{0\}$ oder auf $\partial \Omega \times [0,T]$.
+
+\begin{proof}
+  Sei $T' < T$.
+
+  \begin{enumerate}[a)]
+    \item Annahme: Maximum in einem inneren Punkt $(x_0, t_0)$ von $\overline \Omega \times [0,T']$.
+
+      $\implies \partial_t u(t_0, x_0) = \partial_i u(t_0, x_0) = 0$ und $partial_i^2 u(t_0, x_0) \leq 0$ für alle $i = 1, \dots, n, $ d.h. $\Delta u(t_0, x_0) \leq 0$.
+
+    \item Annahme: Maximum in $(T', x_0)$ mit $x_0 \in \Omega$.
+
+      $\implies \partial_t u(T', x_0) \geq 0, \partial_i u(T', x_0) = 0, \partial_i^2 u(T', x_0) \leq 0$ für $i = 1, \dots, n$
+
+      $\implies (Lu)(T', x_0) \geq 0$ Widerspruch. 
+  \end{enumerate}
+
+  Damit $\max_{(t,x) \in [0,T'] \times \overline \Omega} u(t,x) \leq \max_{(t,x) \in \Omega \times \{0\} \cup \partial \Omega times [0, T']} u(t,x)$
+\end{proof}
+
+Jetzt $T' \to T$.
+
+Ziel:
+
+\subsection{Theorem (Maximumsprinzip von Hopf)}
+
+Es sei $G \subseteq \R_+ \times \R^n$ ein bescrhänktes Gebiet, $u \in C^2(T) \cap C(\overline G)$ so, dass $Lu \leq 0$ in $G$.
+
+Sei $M := \max_{(t,x) \in \overline G} u(t,x)$.
+Für $(t_0, x_0) \in G$ gelte $u(t_0, x_0) = M$.
+
+Dann gilt:
+\begin{enumerate}[a)]
+  \item $ u \equiv M$ in $G(t_0) = $ Zusammenhsangskomponente von $G \cap \{(t_0, x) \colon x \in \R^n\}$, die $(x_0, t_0)$ enthält.
+  \item Falls ein Punkt $(x,t) \in G$ mit $(t_0, x_0)$ verbunden werden kann durch einen Weg, welcher nur aus horizontalen und \underline{vertikalen} Segmenten besteht, so gilt $u(t,x) = M$.
+\end{enumerate}
+
+\subsection{Lemma}
+
+Seien $G, u$ wie in 16.2, $M := \max_{(t,x) \in \overline G} u(t,x)$ und $L u \leq 0$. Seien außerdem $(E, \overline x) \in G, K = B_R(\overline t, \overline x)$, mit $\overline K \subseteq G, u < M$ in $K$ und es existiert $(t_0, x_0) \in 2K$ mit $u(t_0, x_0) = M.$
+
+Dann gilt: Tangente an $K$ in $(t_0, x_0)$ ist parallel zu $\R^n (x_0 = \overline x)$.
+
+\begin{proof}
+  Annahme: Behauptung falsch: OBdA $(t_0, x_0)$ einziger Punkt auf $"K$ mit $u(t_0, x_0) = M$.
+
+  Setze: $K_1 := B_{R_1}(t_0, x_0)$ mit $0 < R_1 < \norm{x_0 - \overline x}$ s, dass $\overline K_1 \subseteq G$. 
+
+  Dann $\partial K_1 := C' \cup C'', C' = 2K_1 \cap \overline K, C'' = 2K_1 \setminus C'$.
+
+  $\implies $ es existiert $\eta > 0 = u \leq M - \eta auf C'$ und $u \leq M$ auf $C''$.
+\end{proof}
+
+Definiere $v(t,x) = e^{-\alpha(\norm{x - \overline x}^2 + |t - \overline t|^2)} - e^{-\alpha R^2}, \alpha > 0 $
+
+$\implies v > 0$ in $K$, $v = 0$ auf $\partial K, v < 0$ in $G \setminus \overline K$.
+
+Es ist
+\begin{align*}
+  (L v )(t,x) &= -2 \alpha e^{-\alpha(\norm{x - \overline}^2 + |t - \overline t|^2)} 
+  [(t - \overline t) + 2\alpha \sum_{i,j = 1}^n a_{ij} (t,x) (x_i - \overline x_i) (x_j - \overline x_j) - \sum_{i = 1}^n(a_i - b_i(x_i - \overline x_i))]
+\end{align*}
+
+Wähle nun $\alpha > 0$ so groß, dass $Lv < 0$ in $K_1$. Betrachte $w := u + \varepsilon v$.
+
+$\implies Lw = Lu + \varepsilon Lv < 0$ in $K_1$.
+
+Wegen $u \leq M - \eta$ auf $C'$ existiert $\varepsilon > 0$ mit $w < M$ auf $C'$. Afu $C''$ ist $v < 0$ und $u \leq M$, d.h. $w < M$ auf $C''$.
+
+$\implies w < M$ auf $\partial K_1$.
+
+Andererseits ist $v = 0$ auf $\partial K \implies w(t_0, x_0) = u(t_0ß, x_0) = M$.
+
+$\implies \max_{(t,x) \in \overline K_1} w(t,x)$ wird in einem inneren Punkt von $K_1$ angenommen.
+
+Widerspruch zu (16.1).
+
+\subsection{Lemma}
+
+Seien $G, u$ wir in Theorem 16.2, $M .= \max{(t,x) \in \overline G} u(t,x)$ und $Lu \leq 0$ in $G$.
+Sei $l \subseteq G$ ein Liniensegment, das in der $t$-Komponente konstant ist. 
+Existiert ein $(t_0, x_0) \in l$ mit $u(t_0, x_0) < M$, so ist $u < M$ auf ganz $l$.
+
+\begin{proof}
+  Angenommen $u(t_0, \hat x) = M$ für ein $(t_0, \hat x) \in l$. OBdA $\hat x = (\hat x_1, \dots, \hat x_n)$, $x_0 = (x_{0_1}, \dots, x_{0_n})$ mit $\hat x^1 < x_{0_1}$ und $u < M$ für $x_1 \in (\hat x_1, x_{0_1}]$.
+  Sei $d_0 := \min\{ x_{0_1} - \hat x_1, \dist([(\hat x, t_0), (x_0, t_0)], 2G) \}$.
+
+  Für $x_1 \in (\hat x_1, \hat x_1 + d_0)$ sei $d(x) := \dist((x,t_0), \text{ nächster Punkt in $G$ mit $u = M$})$
+
+  Da $u(t_0 \hat x) = M$ ist $d(x) \leq x_1 - \hat x_1$.
+
+  $\implies u(t_0 + d(x), x) = M$ oder $u(t_0 - d(x), x) = M$.
+
+  Für $\delta > 0$ gilt:
+  $$
+  \dist((x_0 + \delta l_1, t_0), (t_0 \pm d(x), x)) = (d(x)^2 + \delta^2)^{\frac{1}{2}}
+  $$
+  mit der gewichteten Youngschen Ungleichung $a b \leq \frac{\varepsilon}{2} a^2 + \frac{2}{varepsilon} b^2$.
+
+  $\implies d(x + \delta^2)^{\frac{1}{2}} \leq d(x) + \frac{\delta^2}{2d(x)}$ (i)
+
+  und $d(x + \delta l_1)^2 \geq d(x)^2 - \delta^2 $ (ii)
+
+  Sei nun $0 < \delta < d(x)$.
+
+  Unterteile $(x, x + \delta l_1)$ (Intervall) in $m$ gleiche Teile.
+  
+  $\implies d(x + \frac{j + 1}{m} \delta l_1)  d(x + \frac{j}{m} \delta e_1) \overset{\text(i)}{\leq} \frac{(\frac{\delta}{m})^2}{2d(x + \frac{j}{m} \delta l_1)} \overset{\text{(ii)}}{\leq} \frac{(\frac{\delta}{m})^2}{2 \sqrt{d(x)^2 - \delta^2}}$ für $j = 1, \dots, m-1$
+
+  $\overset{\text{Teleskopsumme}}{\implies} d(x + \delta l_1) - d(x) \leq \frac{\delta^2}{2m \sqrt{d(x)^2 - \delta^2}}$
+
+  $\overset{m \to \infty}{\implies} d(x + \delta l_1) \leq d(x)$
+
+  Da $d(x) \leq x_1 - \hat x_1$ und $x_1$ beliebig nah bei $\hat x_1$, folgt $d(x) = 0$ für $x \in (\hat x_1, \hat x_1 + \delta)$.
+
+  $\implies u(t_0, x) = M$ auf diesem Segment. Widerspruch zu $u < M$ auf $(\hat x_1, x_{0_1}]$.
+\end{proof}
+
+Folgerung: Teil(a) von 16.2 ist bewiesen.
+
+\subsection{Lemma}
+
+Seien $G, u$ wie in Theorem 16.2, $M := \max_{(t,x) \in \overline G} u(t,x)$ und $L u \leq 0$ in G.
+
+Seiein $t_0, t-1 \in \R^+$ und $u < M$ auf $G \cap \{(x,t) \colon x \in \R^n, t \in (t_0, t_1) \}$.
+
+$\implies u < M$ auf $G \cap \{(x, t_1) \colon x \in \R^n\}$.
+
+\begin{proof}
+  Angenomen es gibt $(\hat x, \hat t)$ mit $u(\hat x, \hat t) = M$.
+
+  Konstruiere Kugel $K = B_R(\hat x, t_1), R$ so klein, dass ``untere Hälfte'' von $K \subseteq G \cap \{(x,t) \colon x \in \R^n, t \in (t_0, t_1)\}$.
+
+  Definiere $v(t,x) = e^{-|x - \hat x|^2 - \alpha(t - t_0)(t - t_0)} - 1$
+
+  $\implies Lv(t,x) = e^{-|x - \hat x|^2 - \alpha(t - t_0)}(-\alpha - \eta \sum_{i,j} a_{ij}(x_i - \hat x_i)(x_j - \hat x_j) + 2 \sum_i a_{ii} - 2\sum_i b_i(x_i - \hat x_i))$
+   Wähle $\alpha > 0$ so groß, dass $Lv < 0$ in $K$ für $t \leq t_0$ ($\ast$).
+
+   Betrachte Rotationsparaboloid
+   $$
+   RP := \{(t,x) = (x - \hat x)^2 + \alpha (t - t_1) = 0\}
+   $$
+
+   Sei $C' := \partial K \cap \{ \text{unterhalb von RP}\} $
+
+   $C'' := K \cap RP$
+
+   $D := $ Gebiet, das von $C', C''$ berandet wird.
+
+   $\implies u < M$ auf $C' \implies $ es existiert $\eta > 0 \colon u \leq M - \eta$ auf $C'$. ($\ast\ast$)
+
+   Setze nun $w:= u + \varepsilon v$. Dann
+
+   $v = 0$ auf RP $\implies  v = 0$ auf $C''$, d.h. für $\varepsilon$ klein gilt:
+
+   \begin{align*}
+     Lw &= Lu + \varepsilon Lv < 0 \text{ in } D \\
+     w &= u + \varepsilon < M \text{ auf } C' \\
+     w &= u + \varepsilon v \leq M \text{ auf } C''
+   \end{align*}
+
+   $\implies w$ besitzt kein Maximum in $D$
+
+   $\implies \max_{(t,x) \in \overline D} u(t,x) = M$ wird angenommen in $(\hat x, t_1)$
+
+   $\implies \frac{\partial u}{\partial \nu} (t_1, \hat x) \geq 0$. Da $\frac{\partial v}{\partial t}(t_1, \hat x) = -a < 0$ folgt
+
+   $\frac{\partial u}{\partial t}(t_1, \hat x) = \frac{\partial w}{\partial t}(t_1, \hat x) - \varepsilon \underbrace{\frac{\partial v}{\partial t}(t_1, \hat x)}_{< 0} > 0$
+
+   Da $\max u$ auf $l = \{(t,x), t > t_1\}$ in $(t_1, \hat x)$ angenommen wir, gilt:
+
+   $\frac{\partial u}{\partial x_j}(t_1, \hat x) = 0, \frac{\partial^2 u}{\partial x_j \partial x_i}$ negativ semidefinit.
+
+   Widerspruch zu $Lu \leq 0$ (wie zuvor).
+ \end{proof}
+
+ Jetzt Beweis von 16.2(b):
+
+ \begin{proof}
+   Angenommen es gibt $t_1 < t_0$ mit $u(t_1, x_0) < M$ und $u(t_0, x_0) = M$.
+
+   Sei $\tau := \sum\{ t < t_0 \colon u(t, x_0) < M\}$.
+
+   $\implies u(\tau, x_0) < M$ für alle $t \in (t_1, \tau).$
+
+   Ebenso $u(t, x) < M$ für $t < \tau, x$ in Umgebung um $x_0$.
+
+   Widerspruch zu 16.5.
+ \end{proof}
+
