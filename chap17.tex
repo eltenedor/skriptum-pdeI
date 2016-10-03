@@ -1,0 +1,138 @@
+\section{Brownsche Bewegung}
+
+Sei $\Omega \subseteq \R^n$ Gebiet. Modelliere die Bewegung eines Teilchens unter folgenden Annahmen:
+
+\begin{itemize}
+  \item $P(t,x,s,E)$: Wahrscheinlichkeit, dass sich ein Teilchen, wenn es sich zur Zeit $t$ in $x$ befindet, zur Zeit $s \geq t$ in $E \subseteq \Omega$ befindet.
+    Dann $P(t,x,s,\Omega) = 1$ und $P(t,x,s,\emptyset) = 0$.
+
+  \item Annahme: Teilchen hat kein Gedächtnis, d.h., Wahrscheinlichkeit hängt nicht von Positionen für Zeiten $< t$ ab (``Markov-Eigenschaft'').
+
+    Mathematisch: $P(t,x,s,E) = \int_\Omega P(\tau,y,  s, E)P(t,x,\tau,\{y\} dy$ für $t < \tau \leq s$ (``Chapmann-Komogorov-Gleichung'')
+
+    Wir fassen $p(t,x\tau,y)$ als WS-dichte auf, d.h. $P(t,x,t,y) \geq 0$ und $\int_\Omega P(t,x,\tau,y) dy = 1$.
+
+  \item Annahme: Prozess ist zeitlich homogen, d.h., $P(t,x,s,E) = P(0,x,s-t, E) =: P(s-t, x, t)$.
+
+    Dann kann die C.K-Gl. geschrieben werden als
+    $$
+    P(t + \tau, x, E) = \int_\Omega P(\tau, y, t)P(t,x,y) dy
+    $$
+\end{itemize}
+
+Dies motiviert die folgenden Definition
+
+\subsection{Definition}
+
+Sei $B \subseteq \Pot(\Omega)$ $\sigma$-add. und $\Omega \in B$.
+
+Für $t \to 0, x \in \Omega, E \in B$ erfülle $P(t,x,E)$:
+\begin{enumerate}[i)]
+  \item $P(t,x,E) \geq 0, P(t,x,\Omega) = 1,$
+  \item $P(t,x,\cdot)$ ist $\sigma$  in $E \subseteq B$ f.a. $t,x$
+  \item $P(t,\cdot E)$ ist messbar für alle $t, E$.
+  \item $P(t + \tau, x, E) = \int_\Omega p(\tau, y, E)P(t, x, y) dy, t, \tau > 0, x \in E$
+\end{enumerate}
+
+Dann heißt $P$ ein Markov-Prozess auf $(\Omega, B)$.
+
+Jetzt: $\Omega = \R^n$.
+
+Für $f \in \BUC(\R^n)$ und $t > 0$ setze
+
+$$
+(T(t)f)(x) = \int_{\R^n} P(t,x,y)f(y) dy
+$$
+
+Dann: $T(t + s) = T(t)T(s), t, s > 0$ und (H.G.-Eigenschaft)
+$\sup_{x \in \R^n} |(T(t)f)(x)| \leq \sup_{x \in \R^n} |f(x)|$ (Kontraktion) Op-Norm von $T$ ist $1$.
+
+Problem: Bildet $T(t)$ von $\BUC(\R^n)$ nach $\BUC(\R^n)$ ab?
+
+\subsection{Definition}
+
+\begin{enumerate}[a)]
+  \item ein Markov-Prozess $P(t,x,E)$ heißt räumlich homogen, falls für alle Transaltionen $i \colon \R^n \to \R^n$ gilt: $P(t, i(x), i(E)) = P(t,x,E)$.
+  \item Ein räumlich homogener Markov-Prozess heißt Brownsche Bewegung, falls für alle $\rho > 0, x \in \R^n \colon \lim_{t \to 0} \frac{1}{t} \int_{|x - y| > \rho} P(t,x,y) dy = 0$.
+\end{enumerate}
+
+\begin{bem}
+  Geuß-Kern ist das typische Beispiel: $P(t,x,y) = (4 \pi t)^{-\frac{n}{2}} e^{-\frac{|x - y|^2}{4t}}$.
+\end{bem}
+
+\subsection{Satz}
+
+Für eine Brownsche Bewegung setze für $f \in \BUC(\R^n)$:
+\begin{align*}
+  (T(t)f)(x) &= \int_{\R^n} P(t,x,y) f(y) dy, t> 0 \\
+  T(0)f &= f.
+\end{align*}
+
+Dann folgt:
+
+$((T(t))_{t \geq 0}$ ist eine starkstetige Halbgruppe, d.h. Halbgruppen-Eigenschaft, $T(t) \colon \BUC \to BUC$, $T(\cdot)f$ ist stetig.
+
+\begin{proof}
+  Halbgruppen-Eigenschaft: Übungsaufgabe, ebenso $\norm{T(t)} = 1$.
+  \begin{enumerate}[a)]
+    \item $T(t)f \in \BUC(\R^n)$ f+r alle $t > 0, f \in \BUC(\R^n)$.
+      
+      Sei $i$ eine Translation, definitert durch $if(x) = f(ix)$.
+      \begin{align*}
+        \implies i(T(tf)(x) &= (T(t)f) (ix) = \int_{\R^n} P(t,ix,y)f(y) dy \\
+        &= \int_{\R^n} P(t,ix,iy) f(iy) dy \\
+        &= \int_{\R^n} P(t,x,y) f(iy) dy = (T(t)(if))(x).
+      \end{align*}
+
+      $\implies iT(t) = T(t)i$.
+
+      Zu $x,y \in \R^n$ existiert eine Translation mit $ix = y$
+      \begin{align*}
+        |(T(t)f)(x) -  (T(t)f)(y)| = |(T(t)f)(x) - i(T(t)f)(x)| \\
+        &= |[T(t)(f - if)](x)| \leq \sup_{z \in \R^n} |f(z) - f(iz)|
+      \end{align*}
+
+      $\implies T(t)f$ gleichmäßig stetig, da $f$ gleichmäßig stetig.
+
+    \item Stetigkeit von $T(\cdot)f$ in $0$. (Hinreichend, da $T(t)f- T(s)f = T(t)(f - T(s - t)f)$ )
+
+      Sei $\varepsilon > 0$ beliebig.
+      \begin{align*}
+        |(T(t) f - f)(x)| &= | \int_{\R^n} P(t,x,y)(f(y) - f(x)) dy | \\
+        &\leq |\int_{x - y \leq \rho} P(t,x,y) (f(y) - f(x)) dy | + | \int_{|x - y| > \rho} P(t,x,y) (f(y) - f(x)) dy | \\
+        &\leq \sup_{|x - y| \leq \rho} |f(y) - f(x)| + 2 \sup_{t \in\R^n} |f(z)| \int_{|x - y| > \rho} P(t,x,y) dy.
+      \end{align*}
+
+      Hierbei ist der erste Term kleiner $\frac{\varepsilon}{2}$ für $\rho$ klein, $\rho$ hängt nicht von $x,y$ ab, wegen $\BUC$.
+      Der zweite Term ist kleiner $\frac{\varepsilon}{2}$ für $t$ klein genub in Abhängigkeit von $\rho$, siehe Definition 17.2 b).
+  \end{enumerate}
+\end{proof}
+
+\subsection{Satz}
+
+Sei $P(t,x,E)$ eine Brownsche Bewegung mit $P(t,i(x), i(E)) = P(t,x,E)$ für alle $t,x,E$ und alle euklidischen Isometrien $i \colon \R^n \to \R^n$.
+Sei $T := (T(t))_{t \geq 0}$ die in 17.3 definierte (kontraktive) Halbgruppe auf $\BUC$.
+Dann gibt es $c > 0 \colon A = c \cdot \Delta$ der Erzeuger der Halbgruppe ist, d.h.
+$$
+P(t,x,y) = (4 \pi c t)^{-\frac{n}{2}} e^{-\frac{|x - y|^2}{4ct}}.
+$$
+
+Generator heißt: $u := T(t)f$ löst $\begin{cases} u_t - Au &= 0 \\ u(0) &= f \end{cases}$.
+
+(Ist T(t) gegeben, betrachte $\lim_{t \to 0} \frac{T(t)f - f}{t}$. 
+Existiert der Grenzwert, so ist $f \in D(A)$ und $Af$ ist der Grenzwert).
+
+Beweis: Jost, Partial Differential Equations.
+
+\subsection{Bemerkung}
+
+Findet man in 17.4 nur Translationsinvarianz, nicht aber Invarianz unter Drehungen und Spiegelungen, so gilt
+\begin{align*}
+  A &= \sum_{i,j  1}^n a_{ij} \partial_i \partial_j + \sum_{i = 1}^n b_i \partial_i \text{ ist mit Koeffizienten} \\
+  a_{ij}(x) &:= \lim_{t \to 0} \frac{1}{t} \int_{|x - y| \leq \varepsilon} (y_i - x_i) (y_j - x_j) P(t,x,y) dy, \\
+  b_i(x) &:= \lim_{t \to 0} \frac{1}{t} \int_{|x - y| \leq \varepsilon} (y_i - x_i) P(t,x,y) dy
+\end{align*}
+mit $a_{ij} = a_{ji}, a_{ii} \geq 0$.
+
+Beweis: Yosida.
+

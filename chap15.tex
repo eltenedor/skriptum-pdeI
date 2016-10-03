@@ -63,7 +63,7 @@ Sei $u \in L^2(\Omega) \cap C^0(\overline \Omega)$ so, dass $Au \leq 0$ in $\Ome
   Für $g = x_0 + O(x - x_0)$ gilt: $x - x_0 = O^T(y - x_0)$, daher folgt
   \begin{align*}
     \partial_{x_i} u &= \sum_{k = 1}^n \partial_{y_k} uO O_{ik} \\
-    \partial_{x_i} \partial_{x_j} u = \sum_{k,l = 1}^n \partial_{y_k}\partial_{y_l} u O_{i_k} O_{j_l}, \quad\text{also}\\
+    \partial_{x_i} \partial_{x_j} u &= \sum_{k,l = 1}^n \partial_{y_k}\partial_{y_l} u O_{i_k} O_{j_l}, \quad\text{also}\\
     \sum_{i,j=1}^n a_{ij}(x_0) \partial_{x_i} \partial_{x_j} u &= \sum_{k,l = 1}^n \sum_{i,j = 1}^n a_{ij}(x_0) \partial_{y_k} \partial_{y_l} u O_{i_k} O_{j_l} \\
     &= \sum_{k = 1}^n d_k \partial_{y_k} \partial_{y_k} u \leq 0 \\
     \implies Au(x_0) \geq 0,
@@ -75,7 +75,6 @@ Sei $u \in L^2(\Omega) \cap C^0(\overline \Omega)$ so, dass $Au \leq 0$ in $\Ome
   Setze $u_\varepsilon(x) := u(x) + \varepsilon e^{\lambda x_1}, x \in \Omega, \varepsilon > 0, \lambda > 0.$
 
   Damit ist 
-  
   \begin{align*}
   A u_\varepsilon &= Au + \varepsilon A(e^{\lambda x_1}) = A u + \varepsilon e^{\lambda x_1} (-\lambda^2 a_11 + \lambda b_1) \\
   &\leq Au + \varepsilon e^{\lambda x_1} (-\lambda^2 \mu + \lambda \norm{b_1}_\infty ) < 0

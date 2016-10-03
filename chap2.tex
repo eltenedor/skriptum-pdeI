@@ -1,1 +1,71 @@
-\section{}
+\section{Die Laplace Gleichung}
+
+Eine der wichtigsten partiellen Differentialgleichungen überhaupt ist die Laplace-Gleichung.
+
+Laplace-Gleichung: $\Delta u = 0, x \in \Omega$
+
+Poisson Gleichung: $-\Delta u = f, x \in \Omega, f \colon \Omega \to \R$
+mit $\Omega \subset \R^n$.
+
+$ \Delta u = \sum_{i = 1}^^n \frac{\partial_i^2 u}{2 x_i^2}$ Laplace-Operator.
+
+\subsection{physikalische Interpretation}
+
+Sei $u$ Dichte, z.b. eines Feststoffes, Konzetration einer Lösung und $V \subset \Omega$. Dann
+
+$$
+\int_{\partial V} F \cdot \nu = 0, \quad F \text{ Fluss}, \nu \text{ äußere Normale}
+$$
+
+Divergenzsatz $\implies \int_V \div F = 0$.
+
+Da $V$ beliebig in $\Omega$ gilt $\div F = 0$.
+
+Annahme: Fluss proportianal $\nabla u$, d.h. $F = -a \nabla u$.
+
+Dann: $\div(-a \nabla u) = - a \div \nabla u = - a \Delta u = 0$.
+
+Interpretation
+$$
+u \hat = \text{ Temperatur / Konzentration} \quad \text{dann} \quad F = - a \nabla u \text{ Fouriergesetz der Wärmeleitung, Diffusionsgesetz}
+$$
+
+Um $\Delta u = 0$ zu lösen, benutze \underline{radiale Symmetrie von $\Delta$}
+
+Also $\Omega = \R^n$, wähle Ansatz
+
+$u(x) = v(|x|) = v(r)$ mit $t = |x|$ ($u$ soll radial symmetrisch, also konstant auf Kreisen sein).
+
+Dann: $\frac{\partial r}{\partial x_i} = \frac{2 x_i}{2 |x|} = \frac{x_i}{r},$
+
+also: 
+\begin{align*}
+  \frac{\partial u}{\partial x_i} &= v'(r) \frac{\partial r}{\partial x_i} = v'(r) \frac{x_i}{r}, i = 1, \dots, n \\
+  \frac{\partial^2 u}{\partial x_i^2} = v''(r) \frac{x_i^2}{r^2} + v'(r)[\frac{1}{r} - \frac{x_i^2}{r^3}]
+\end{align*}
+
+$\implies \Delta u = v''(r) + v'(r) \frac{n - 1}{r} \overset{!}{=} = 0$ (beachte: $v$ ist von einer veränderlichen!
+
+Für $v' \neq 0$ gilt $(\log(v'))' = \frac{v''}{v'} = \frac{1 - n}{r}$.
+
+Daher: $v' = \frac{c}{r^{n - 1}}$, denn  $(log(r^{1 - n}))' = (1 - n)(\log r)' = \frac{ 1 - n}{r}$.
+
+Also
+$$
+v(r) = \begin{cases} c \log(r) + c_2, \quad& n = 2 \\ \frac{c_1}{r^{n - 2}} + c_3, \quad n \geq 3, \quad c_1 = \frac{c}{-n + 2} \end{cases}
+$$
+
+Dies motiviert:
+
+\subsection{Definition}
+
+Die Funktion $\phi \colon \R^n \setminus \{0\} \to \R$ definiert durch
+$$
+\phi(x) = \begin{cases} -\frac{1}{2\pi} \log{|x|},  \quad & n = 2 \\ \frac{1}{n(n-2) \omega_n} \frac{1}{|x|^{n - 2}}, \quad & n\geq 3, \quad \omega_n = \operatorname{Vol}(B_1(0)) \end{cases}
+$$
+
+heißt \underline{Fundamentallösung des Laplace-Operators} in $\R^n$. 
+
+
+
+
