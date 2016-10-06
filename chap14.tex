@@ -224,7 +224,7 @@ Für $\mu > 0$  genügend groß existiert eine Funktion $u \in H^2(\Omega) \cap 
 
   a) $T$ stetig: 
 
-  Sei $u_j \to u$ in $H-0^1(\Omega)$
+  Sei $u_j \to u$ in $H_0^1(\Omega)$
 
   $\overset{(\ast)}{\implies} \sup_j \norm{w_j}_{H^2} < \infty$ mit $w_j = T u_j$
 
@@ -252,7 +252,9 @@ Für $\mu > 0$  genügend groß existiert eine Funktion $u \in H^2(\Omega) \cap 
 
   $\implies \int_\Omega |\nabla u|^2 + \mu \int u^2 dx = -\alpha \int_\Omega b(\nabla u) u \leq C\int_\Omega (|\nabla u| + 1) |u| \leq \frac{1}{2} \int_\Omega |\nabla u|^2 dx + C\int_\Omega |u|^2 + 1 dx$
 
-  $\implies$ Falls $\mu$ groß genug, so gilt: $\norm{u}_{H_0^1(\Omega)} \leq C$ unabhängig von $\alpha'$.
+  {\tiny{$ C(|\nabla u| + 1)|u| = |\nabla u| C |u| + C|u| \leq \frac{1}{2} |\nabla u|^2 + \frac{1}{2} C^2|u|^2 + C|u| \cdot 1 \leq \frac{1}{2}|\nabla u|^2 + \frac{1}{2} C^2 |u|^2 + \frac{1}{2} C^2 |u|^2 + \frac{1}{2} = \frac{1}{2}|\nabla u|^2 + C^2 |u|^2 + \frac{1}{2}$; hierbei wurde zweimal Young verwendet}}
+
+  $\implies$ Falls $\mu$ groß genug, so gilt: $\norm{u}_{H_0^1(\Omega)} \leq C$ unabhängig von $\alpha$!
 
   Schritt 4: Anwenden von Satz 14.4 auf $X = H_0^1(\Omega)$ impliziert: $T$ hat Fixpunkt $u \in H_0^1(\Omega) \cap H^2(\Omega)$, welcher Problem II löst.
 \end{proof}
@@ -267,23 +269,23 @@ Dann existiert Lösung $u$ mit $\underline u \leq u \leq \overline u$.
 \underline{Voraussetzung:} $f \colon \R \to \R$ glatt und $|f'(x)| \leq C$ für alle $x \in \R$.
 
 Erinnerung: Eine Funktion $u \in H_0^1(\Omega)$ heißt schwache Lösung von ($\ast$), falls
-$$ \int_\Omega \nabla u \nabla v = \int_\Omega f(u) v, \quad v \in H_0^1(\Omega).$$
+$$ \int_\Omega \nabla u \cdot \nabla v = \int_\Omega f(u) v, \quad v \in H_0^1(\Omega).$$
 
 \subsection{Definition}
 
 \begin{enumerate}[a)]
   \item Eine Funktion $\overline{u} \in H^1(\Omega)$ heißt \underline{schwache Oberlösung} von ($\ast$), falls
     $$
-    \int_\Omega \nabla \overline u \nabla v \geq \int_\Omega f(\overline u) v, \quad v \in H_0^1(\Omega), v \geq 0, \quad \text{ fast überall}
+    \int_\Omega \nabla \overline u \cdot \nabla v \geq \int_\Omega f(\overline u) v, \quad v \in H_0^1(\Omega), v \geq 0, \quad \text{ fast überall}
     $$
 
   \item Eine Funktion $\underline u \in H^1(\Omega)$ heißt \underline{schwache Unterlösung} von ($\ast$), falls
     $$
-    \int_\Omega \nabla \underline u \nabla v \leq \int_\Omega f(\overline u) v, \quad v \in H_0^1(\Omega), v \geq 0, \quad \text{ fast überall}
+    \int_\Omega \nabla \underline u \cdot \nabla v \leq \int_\Omega f(\overline u) v, \quad v \in H_0^1(\Omega), v \geq 0, \quad \text{ fast überall}
     $$
 \end{enumerate}
 
-\subsection{Satz (Existenz einer Schwachen Lösung)}
+\subsection{Satz (Existenz einer schwachen Lösung)}
 
 Es existieren schwache Oberlösung $\overline u$ bzw. schwache Unterlösung $\underline u$ von ($\ast$) mit
 \begin{itemize}
@@ -315,9 +317,9 @@ Dann existiert schwache Lösung von ($\ast$) mit $\underline u \leq u \leq \over
 
   Wähle $v := (u_0 - u_1)^+ \in H_0^1(\Omega)$.
 
-  $\implies \int(\nabla (u_0 - u_1) \nabla (u_0 - u_1)^+ + \alpha (u_0 - u_1)(u_0 - u_1)^+ \leq 0$
+  $\implies \int \nabla (u_0 - u_1) \nabla (u_0 - u_1)^+ + \alpha (u_0 - u_1)(u_0 - u_1)^+ \leq 0$
 
-  Da $$\nabla(u_0 - u_1)^+ \underset{\text{Ü.A.}}{=} \begin{cases} \nabla(u_0 - u_1) & \text{ auf} \{u_0 \geq u_1\} \\ 0 & \text{ sonst}\end{cases}$$ folgt
+  Da $$\nabla(u_0 - u_1)^+ \underset{\text{Ü.A.}}{=} \begin{cases} \nabla(u_0 - u_1) & \text{ auf } \{u_0 \geq u_1\} \\ 0 & \text{ sonst}\end{cases}$$ folgt
 
   $\int_{\{u_0 \geq u_1\}} |\nabla(u_0 - u_1)|^2 + \alpha(u_0 - u_1)^2 \leq 0$
 
@@ -337,7 +339,7 @@ Dann existiert schwache Lösung von ($\ast$) mit $\underline u \leq u \leq \over
 
   $\implies \int_{\{u_{k + 1} \geq \overline u\}} \nabla (u_{k + 1} - \overline u) \nabla (u_{ k + 1} - \overline u) + \alpha (u_{k + 1} - \overline u)^2 dx$
 
-  $\leq \int \underbrace{[(f(u_k) + \alpha u_k) - f(\overline u) + \alpha \overline u]}_{\leq 0, \text{ da } x \mapsto f(x) + \alpha x \text{ monoton wachsend und } u_k \leq \overline u} (\overbrace{u_{k + 1} - u_k}^{\geq 0})^+ \leq 0$
+  $\leq \int_\Omega \underbrace{[(f(u_k) + \alpha u_k) - (f(\overline u) + \alpha \overline u)]}_{\leq 0, \text{ da } x \mapsto f(x) + \alpha x \text{ monoton wachsend und } u_k \leq \overline u} (\overbrace{u_{k + 1} - \overline u}^{\geq 0})^+ \leq 0$
 
   $\implies u_{k + 1} \leq \overline u$ fast überall in $\Omega$.
 
@@ -351,13 +353,13 @@ Dann existiert schwache Lösung von ($\ast$) mit $\underline u \leq u \leq \over
 
   Weiter: 
   \begin{itemize}
-    \item $\norm{f(u_k)}_{L^2} \overset{\text{Ü.A.}}{\leq}$
+    \item $\norm{f(u_k)}_{L^2} \overset{\text{Ü.A.}}{\leq} C(\norm{u_k}_{L^2} + 1)$
     \item $\sup_k \norm{u_k}_{H_0^1(\Omega)} < \infty$
   \end{itemize}
 
-  $\implies$ es existiert schwach konvergente Teilfolge $(u_k)$ in $H_0^1(\Omega)$ it Grenzwert $u \in H_0^1(\Omega)$.
+  $\implies$ es existiert schwach konvergente Teilfolge $(u_k)$ in $H_0^1(\Omega)$ mit Grenzwert $u \in H_0^1(\Omega)$.
 
-  Schritt 5: $u$ löst ($\ast$) im Schwachen Sinne
+  Schritt 5: $u$ löst ($\ast$) im schwachen Sinne
 
   $v \in H_0^1(\Omega) \overset{(\ast\ast)}{\implies}$
 
@@ -374,7 +376,7 @@ Betrachte die semilineare Wärmeleitungsgleichung
 $$
 (\ast)
 \begin{cases}
-  u_t - \nabla u &= u^2 \text{ in } (0, T) \times \Omega \\
+  u_t - \Delta u &= u^2 \text{ in } (0, T) \times \Omega \\
   u &= 0 \text{ auf } (0,T) \times \partial \Omega \\
   u(0) &= u_0 \text{ in } \Omega  
 \end{cases}
@@ -382,7 +384,7 @@ $$
 
 Ziele: Zeige, dass für $u_0 \geq 0$ ``genügend groß'' keine glatte Lösung von ($\ast$) für $T$ groß existiert.
 
-Betrachte hierzu $\begin{cases} -\Delta w &= \lambda w \text{ in } \Omega (\text{ beschränkt, } \partial\Omega \in C^\infty) \\ w &= 0 \text{ auf } \partial \Omega \end{cases}$
+Betrachte hierzu $\begin{cases} -\Delta w &= \lambda w \text{ in } \Omega \;(\text{ beschränkt, } \partial\Omega \in C^\infty) \\ w &= 0 \text{ auf } \partial \Omega \end{cases}$
 
 Es gibt $\sigma_p(\Delta) = \sigma(\Delta) = (\lambda_j)_{j \in \N} \subseteq \R$ mit $0 < \lambda_1 \leq \lambda_2 \leq \cdots \to \infty$
 
@@ -398,7 +400,7 @@ $\implies h'(t) = \int(\Delta u + u^2)w_1 dx = \int u\Delta w_1 + \int u^2 w_1 =
 
 Außerdem: $h(t) = \int u(t,x) w_1^{\frac{1}{2}}(x) w_1^{\frac{1}{2}}(x) dx \overset{\text{Hölder}}{\leq} (\int u^2(t,x) w_1(x))^{\frac{1}{2}} (\underbrace{\int w_1}_{=1})^{\frac{1}{2}}$
 
-$\implies h^2(t) \leq \int u^2(t,x) w_(x) dx$ und damit $h'(t) \geq -\lambda_1 h(t) + h^2(t)$
+$\implies h^2(t) \leq \int u^2(t,x) w_1(x) dx$ und damit $h'(t) \geq -\lambda_1 h(t) + h^2(t)$
 
 Setze nun $g(t) = e^{\lambda_1 t} h(t)$. Dann
 
@@ -406,7 +408,9 @@ $g'(t) = \dots \geq e^{-\lambda_1 t} g^2(t)$
 
 $\implies (\frac{-1}{g(t)})' = \frac{g'(t)}{g^2(t)} \geq e^{-\lambda_1 t}$
 
-$\implies g(t) \geq \frac{\lambda_1 g(0)}{\lambda_1 - g(0)(1 - e^{-lambda_1 t}}$
+$\implies g(t) \geq \frac{\lambda_1 g(0)}{\lambda_1 - g(0)(1 - e^{-\lambda_1 t}}$
+
+{\tiny{Hauptsatz: $-\frac{1}{g(t)} + \frac{1}{g(0)} = \int_0^t (\frac{1}{g(s)}' ds \geq \int_0^t e^{-\lambda_1 s} ds = - \frac{1}{\lambda_1} e^{-\lambda_1 s}|_0^t = \frac{1 - e^{-\lambda_1 t}}{\lambda_1} $ }}
 
 Ist nun $h(0) = g(0) > \lambda_1$, so kann keine glatte Lösung von ($\ast$) existieren, genauer:
 

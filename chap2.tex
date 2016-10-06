@@ -41,10 +41,10 @@ Dann: $\frac{\partial r}{\partial x_i} = \frac{2 x_i}{2 |x|} = \frac{x_i}{r},$
 also: 
 \begin{align*}
   \frac{\partial u}{\partial x_i} &= v'(r) \frac{\partial r}{\partial x_i} = v'(r) \frac{x_i}{r}, i = 1, \dots, n \\
-  \frac{\partial^2 u}{\partial x_i^2} = v''(r) \frac{x_i^2}{r^2} + v'(r)[\frac{1}{r} - \frac{x_i^2}{r^3}]
+  \frac{\partial^2 u}{\partial x_i^2} &= v''(r) \frac{x_i^2}{r^2} + v'(r)[\frac{1}{r} - \frac{x_i^2}{r^3}]
 \end{align*}
 
-$\implies \Delta u = v''(r) + v'(r) \frac{n - 1}{r} \overset{!}{=} = 0$ (beachte: $v$ ist von einer veränderlichen!
+$\implies \Delta u = v''(r) + v'(r) \frac{n - 1}{r} \overset{!}{=} = 0$ (beachte: $v$ ist von einer Veränderlichen!)
 
 Für $v' \neq 0$ gilt $(\log(v'))' = \frac{v''}{v'} = \frac{1 - n}{r}$.
 
@@ -66,6 +66,241 @@ $$
 
 heißt \underline{Fundamentallösung des Laplace-Operators} in $\R^n$. 
 
+Für $f \in C_c^2(\R^n)$ betrachte
+$$
+u(x) := \int_{\R^n} \phi(x - y)f(y) dy = (\phi \ast f)(x).
+$$
 
+Dann gilt
+
+\subsection{Theorem}
+
+Seien $f, u$ wie oben definiert. Dann: 
+\begin{enumerate}[(a)]
+  \item $u \in C^2(\R^n)$
+  \item $-\Delta u = f$
+\end{enumerate}
+
+\begin{bem}
+  Es gibt also eine \underline{explizite} Lösungsformel
+\end{bem}
+
+\begin{proof}
+  $n \geq 3$
+
+  (a) $u = \phi \ast f$ wohldefiniert, da $f$ kompakten Träger hat.
+
+  $u \in C^2$, da $f \in C_c^2$ (Ana4, Eigenschaften der Faltung)
+
+  (b) Sei $\varepsilon > 0$. Dann 
+  $$
+  \Delta u(x) = \underbrace{\int_{B_\varepsilon(0)} \phi(y) \Delta f(x - y) dy}_{=: I_\varepsilon} + \underbrace{\int_{R^n \setminus B_\varepsilon(0)} \phi(y) \Delta f(x - y) dy}_{=: II_\varepsilon}
+  $$
+
+  $|I_\varepsilon| \leq \norm{D^2 f}_\infty \int_{B_varepsilon(0)} |\phi(y)| dy \overset{\text{Polarkoord.}}{\leq} c_n \int_0^\varepsilon \frac{r^{n - 1}}{r^{n - 2}} dr = \frac{c_n}{2} r^2 |_0^\varepsilon = \frac{c_n}{2} \varepsilon^2$
+
+  {\tiny{$r^{n-1}$ kommt aus der Funktionaldeterminante, die Integrale über Winkel gehen in $c_n$ ein, $\phi$ ist davon unabhängig, da radial.}}
+\end{proof}
+
+\subsection{Lemma (Greensche Formel)}
+
+Seien $u,v \in C^2(\overline \Omega)$.
+Dann gilt: ($\nu$ äußere Normale an $\partial \Omega$)
+\begin{enumerate}[(i)]
+  \item $\int_\Omega \nabla v \cdot \nabla u dx = - \int_\Omega u \Delta v + \int_{\partial\Omega} (\partial_\nu v) \cdot u$
+  \item $\int_\Omega (u \cdot \Delta v - v \Delta u) dx = \int_{\partial \Omega} (u \cdot \partial_\nu v - v \cdot \partial_\nu u)$
+  \item $\int_\Omega \Delta u = \int_{\partial \Omega} \partial_\nu u$ ($\partial u = \nabla u \cdot \nu$)
+\end{enumerate}
+
+\begin{proof}
+  Satz von Gauß: $\int_\Omega \div F = \int_{\partial \Omega} F \cdot \nu$
+
+  \begin{enumerate}[(i)]
+    \item Setze $F = (\nabla v) u$ im Divergenzsatz
+    \item mit (i): $0 = \int\nabla u \cdot \nabla v - \int \nabla v \cdot \nabla u = \cdots$
+    \item Divergenz-Satz $\implies \int_\Omega u_{x_i x_i} = \int_{\partial \Omega} u_{x_i} \nu^i; $ Summe liefert (iii)
+  \end{enumerate}
+\end{proof}
+
+\begin{proof}[Fortsetzung des Beweises von 2.3]
+  Also 
+  \begin{align*}
+    II_\varepsilon 
+    &= \int_{\R^n \setminus B_\varepsilon(0)} \phi(y) \Delta f(x - y) dy\\
+    &\overset{2.4(i)}{=} \underbrace{-\int_{R^n \setminus B_\varepsilon(0)} \nabla \phi(y) \nabla f(x - y) dy}_{=: I_\varepsilon^a}  +  \underbrace{\int_{\partial B_\varepsilon(0)} \phi(y) \frac{\partial f}{\partial \nu}(x - y) d\sigma(y)}_{\#}
+  \end{align*}
+
+  $II_\varepsilon^a = \overset{2.4(i)}{=} \underbrace{\int_{\R^n \setminus B_\varepsilon(0)} \Delta \phi(y) f(x - y) dy}_{= 0, \text{ da } \Delta \phi = 0} - \int_{\partial B_\varepsilon(0)} \frac{\partial \phi}{\partial \nu}(y) \cdot f(x - y) d\sigma(y)$
+
+  Nun gilt $\nabla \varphi(y) = - \frac{1}{\omega_n \cdot n} \frac{y}{|y|^n}$, für $y \neq 0$ und $\nu = -\frac{y}{|y|} = - \frac{y}{\varepsilon}$.
+
+  {\tiny{$\partial B_\varepsilon(\omega)$ ist Rand von $\R^n \setminus B_\varepsilon(0)$, deshalb das Minus bei der äußeren Normalen! }}
+
+  Also $\frac{\partial \phi}{\partial \nu}(y) = \nu \cdot \nabla \phi(y) = \frac{1}{n \cdot \omega(n)} \frac{|y|^2}{\varepsilon |y|^n} = \frac{1}{n \omega_n \varepsilon^{n - 1}}$.
+
+  {\tiny{$(\#) \leq \norm{\nabla f}_\infty \int_{\partial B_\varepsilon(0)} |\phi(y) | dy \leq c \varepsilon$}}
+
+  $\implies II_\varepsilon^2 = - \frac{1}{n \omega(n) \varepsilon^{n - 1}} \int_{\partial B_\varepsilon(0)} f(x - y) d \sigma(y) = -\frac{1}{|\partial B(x, \varepsilon)|} f(y) d\sigma(y) \to -f(x)$ (Übung)
+
+  {\tiny{$f(y) = f(y) - f(x) + f(x)$ erweitern, $\int f(x) dy$ im Mittelwert gleich $f(x)$, erses Integral $\to 0$ mit Schrankensatz}}
+
+  $\implies -\Delta u(x) = f(x)$ für $\varepsilon \to 0$.
+\end{proof}
+
+Betrachte \underline{Mittelwerteigenschaft} harmonischer Funktionen.
+
+Setze 
+\begin{align*} 
+  \dashint_{B(x,r)} f(y) dy &:= \frac{1}{|B(x,1)| r^n} \int_{B(x,r)} f(y) dy \quad\text{ Mittel von $f$ über $B(x,r)$} \\
+  \dashint_{\partial B(x,r)} f(y) dy &:= \frac{1}{n |B(x,1)|r^{n-1}} \int_{\partial B(x,r)} f(y) d\sigma(y) \quad\text{ Mittel von $f$ über $\partial B(x,r)$}
+\end{align*}
+
+\subsection{Satz}
+
+Sei $u \in C^2(\Omega)$ harmonisch, $\Omega \subseteq \R^n$ offen.
+Dann:
+$$
+u(x) = \dashint_{\partial B(x,r)} u d\sigma = \dashint_{B(x,r)} u dy\quad\text{ für alle } x,r \text{ mit } B(x,r) \subseteq \Omega
+$$
+
+\begin{bem}
+  Außergewöhnliche Eigenschaft, vgl. Taylor.
+\end{bem}
+
+\begin{proof}
+  Setze
+  $ \phi(r) := \dashint_{\partial B(x,r)} u(y) d\sigma(y) \overset{\text{Subst}}{=} \dashint_{\partial B(0,1)} u(x + rz) d\sigma(z)$ 
+  
+  $\overset{\text{Def}}{=} \dashint_{\partial B(x,r)} \partial_\nu u(y) d\sigma(y)$
+
+  $\overset{\text{Green}}{=} \frac{r}{n} \dashint_{B(x,r)} \Delta u(y) dy \overset{\text{harmon}}{=} 0$ für alle $r$.
+
+  $\implies \phi$ konstant und $\phi(r) = \lim_{t \to 0} \phi(t) = \lim_{t \to 0} \dashint_{\partial B(x,t)} u(y) dy \overset{\text{Lebesgue}}{=} u(x)$
+
+  Weiter:
+
+  $\int_{B(x,r)} u(y) dy \overset{\text{Cavalieri}}{=} \int_0^r \int_{\partial B(x,s)} u d\sigma ds \overset{\text{Def } \phi}{=} \int_0^r \phi(s)n \omega_n s^{n - 1} ds$
+
+  $= u(x) \int_0^r n \omega_n s^{n - 1} ds = \omega_n r^n u(x) \implies \dashint_{B(x,r)} u(y) dy = u(x)$
+\end{proof}
+
+\subsection{Satz (Umkehrung der Mittelwerteigenschaft)}
+
+Sei $u \in C^2(\Omega)$ mit
+$$
+u(x) = \dashint_{\partial B(x,r)} u d\sigma \quad\text{für alle } B(x,r) \subseteq \Omega.
+$$
+
+Dann ist $u$ harmonisch.
+
+\begin{proof}
+  Angenommen $u$ sei nicht harmonisch, dann $\Delta u \neq 0$ und es existiert $B(x,r) \subseteq \Omega$ mit oBdA $\Delta u > 0$ auf $B(x,r)$.
+
+  Sei $\phi$ wie in 2.5. 
+  Dann $$\phi'(r) = \frac{r}{n} \dashint_{B(x,r)} \Delta u(y) dy > 0,$$ aber $$\phi(r) = \dashint_{\partial B(x,r)} u(y) d\sigma(y) = u(x)$$ für alle $r$, also $\phi'(r) = 0$ für alle $r$.
+  Widerspruch.
+\end{proof}
+
+Als Folgerung erhalten wir das \underline{Maximumsprinzip}.
+
+\subsection{Theorem (Maximumsprinzip)}
+
+Sei $\Omega \subseteq \R^n$ offen, beschränkt und $u \in C^2(\Omega) \cap C(\overline\Omega)$ sei harmonisch in $\Omega$. 
+Dann
+\begin{enumerate}[(i)]
+  \item $\max_{\overline\Omega} u = \max_{\partial \Omega} u$
+  \item ist $\Omega$ zusammenhängend, $x_0 \in \Omega$ mit $u(x_0) = \max_{\overline\Omega} u$, dann ist $u$ konstant in $\Omega$.
+\end{enumerate}
+
+\begin{proof}
+  (ii) Sei $x_0 \in \Omega$ mit $u(x_0) = M := \max_{\overline\Omega} u$.
+  Wähle $r > 0$ mit $r < \dist(x_0, \partial \Omega)$.
+
+  Mittelwert eigenschaft liefert:
+
+  $M = u(x_0) = \dashint_{B(x_0, r)} u dy \leq M$.
+
+  Es gilt ``$=$'' $\iff$ $u \equiv M$ in $B(x_0, r)$.
+
+  Daher ist $\{x \in \Omega \colon u(x) = M\}$ offen uns abgeschlossen.
+
+  $\overset{\Omega \text{ zush.}}{\implies} \{x \in \Omega \colon u(x) = M\} = \Omega.$
+
+  (ii) $\implies$ (i) \checkmark
+\end{proof}
+
+\subsection{Korollar (Eindeutigkeit des Dirichlet Problems)}
+
+Seien $f \in C(\Omega), g \in C(\partial \Omega), \Omega \subseteq \R^n$ offen, beschränkt.
+Dann existiert höchsten eine Lösung $u \in C^2(\omega) \cap C(\overline\Omega)$ des Dirichlet Problems
+$$
+(\text{DP}) \begin{cases} -\Delta u &= f \text{ in }\Omega \\ u &= g \text{ auf } \partial \Omega \end{cases}
+$$
+
+\begin{proof}
+  Seiein $u_1, u_2$ Lösungen des (DP).
+
+  Setze $w_1 := u_1 - u_2, w_2 := u_2 - u_1$.
+
+  $\implies -\Delta w_1 = 0 = -\Delta w_2$ in $\Omega, w_{1/2} = 0$ auf $\partial \Omega$
+
+  Maximums-Prinzip $\implies$ $\max_{\overline\Omega} w_1 = \max_{\partial\Omega} w_1 = 0$ und $\min_{\overline\Omega} w_2 = \min_{\partial\Omega} w_2 = 0$ $\implies u_1 = u_2$.
+\end{proof}
+
+\subsection{Satz (Glattheit ``harmonischer Funktionen'')}
+
+Für $u \in C(\Omega)$ gelte die Mittelwerteigenschaft. 
+Dann $u \in C^\infty(\Omega)$.
+
+\begin{bem}
+  Obige Aussage besagt: $\Delta u = 0 \implies u \in C^\infty$.
+
+  Speziell: algebraische Struktur von $\Delta$ impliziert, dass \underline{alle} Ableitungen von $u$ existieren!
+\end{bem}
+
+\begin{proof}
+  Sei $(\varphi_\varepsilon)_{\varepsilon > 0} $\underline{Mollifier} (vgl Ana4), d.h.
+  
+  $\varphi \in C^\infty(\R^n), \int_{\R^n} \varphi = 1, \varphi $ radial, $\varphi \geq 0$, $\supp \varphi \subseteq B_1(0)$ dann
+
+  $\varphi_\varepsilon(x) := \frac{1}{\varepsilon^n} \varphi(\frac{x}{\varepsilon})$.
+
+  Setze $\varphi_\varepsilon := \varphi_\varepsilon \ast u$ in $\Omega_\varepsilon = \{x \in \Omega \colon \dist(x, \partial \Omega) > \varepsilon \}$
+
+  {\tiny{Falls $\partial \Omega = \emptyset$, setze $\dist(x, \partial\Omega) = 0$ für alle $x$.}}
+
+  Dann: $u_\varepsilon \in C^\infty(\Omega_\varepsilon)$ (Ana 4!)
+
+  Zeige: $u = u_\varepsilon$ in $\Omega_\varepsilon$. Sei $x \in \Omega_\varepsilon$.
+
+  \begin{align*}
+    u_\varepsilon(x) &= \int_\Omega \varphi_\varepsilon(x - y) u(y) dy \\
+    &\overset{\text{Def. } \varphi_\varepsilon}{=} \frac{1}{\varepsilon^n} \int_{B(x,\varepsilon)} \varphi(\frac{|x - y|}{\varepsilon}) u(y) dy \\
+    \overset{\text{Cavalieri}}{=} \frac{1}{\varepsilon^n} \int_0^\varepsilon \int_{\partial B(x,r)} \varphi(\frac{r}{\varepsilon} u(y) d\sigma(y) dr \\
+    &= \frac{1}{\varepsilon^n} \int_0^\varepsilon \varphi(\frac{r}{\varepsilon}) \int_{\partial B(x,r)} u d\sigma dr \\
+    &\overset{\text{MWE}}{=} \frac{1}{\varepsilon^n} u(x) \int_0^\varepsilon \varphi(\frac{r}{\varepsilon}) n \omega_n r^{n - 1} dr \\
+    &= u(x) \int_0^\varepsilon \varphi_\varepsilon(r) n \omega_n r^{n - 1} dr \\
+    &= u(x) \int_{B(0,varepsilon)} \varphi_varepsilon (y) dy
+  \end{align*}
+
+  $\implies u_\varepsilon = u$ auf $\Omega_\varepsilon$ und somit $u \in C^\infty(\Omega)$.
+\end{proof}
+
+\subsection{Bemerkungen}
+
+Weitere Eigenschaften harmonischer Funktionen (ohne Beweis!)
+\begin{enumerate}[a)]
+  \item Sei $u$ harmonisch in $\Omega$.
+    $$
+    |D^\alpha u(x_0)| \leq \frac{C_k}{r^{n + k}} \norm{u}_{L^1(B(x_0,r))} \text{ für alle } B(x_0, r) \subseteq \Omega, \alpha \colon |\alpha| = k
+    $$
+  \item Verallgemeinerung: Satz von Liouville
+
+    $u \colon \R^n \to \R$ harmonisch und beschränkt, dann $u$ konstant.
+
+    \item Harnacksche Ungleichung:
+
+      Sei $u \geq $
+\end{enumerate}
 
 

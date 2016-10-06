@@ -3,8 +3,8 @@
 Betrachte hier elliptische Operatoren 2. Ordnung, d.h. Operatoren der Form
 
 \begin{enumerate}[1)]
-  \item $Au = - \underbrace{\sum_{i,j = 1}^n \partial_j\left(a_{ij}(x) \partial_i u(x)\right)}_{\div((a_{ij})\nabla u} + \underbrace{\sum_{j = 1}^n b_i(x)}_{b \nabla u} \partial_i u(x) + c(x) u(x)$
-  \item $Au = - \sum_{i,j = 1}^n a_{ij}(x) \partial_j \partial_i u(x) + \sum_{i = 1}^n b_i(x) \partial_i u(x) + x(x) u(x)$.
+  \item $Au = - \underbrace{\sum_{i,j = 1}^n \partial_j\left(a_{ij}(x) \partial_i u(x)\right)}_{\div((a_{ij})\nabla u)} + \underbrace{\sum_{j = 1}^n b_i(x) \partial_i u(x)}_{b \nabla u} + c(x) u(x)$
+  \item $Au = - \sum_{i,j = 1}^n a_{ij}(x) \partial_j \partial_i u(x) + \sum_{i = 1}^n b_i(x) \partial_i u(x) + c(x) u(x)$.
 \end{enumerate}
 mit gegebenen Funktionen $a_{ij}, b_{ij}, c$ auf einem Gebiet $\Omega$.
 
@@ -20,9 +20,10 @@ $$
 $$
 für alle $x \in \Omega, \xi \in \R^n$.
 
-Anmberkung
+Anmerkung
 \begin{enumerate}[a)]
   \item Obige Definition besagt, dass die symmetrische Matrix $(a_{ij}) =: A$ positiv definit ist mit kleinstem Eigenwert $\geq \mu$.
+    {\tiny{ $Ax = \lambda x, \norm{x} = 1 \implies x^T A x = x^T \lambda x = \lambda \geq \mu \norm{x}^2 = \mu $}}
   \item $a_{ij} = \delta_{ij}, b_i = c = 0$, dann $A = -\Delta$.
   \item Existieren schwache Lösungen von $\begin{cases} Au = f \text{ in } \Omega \\ u = 0 \text{ auf } \partial \Omega\end{cases}$ folgt wie zuvor für $\Delta$.
 \end{enumerate}
@@ -58,13 +59,13 @@ Sei $u \in L^2(\Omega) \cap C^0(\overline \Omega)$ so, dass $Au \leq 0$ in $\Ome
 
   $\implies \nabla u(x_0) = 0, (\partial_i \partial_j u)(x_0)$ ist negativ semi-definit.
 
-  Da $A:=(a_{ij}(x_0))$ symmetrisch und positiv definit, existiert orthogonale Matrix $O$ mit $OAO^T = \diag(d_1,\dots,d_n), d_i > 0$.
+  Da $A:=(a_{ij}(x_0))$ (NICHT DAS $A$ VON OBEN!) symmetrisch und positiv definit, existiert orthogonale Matrix $O$ mit $OAO^T = \diag(d_1,\dots,d_n), d_i > 0$.
 
-  Für $g = x_0 + O(x - x_0)$ gilt: $x - x_0 = O^T(y - x_0)$, daher folgt
+  Für $y = x_0 + O(x - x_0)$ gilt: $x - x_0 = O^T(y - x_0)$, daher folgt
   \begin{align*}
-    \partial_{x_i} u &= \sum_{k = 1}^n \partial_{y_k} uO O_{ik} \\
-    \partial_{x_i} \partial_{x_j} u &= \sum_{k,l = 1}^n \partial_{y_k}\partial_{y_l} u O_{i_k} O_{j_l}, \quad\text{also}\\
-    \sum_{i,j=1}^n a_{ij}(x_0) \partial_{x_i} \partial_{x_j} u &= \sum_{k,l = 1}^n \sum_{i,j = 1}^n a_{ij}(x_0) \partial_{y_k} \partial_{y_l} u O_{i_k} O_{j_l} \\
+    \partial_{x_i} u &= \sum_{k = 1}^n (\partial_{y_k} u) O_{ik} \\
+    \partial_{x_i} \partial_{x_j} u &= \sum_{k,l = 1}^n (\partial_{y_k}\partial_{y_l} u) O_{ik} O_{jl}, \quad\text{also}\\
+    \sum_{i,j=1}^n a_{ij}(x_0) \partial_{x_i} \partial_{x_j} u &= \sum_{k,l = 1}^n \sum_{i,j = 1}^n a_{ij}(x_0) (\partial_{y_k} \partial_{y_l} u) O_{ik} O_{jl} \\
     &= \sum_{k = 1}^n d_k \partial_{y_k} \partial_{y_k} u \leq 0 \\
     \implies Au(x_0) \geq 0,
   \end{align*}
@@ -128,11 +129,11 @@ $\implies \frac{\partial u}{\partial \nu}(x_0) > 0$, wobei $\nu$ die äußere No
 
   Wegen $u(x_0) + \varepsilon v(x_0) - u(x_0) = 0$ folgt
   $$
-  \frac{\partial u}{\partial \nu}(x_0) + \frac{\partial v}{\partial \nu}(x_0) \geq 0,
+  \frac{\partial u}{\partial \nu}(x_0) + \varepsilon \frac{\partial v}{\partial \nu}(x_0) \geq 0,
   $$
   also 
   $$
-  \frac{\partial u}{\partial \nu}(x_0) \geq -\varepsilon \frac{\partial v}{\partial \nu}(x_0) = \varepsilon \nabla v(x_0) \frac{x_0}{r} = 2\lambda \varepsilon r e^{-\lambda r^2} > 0
+  \frac{\partial u}{\partial \nu}(x_0) \geq -\varepsilon \frac{\partial v}{\partial \nu}(x_0) = -\varepsilon \nabla v(x_0) \frac{x_0}{r} = 2\lambda \varepsilon r e^{-\lambda r^2} > 0
   $$
 \end{proof}
 
