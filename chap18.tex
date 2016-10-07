@@ -1,1 +1,383 @@
 \section{Evolutionsgleichungen}
+
+\subsection{Das abstrakte Cauchy-Problem}
+
+Sei $X$ Banachraum, $A \colon D(A) \to X$ linear, i.A. unbeschränkt.
+
+Betrachte:
+$$
+\begin{cases} 
+u'(t) &= Au(t), \quad t \geq 0 \\
+u(0) &= u_0
+\end{cases} , $$
+
+wobei $u \colon [0,\infty] \to X$, $' \hat = \frac{d}{dt}, u_0 \in X$
+
+\underline{Grundidee:}
+
+Wähle z.B. $X = L^2(\Omega), u \colon [0,\infty) \to X$, $(u(t))(x) =: u(t,x)$, und studiere gewoöhnliche DGL erster Ordnung im Banachraum $X$.
+
+\underline{Ziel:}
+
+\begin{enumerate}[a)]
+  \item Finde abstrakten Rahmen, in welchem "viele PDES" behandelt werden können.
+  \item Finde Bedingugne an $A$, welche Lösbarkeit und Eigenschaften für "viele" Anfangswerte $u_0$ garantieren.
+\end{enumerate}
+
+\subsection{Definition}
+
+Eine Familie $T := (T(t))_{t \geq 0}$ von beschränkten, linearen Operatoren auf $X$ heißt \underline{$C_0$-Halbgruppe} auf $X$, falls gilt:
+\begin{enumerate}[i)]
+  \item $T(0) = \id$
+  \item $T(s)T(t) = T(s + t)$, für alle $s,t \geq 0$
+  \item für alle $f \in X \colon [0,\infty) \ni t \mapsto T(t) f \in X$ stetig, also $t \mapsto T(t)$ stark stetig.
+\end{enumerate}
+
+Eine $C_0$-Halbgruppe $T$ auf $X$ heißt \underline{Kontraktionshalbgruppe} auf $X$, fall $\norm{T(t)} \leq 1$ f+r alle $t \geq 0$.
+
+\underline{Frage:} Wie hängen $T$ und $A$ zusammen?
+
+\subsection{Definition}
+
+Sei $T$ eine $C_0$-Halbgruppe auf $X$. Setze
+$$
+Af := \lim_{t \to 0} \frac{T(t) f - f}{t} \quad\text{für } f \in D(A),
+$$
+wobei
+$$
+D(A) := \{ f \in X \colon \lim_{t \to 0} \frac{T(t) f - f}{t} \text{ existiert in } X\}.
+$$
+
+Dann heißt $(A, D(A))$ \underline{Generator} von $T$, $D(A)$ heißt \underline{Definitionsbereich} von $A$.
+
+\begin{bem}
+  Im Allgemeinen ist $A$ unbeschränkter Operator
+\end{bem}
+
+\subsection{Lemma}
+
+Sei $T$ $C_0$-Halbgruppe auf $X$ mit Generator $A$ und $f \in D(A)$. Dann:
+\begin{enumerate}[i)]
+  \item $T(t) f \in D(A)$ für alle $t \geq 0$
+  \item $AT(t) f = T(t) A f$ für alle $t \geq 0$
+  \item Die Abbildung $t \mapsto T(t) f $ ist für alle $t > 0$ differenzierbar und es gilt:
+  $$
+    \frac{d}{dt} T(t) f = A T(t) f 
+  $$
+\end{enumerate}
+
+\begin{bem}
+  Da $t \mapsto AT(t) f$ stetig, gilt $t \mapsto T(t) f \in C^1((0,\infty), X)$ für alle $f \in D(A)$.
+\end{bem}
+
+\begin{proof}
+i) Sei $f \in D(A)$.
+$$
+\lim_{t \to 0} \frac{T(s)T(t) f - T(t) f}{s} = \lim_{s \to 0} \frac{T(t)T(s) f - T(t) f}{s} = T(t) \lim_{s \to 0} \frac{T(s)f - f}{s} \overset{(\ast)}{=} T(t)A f,
+$$
+das heißt $T(t) f \in D(a)$ und
+
+ii) $AT(t) f = T(t) Af$.
+
+iii) ($\ast$) $\implies T(t) f$ rechsseitig differenzierbar. Betrachte also linksseitige Ableitung, das heißt
+\begin{align*}
+&\lim_{h \to 0} \left[\frac{T(t)f - T(t - h)f}{h} - T(t) Af \right] \\
+&= \lim_{h \to 0} \underbrace{T(t - h)}_{\norm{\cdot} \leq M} \underbrace{\left[\frac{T(h) f - f}{h} - Af \right]}_{\to 0, \text{ da } f \in D(A)} 
++ \lim_{h \to 0} \underline{\left[ T(t - h) Af - T(t) Af \right]}_{\to 0, \text{ da } T \text{ stark stetig}}
+\end{align*}
+
+$\implies t \mapsto T(t) f$ ist linksseitig differenzierbar, also differenzierbar.
+\end{proof}
+
+\subsection{Lemma}
+
+Sei $T$ eine $C_0$-Halbgruppe auf $X$ mit Generator $A$.
+Dann:
+\begin{enumerate}[i)]
+  \item $\overline{D(A)} = X$ 
+  \item $A$ abgeschlossen, das heißt $(f_n) \subseteq D(A)$ mit $f_n \to f, Af_n \to g \implies f \in D(A)$ und $A f = g$. 
+\end{enumerate}
+
+\begin{proof}
+Für $f \in X$ betrachte
+$$
+\int_0^t T(s) f ds.
+$$
+
+Dann:
+$$
+\frac{1}{t} \int_0^t T(s) f ds \overset{t \to 0}{\to} f, \text{ da $T$ stark stetig}.
+$$
+
+Z. Z.: $\in D(A)$.
+
+Für $h > 0$ betrachte
+\begin{align*}
+\frac{T(h) - \id}{h} \int_0^t T(s) f ds 
+&= \frac{1}{h} \int_0^t T(s + h) f - T(s) f ds \\
+&= \frac{1}{h} \int_t^{t + h} T(s) f ds - \frac{1}{h} \int_0^h T(s) f ds \overset{h \to 0}{\to} T(t) f - f,
+\end{align*}
+also $\int_0^t T(s) f ds = T(t) f - f$
+
+$\implies \int_0^t T(s) f ds \in D(A) \implies$ (i)
+
+ii) $f_n \to f, A f_n \to g$.
+$$
+T(t) f_n - f_n = \int_0^t \frac{d}{ds} T(s) f_n ds = \int_0^tT(s) Af_n ds \to \int_0^t T(s) g ds
+$$
+und
+$$
+T(t) f_n - f_n \to T(t) f - f = A \int_0^t T(s) f ds
+$$
+
+$\implies f \in D(A)$ und $Af = g$.
+
+{\tiny{$Af = \lim_{t \to 0} \frac{T(t) f - f}{t} = \lim_{t \to 0} \frac{1}{t} \int_0^t T(s) g ds = T(0) g = g}}
+\end{proof}
+
+\subsection{Definition}
+
+Sei $A \colon D(A) \to X$ abgeschlosse.
+\begin{enumerate}[i)]
+  \item Die Menge
+  $$
+    \rho(A) := \{ \lambda \in \C \colon (\lambda \id - A) \colon D(A) \to X \text{ ist bijektiv}\}
+  $$
+  heißt \underline{Resolventenmenge von $A$} und wir setzen
+  $$
+  R(\lambda, A) := (\lambda - A)^{-1}.
+  $$ 
+  \item Die Funktion $R(\cdot, A) = \rho(A) \to \mathcal{L}(X)$ heißt \underline{Resolvente von $A$}..
+\end{enumerate}
+
+\subsection{Lemma (Eigenschaften der Resolvente)}
+
+\begin{enumerate}[i)]
+  \item $A R(\lambda, A) f = R(\lambda, A) A f, f \in D(A), \lambda \in \rho(A)$.
+  \item  Resolventengleichung: $\lambda, \mu \in \rho(A)$: 
+  $$
+  R(\lambda, A) - R(\mu, A) = (\mu - \lambda) R(\lambda, A) R(\mu, A)
+  $$
+  \item $R(\lambda, A) R(\mu, A) = R(\mu, A) R(\lambda, A)$ für $\lambda, \mu \in \rho(A)$. 
+\end{enumerate}
+
+Beweis: Übungsaufgabe.
+
+Charakteriscierung von Generatoren von Kontraktions-Halbgruppen
+
+\subsection{Theorem (Hille-Yosida)}
+
+Sei $A$ ein dicht definierter Operator auf $X$.
+Dann erzeugt $A$ eine $C_0$-Halbgruppe auf $X$ mit $\norm{T(t)} \leq 1$ für alle $t \geq 0$ genau dann, wenn
+\begin{enumerate}[i)]
+  \item $(0, \infty) \subseteq \rho(A)$
+  \item $\norm{R(\lambda, A)} \leq \frac{1}{\lambda}$ für alle $\lambda > 0$.
+\end{enumerate}
+
+\begin{bem}
+  $$
+  \begin{cases} u_t &= \Delta u \\ u(0) &= u_0 \end{cases} \leadsto 
+  \begin{cases} u'(t) &= A u(t) \\ u(0) &= u_0
+  $$
+  $A = \Delta$ in $L^p(\R^n), D(A) = W^{2,p)(\R^n)$.
+ 
+  $(0,\infty) \subseteq \rho(A)$ und $\norm{\lambda ( (\lambdea - \Delta)^{-1}}_{\mathcal{L}(L^p)} \leq 1, \lambda > 0$
+
+  $(\lambda - \Delta) u = f$.
+\end{bem}
+
+\begin{proof}
+"$\implies$": 
+Sei $T$ Kontraktions $C_0$-Halbgruppe, $A$ Generator, $f \in X$.
+
+$$R_\lambda f := \int_0^\infty e^{-\lambda t} T(t) f dt, \quad\text{für } \lambda > 0.$$
+
+Dann
+$$
+\norm{R_\lambda f} 
+\leq \int_0^\infty e^{-\lambda t} \underbrace{\norm{T(t) f}}_{\leq \norm{f}} dt 
+\leq \frac{1}{\lambda} \norm{f}
+$$
+\end{proof}
+
+Für $h > 0$ gilt
+\begin{align*}
+\frac{T(h) - \id}{h} R_\lambda f 
+&= \frac{1}{h} \int_0^\infty e^{-\lambda t} (T (t + h) f - T(t) f) dt \\
+&= -\frac{1}{h}\int_0^h e^{-\lambda(t - h)} T(t) f dt + \frac{1}{h} \int_0^\infty (e^{-\lambda(t - h)} - e^{-\lambda t}) T(t) f dt \\
+&= -\frac{e^{\lambda h}}{h} \int_0^h e^{-\lambda t} T(t) fdt + \underbrace{\left(\frac{e^{\lambda h} - 1}{h}\right)}_{= \frac{d}{dt} e^{\lambda t}|_{t = 0} = \lambda} \int_0^\infty e^{-\lambda t} T(t) f dt
+&\overset{h \to 0}{\to } -f + \lambda R_\lambda f
+\end{align*}
+
+$\implies R_\lambda f \in D(A)$ und $A R_\lambda f = \lambda R_\lambda f - f \implies (\lambda - A) R_\lambda = \id$
+
+Linksinverse: $f \in D(A)$.
+\begin{align*}
+R_\lambda A f 
+&= \int_0^\infty e^{-\lambda t} T(t) Af dt \\
+&= \int_0^\infty e^{-\lambda t} A T(t) f dt \\
+&\overset{A \text{ abg.}}{=} A \int_0^\infty e^{-\lambda t} T(t) f dt  \\
+&= A R_\lambda f
+\end{align*}
+
+Also $R_\lambda(\lambda - A) f = f \implies R_\lambda = (\lambda - A)^{-1}$.
+
+"$\impliedby$" "Yosida Approximation"
+
+Für $\lambda > 0$ setze $A_\loambda := -\lambda + \lambda^2 R(\lambda, A) \overset{\text{G25}}{=} \lambda AR(\lambda, A)$ (d.h. $A_\lambda$ ist beschränkt)
+
+\underline{Schritt 1:} $A_\lambda f \to A f$ für $\lambda \to \infty, f \in D(A)$.
+
+Da $\lambda R(\lambda, A) f - f = AR(\lambda, A) f = R(\lambda, A) Af$ gilt:
+
+$\norm{\lambda R(\lambda, A) f - f} \leq \norm{R(\lambda, A)} \nrom{Af } \leq \frac{1}{\lambda} \norm{Af} \overset{\lambda \to \infty}{\to} 0$
+
+$\implies \lambda R(\lambda, A) f \to f$ für alle $f \in X$.
+
+Da nach Voraussetzung $\norm{\lambda R(\lambda, A)} \leq 1, \lambda > 0$ und $\overline{D(A)} = X$
+
+$\implies \lambda R(\lambda, A) f \to f$ für alle $f \in X$.
+
+Weiter: $A_\lambda f = \lambda R(\lambda, A) A f \to A f, f \in D(A)$
+
+\underline{Schritt 2:} Setze $T_\lambda(t) := e^{tA_\lambda}$
+\begin{align*}
+& T_\lambda(t) = e^{-\lambda t} e^{\lambda^2 t R(\lambda A)}
+= e^{-\lambda t} \sum_{j = 0}^\infty \frac{\lambda^2 t)^j}{j!} R(\lambda, A)^j, \lambda > 0 \\
+&\implies \norm{T_\lambda(t)} \leq e^{-\lambda t } \sum_{j = 0}^\infty \frac{\lambda^2 t)^j}{j!} \underbrace{\norm{R(\lambda, A)}^j}_{\leq \frac{1}{\lambda}} \\
+&= e^{-\lambda t} \sum_{j = 0}^\infty \sum_{j = 0}^\infty \frac{\lambda^j t^j}{j!} = e^{-\lambda t} e^{\lambda t} = 1
+\end{align*}
+
+$\implies (T_\lambda(t))_{t \geq 0}$ ist Kontraktions-Halbgruppe auf $X$ mit Generator $A_\lambda$, wobei $D(A_\lambda) = X$.
+
+\underline{Schritt 3:} Grenzübergang
+
+Seien $\lambda, \mu > 0$.
+Da $A_\lambda A_\mu = A_\mu A_\lambda$ gilt
+{\tiny{$A_\mu A_\lambda f  =  \mu R(\mu, A) A \lambda R(\lambda, A) A f = \lambda R(\lambda, A) A \mu R(\mu, A) A  f = A_\lambda A_\mu f$}}
+$$
+A_\mu T_\lambda(t) = T_\lambda(t) A_\mu, \quad t >0
+$$
+Für $f \in D(A)$ gilt
+$$
+T_\lambda(t) f - T_\mu(t) f = \int_0^t \frac{d}{ds} [T_\mu(t - s) T_\lambda(s) f ] ds = \int_0^t \underbrace{T_\mu(t - s) T_\lambda(s)}_{\norm{\cdot} \leq 1} [A_\lambda f - A_\mu f] ds
+$$
+
+$\implies \norm{T_\lambda(t) f - T_\mu(t) f } \leq t \norm{A_\lambda f - A_\mu f } \overset{\text{Schritt 1}{\to} 0$, für $\lambda, \mu \to \infty$.
+
+$\implies (T_\lambda(t) f)$ ist Cauchy und
+$$
+T(t) f := \lim_{\lambda \to \infty} T_\lambda(t) f, \quad t \geq 0, f \in D(A).
+$$ 
+
+Weiter: $(T(t))_{t \geq 0}$ ist Kontraktion.
+
+\underline{Schritt 4:} Generator von $T$ ist $A$.
+
+Sei $B$ Generator von $T$. Dann
+\begin{displaymath}
+T_\lambda f - f \overset{\text{Hauptsatz}}{=} \int_0^t T_\lambda(s) A_\lambda f ds, \quad f \in X \tag{$\ast$}
+\end{displaymath}
+
+\begin{align*}
+\norm{T_\lambda(s) A_\lambda f - T(s) A f}
+&= \norm{T_\lambda(s) A_\lambda f - T_\lambda(s)Af + T_\lambda(s) Af - T(s) Af } \\
+&\leq \norm{T_\lambda(s) } \underbrace{\norm{A_\lambda f - A f}}_{\to 0 \text{ Schritt 1}} + \underbrace{\norm{(T_\lambda(s) - T(s))Af }}_{\to 0 \text{ Schritt 3}} \to 0 \quad\text{für } f \in D(A) \\
+&\overset{\lambda \to \infty}{\underset{\text{in ($\ast$)}}{\implies}} T(t) f - f = \int_0^t T(s) A f ds, \quad t \in D(A)
+&\implies  Bf = \lim_{t \to 0} \frac{ T(t) f - f}{t} = Af, \quad f \in D(A) \tag{$\ast\ast$} \\
+&\implies D(A) \subseteq D(B).
+\end{align*}
+
+Für $\lambda > 0$ gilt $\lambda \in \rho(A) \cap \rho(B)$ (wegen "$\implies$")
+
+$(\lambda - B)D(A) \overset{\text{($\ast\ast$)}}{=} (\lambda - A) D(A) = X$
+
+{\tiny{$D(A) = (\lambda - A)^{-1} X$}}
+
+$\implies (\lambda - B)|_{D(A)}$ bijektiv $\implies D(A) = D(B) \implies A = B$.
+
+\subsection{Korollar:}
+
+Sei $A$ ein dicht definierter Operator im Banachraum $X$.
+
+Dann erzeugt $A$ eine $C_0$-Halbgruppe $T$ auf $X$ mit $\norm{T(t)} \leq 1 e^{\over t}, t \geq 0$ genau dann, wenn
+\begin{enumerate}[i)]
+  \item $(\omega, \infty) \subset \rho(A)$
+  \item $\norm{R(\lambda, A)} \leq \frac{1}{\lambda - \omega}, \lambda > \omega$ 
+\end{enumerate}
+
+Beweis: Übungsaufgabe ($A \leadstro A - \omega$)
+
+\subsection{Anwendung auf parabolische Anfangs-Randwertprobleme}
+
+Betrachte 
+$$
+(\ast)
+\begin{cases}
+u_t + \mathcal{A} u &= 0 \quad\text{in } Q_+ = \Omega \times (0,T) \\
+u &= 0 \quad\text{auf } \partial\Omega \times [0,T]\\
+u &= g \quad\text{auf } \Omega \times \{0\}
+\end{cases}
+$$
+
+Annahmen: 
+\begin{itemize}
+  \item $\Omega \subseteq \R^n$ beschränktes Gebiet, glatter Rand.
+  \item $A u = \sum_{i,j = 1}^n (a_{ij}(x) u_{x_i})_{x_j} + \sum_{i = 1}^n b_i(x) u_{x_i} + c(x) u$ mit $a_{ij} \in C^\infty(\Omega) \cap L^\infty(\Omega)$
+  \item $A$ elliptisch, "d.h."
+  $$
+  \sum_{i, j = 1}^n a_{ij}(x) \xi_i \xi_j \geq \mu|\xi|^2, x \in \Omega, \xi \in \R^n.
+  $$ 
+  (gleichmäßig stark elliptisch)
+\end{itemize}
+
+Interpretiere ($\ast$) als gewöhnliche Differentialgleichung im Banachraum $X = L^2(\Omega)$.
+
+Hierzu setze
+\begin{align*}
+  A u &:= -\mathcal{A} u \\
+  D(A) &:= H^2(\Omega) \cap H_0^1(\Omega)
+\end{align*}
+
+Dann ist $A$ ein unbeschränkter Operator in $L^2(\Omega)$.
+
+Betrachte zunächst
+$$
+  a \colon H_0^1(\Omega) \times H_0^1(\Omega) \to \R, 
+  a(u,v) := \int_\Omega \left( \sum_{i,j} a_{ij}(x) u_{x_i} v_{x_j} + \sum_{i = 1}^n b_i(x) u_{x_i} v + c(x) uv \right).
+$$
+
+Dann: 
+$$
+  a(u,u) \overset{\text{elliptisch Ü.A.}}{\geq} \alpha \norm{u}_{H_0^1} - \gamma \norm{u}_{L^2}^2, \quad \alpha > 0, \gamma \geq 0
+$$
+
+\subsection{Theorem}
+
+Der Operator $A$ erzeugt eine $C_0$-Halbgruppe $T$ auf $L^2(\Omega)$ mit $\norm{T(t)} \leq e^{\gamma t}, t > 0$.
+
+\begin{proof}
+Betrachte
+$$
+\text{(R) } \begin{cases} \lambda u + \mathcal{A} u &= f \quad\text{ in } \Omega \\ u &= 0 \text{ auf } \partial \Omega \end{cases}
+$$
+
+$\overset{§ \text{schwache}}{\underset{\text{Lösung}}{\implies}}$  für $f \in L^2(\Omega)$ existiert genau eine schwache Lösung $u \in H_0^1(\Omega)$ von (R).
+
+$\overset{\text{Regularität}}{\implies} u \in H^2(\Omega) \cap H_0^1(\Omega) = D(A)$, somit (R) $\iff (\lambda - A) u = f$.
+
+das heißt $(\lambda A) \colon D(A) \to X$ bijektiv für alle $\lambda > \gamma$
+
+$\implies (\gamma, \infty) \subset \rho(\mathcal{A})$.
+
+Umformulierung von (R) $= a(u,v) + \lambda (,v)_{L^2} = (f, v)_{L^2}, v \in H_0^1(\Omega)$
+
+Für $v = u$ gilt: $\lamb da(u,u)_{L^2} = (f, u)_{L^2} - a(u,u)$
+
+$\implies \lambda \norm{u}_{L^2}^2 \leq \norm{f}_2 \norm{u}_2 + \gamma \norm{u}_2^2 - \apha \norm{u}_{H_0^1}^2$
+
+$\implies (\lambda - \gamma) \norm}_2^2 \leq \norm{f}_2 \norm{u}_2, \quad u = R(\lambda, A) f,$
+
+$\norm{R(\lambda, A) f}_2 \leq \norm{1}{\lambda - \gamma } \norm{f}_2, \quad f \in L^2(\Omega)$, d.h. $\norm{R(\lambda, A)} \leq \frac{1}{\lambda - \gamma}, \lambda > \gamma$.
+\end{proof}
+
