@@ -1,6 +1,6 @@
 \section{Die Laplace Gleichung}
 
-Eine der wichtigsten partiellen Differentialgleichungen Ã¼berhaupt ist die Laplace-Gleichung.
+Eine der wichtigsten partiellen Differentialgleichungen überhaupt ist die Laplace-Gleichung.
 
 Laplace-Gleichung: $\Delta u = 0, x \in \Omega$
 
@@ -11,10 +11,10 @@ $ \Delta u = \sum_{i = 1}^^n \frac{\partial_i^2 u}{2 x_i^2}$ Laplace-Operator.
 
 \subsection{physikalische Interpretation}
 
-Sei $u$ Dichte, z.b. eines Feststoffes, Konzetration einer LÃ¶sung und $V \subset \Omega$. Dann
+Sei $u$ Dichte, z.b. eines Feststoffes, Konzetration einer Lösung und $V \subset \Omega$. Dann
 
 $$
-\int_{\partial V} F \cdot \nu = 0, \quad F \text{ Fluss}, \nu \text{ Ã¤uÃŸere Normale}
+\int_{\partial V} F \cdot \nu = 0, \quad F \text{ Fluss}, \nu \text{ äußere Normale}
 $$
 
 Divergenzsatz $\implies \int_V \div F = 0$.
@@ -27,12 +27,12 @@ Dann: $\div(-a \nabla u) = - a \div \nabla u = - a \Delta u = 0$.
 
 Interpretation
 $$
-u \hat = \text{ Temperatur / Konzentration} \quad \text{dann} \quad F = - a \nabla u \text{ Fouriergesetz der WÃ¤rmeleitung, Diffusionsgesetz}
+u \hat = \text{ Temperatur / Konzentration} \quad \text{dann} \quad F = - a \nabla u \text{ Fouriergesetz der Wärmeleitung, Diffusionsgesetz}
 $$
 
-Um $\Delta u = 0$ zu lÃ¶sen, benutze \underline{radiale Symmetrie von $\Delta$}
+Um $\Delta u = 0$ zu lösen, benutze \underline{radiale Symmetrie von $\Delta$}
 
-Also $\Omega = \R^n$, wÃ¤hle Ansatz
+Also $\Omega = \R^n$, wähle Ansatz
 
 $u(x) = v(|x|) = v(r)$ mit $t = |x|$ ($u$ soll radial symmetrisch, also konstant auf Kreisen sein).
 
@@ -44,9 +44,9 @@ also:
   \frac{\partial^2 u}{\partial x_i^2} &= v''(r) \frac{x_i^2}{r^2} + v'(r)[\frac{1}{r} - \frac{x_i^2}{r^3}]
 \end{align*}
 
-$\implies \Delta u = v''(r) + v'(r) \frac{n - 1}{r} \overset{!}{=} = 0$ (beachte: $v$ ist von einer VerÃ¤nderlichen!)
+$\implies \Delta u = v''(r) + v'(r) \frac{n - 1}{r} \overset{!}{=} = 0$ (beachte: $v$ ist von einer Veränderlichen!)
 
-FÃ¼r $v' \neq 0$ gilt $(\log(v'))' = \frac{v''}{v'} = \frac{1 - n}{r}$.
+Für $v' \neq 0$ gilt $(\log(v'))' = \frac{v''}{v'} = \frac{1 - n}{r}$.
 
 Daher: $v' = \frac{c}{r^{n - 1}}$, denn  $(log(r^{1 - n}))' = (1 - n)(\log r)' = \frac{ 1 - n}{r}$.
 
@@ -64,9 +64,9 @@ $$
 \phi(x) = \begin{cases} -\frac{1}{2\pi} \log{|x|},  \quad & n = 2 \\ \frac{1}{n(n-2) \omega_n} \frac{1}{|x|^{n - 2}}, \quad & n\geq 3, \quad \omega_n = \operatorname{Vol}(B_1(0)) \end{cases}
 $$
 
-heiÃŸt \underline{FundamentallÃ¶sung des Laplace-Operators} in $\R^n$. 
+heißt \underline{Fundamentallösung des Laplace-Operators} in $\R^n$. 
 
-FÃ¼r $f \in C_c^2(\R^n)$ betrachte
+Für $f \in C_c^2(\R^n)$ betrachte
 $$
 u(x) := \int_{\R^n} \phi(x - y)f(y) dy = (\phi \ast f)(x).
 $$
@@ -82,13 +82,13 @@ Seien $f, u$ wie oben definiert. Dann:
 \end{enumerate}
 
 \begin{bem}
-  Es gibt also eine \underline{explizite} LÃ¶sungsformel
+  Es gibt also eine \underline{explizite} Lösungsformel
 \end{bem}
 
 \begin{proof}
   $n \geq 3$
 
-  (a) $u = \phi \ast f$ wohldefiniert, da $f$ kompakten TrÃ¤ger hat.
+  (a) $u = \phi \ast f$ wohldefiniert, da $f$ kompakten Träger hat.
 
   $u \in C^2$, da $f \in C_c^2$ (Ana4, Eigenschaften der Faltung)
 
@@ -99,13 +99,13 @@ Seien $f, u$ wie oben definiert. Dann:
 
   $|I_\varepsilon| \leq \norm{D^2 f}_\infty \int_{B_varepsilon(0)} |\phi(y)| dy \overset{\text{Polarkoord.}}{\leq} c_n \int_0^\varepsilon \frac{r^{n - 1}}{r^{n - 2}} dr = \frac{c_n}{2} r^2 |_0^\varepsilon = \frac{c_n}{2} \varepsilon^2$
 
-  {\tiny{$r^{n-1}$ kommt aus der Funktionaldeterminante, die Integrale Ã¼ber Winkel gehen in $c_n$ ein, $\phi$ ist davon unabhÃ¤ngig, da radial.}}
+  {\tiny{$r^{n-1}$ kommt aus der Funktionaldeterminante, die Integrale über Winkel gehen in $c_n$ ein, $\phi$ ist davon unabhängig, da radial.}}
 \end{proof}
 
 \subsection{Lemma (Greensche Formel)}
 
 Seien $u,v \in C^2(\overline \Omega)$.
-Dann gilt: ($\nu$ Ã¤uÃŸere Normale an $\partial \Omega$)
+Dann gilt: ($\nu$ äußere Normale an $\partial \Omega$)
 \begin{enumerate}[(i)]
   \item $\int_\Omega \nabla v \cdot \nabla u dx = - \int_\Omega u \Delta v + \int_{\partial\Omega} (\partial_\nu v) \cdot u$
   \item $\int_\Omega (u \cdot \Delta v - v \Delta u) dx = \int_{\partial \Omega} (u \cdot \partial_\nu v - v \cdot \partial_\nu u)$
@@ -113,7 +113,7 @@ Dann gilt: ($\nu$ Ã¤uÃŸere Normale an $\partial \Omega$)
 \end{enumerate}
 
 \begin{proof}
-  Satz von GauÃŸ: $\int_\Omega \div F = \int_{\partial \Omega} F \cdot \nu$
+  Satz von Gauß: $\int_\Omega \div F = \int_{\partial \Omega} F \cdot \nu$
 
   \begin{enumerate}[(i)]
     \item Setze $F = (\nabla v) u$ im Divergenzsatz
@@ -132,27 +132,27 @@ Dann gilt: ($\nu$ Ã¤uÃŸere Normale an $\partial \Omega$)
 
   $II_\varepsilon^a = \overset{2.4(i)}{=} \underbrace{\int_{\R^n \setminus B_\varepsilon(0)} \Delta \phi(y) f(x - y) dy}_{= 0, \text{ da } \Delta \phi = 0} - \int_{\partial B_\varepsilon(0)} \frac{\partial \phi}{\partial \nu}(y) \cdot f(x - y) d\sigma(y)$
 
-  Nun gilt $\nabla \varphi(y) = - \frac{1}{\omega_n \cdot n} \frac{y}{|y|^n}$, fÃ¼r $y \neq 0$ und $\nu = -\frac{y}{|y|} = - \frac{y}{\varepsilon}$.
+  Nun gilt $\nabla \varphi(y) = - \frac{1}{\omega_n \cdot n} \frac{y}{|y|^n}$, für $y \neq 0$ und $\nu = -\frac{y}{|y|} = - \frac{y}{\varepsilon}$.
 
-  {\tiny{$\partial B_\varepsilon(\omega)$ ist Rand von $\R^n \setminus B_\varepsilon(0)$, deshalb das Minus bei der Ã¤uÃŸeren Normalen! }}
+  {\tiny{$\partial B_\varepsilon(\omega)$ ist Rand von $\R^n \setminus B_\varepsilon(0)$, deshalb das Minus bei der äußeren Normalen! }}
 
   Also $\frac{\partial \phi}{\partial \nu}(y) = \nu \cdot \nabla \phi(y) = \frac{1}{n \cdot \omega(n)} \frac{|y|^2}{\varepsilon |y|^n} = \frac{1}{n \omega_n \varepsilon^{n - 1}}$.
 
   {\tiny{$(\#) \leq \norm{\nabla f}_\infty \int_{\partial B_\varepsilon(0)} |\phi(y) | dy \leq c \varepsilon$}}
 
-  $\implies II_\varepsilon^2 = - \frac{1}{n \omega(n) \varepsilon^{n - 1}} \int_{\partial B_\varepsilon(0)} f(x - y) d \sigma(y) = -\frac{1}{|\partial B(x, \varepsilon)|} f(y) d\sigma(y) \to -f(x)$ (Ãœbung)
+  $\implies II_\varepsilon^2 = - \frac{1}{n \omega(n) \varepsilon^{n - 1}} \int_{\partial B_\varepsilon(0)} f(x - y) d \sigma(y) = -\frac{1}{|\partial B(x, \varepsilon)|} f(y) d\sigma(y) \to -f(x)$ (Übung)
 
   {\tiny{$f(y) = f(y) - f(x) + f(x)$ erweitern, $\int f(x) dy$ im Mittelwert gleich $f(x)$, erses Integral $\to 0$ mit Schrankensatz}}
 
-  $\implies -\Delta u(x) = f(x)$ fÃ¼r $\varepsilon \to 0$.
+  $\implies -\Delta u(x) = f(x)$ für $\varepsilon \to 0$.
 \end{proof}
 
 Betrachte \underline{Mittelwerteigenschaft} harmonischer Funktionen.
 
 Setze 
 \begin{align*} 
-  \dashint_{B(x,r)} f(y) dy &:= \frac{1}{|B(x,1)| r^n} \int_{B(x,r)} f(y) dy \quad\text{ Mittel von $f$ Ã¼ber $B(x,r)$} \\
-  \dashint_{\partial B(x,r)} f(y) dy &:= \frac{1}{n |B(x,1)|r^{n-1}} \int_{\partial B(x,r)} f(y) d\sigma(y) \quad\text{ Mittel von $f$ Ã¼ber $\partial B(x,r)$}
+  \dashint_{B(x,r)} f(y) dy &:= \frac{1}{|B(x,1)| r^n} \int_{B(x,r)} f(y) dy \quad\text{ Mittel von $f$ über $B(x,r)$} \\
+  \dashint_{\partial B(x,r)} f(y) dy &:= \frac{1}{n |B(x,1)|r^{n-1}} \int_{\partial B(x,r)} f(y) d\sigma(y) \quad\text{ Mittel von $f$ über $\partial B(x,r)$}
 \end{align*}
 
 \subsection{Satz}
@@ -160,11 +160,11 @@ Setze
 Sei $u \in C^2(\Omega)$ harmonisch, $\Omega \subseteq \R^n$ offen.
 Dann:
 $$
-u(x) = \dashint_{\partial B(x,r)} u d\sigma = \dashint_{B(x,r)} u dy\quad\text{ fÃ¼r alle } x,r \text{ mit } B(x,r) \subseteq \Omega
+u(x) = \dashint_{\partial B(x,r)} u d\sigma = \dashint_{B(x,r)} u dy\quad\text{ für alle } x,r \text{ mit } B(x,r) \subseteq \Omega
 $$
 
 \begin{bem}
-  AuÃŸergewÃ¶hnliche Eigenschaft, vgl. Taylor.
+  Außergewöhnliche Eigenschaft, vgl. Taylor.
 \end{bem}
 
 \begin{proof}
@@ -173,7 +173,7 @@ $$
   
   $\overset{\text{Def}}{=} \dashint_{\partial B(x,r)} \partial_\nu u(y) d\sigma(y)$
 
-  $\overset{\text{Green}}{=} \frac{r}{n} \dashint_{B(x,r)} \Delta u(y) dy \overset{\text{harmon}}{=} 0$ fÃ¼r alle $r$.
+  $\overset{\text{Green}}{=} \frac{r}{n} \dashint_{B(x,r)} \Delta u(y) dy \overset{\text{harmon}}{=} 0$ für alle $r$.
 
   $\implies \phi$ konstant und $\phi(r) = \lim_{t \to 0} \phi(t) = \lim_{t \to 0} \dashint_{\partial B(x,t)} u(y) dy \overset{\text{Lebesgue}}{=} u(x)$
 
@@ -188,7 +188,7 @@ $$
 
 Sei $u \in C^2(\Omega)$ mit
 $$
-u(x) = \dashint_{\partial B(x,r)} u d\sigma \quad\text{fÃ¼r alle } B(x,r) \subseteq \Omega.
+u(x) = \dashint_{\partial B(x,r)} u d\sigma \quad\text{für alle } B(x,r) \subseteq \Omega.
 $$
 
 Dann ist $u$ harmonisch.
@@ -197,7 +197,7 @@ Dann ist $u$ harmonisch.
   Angenommen $u$ sei nicht harmonisch, dann $\Delta u \neq 0$ und es existiert $B(x,r) \subseteq \Omega$ mit oBdA $\Delta u > 0$ auf $B(x,r)$.
 
   Sei $\phi$ wie in 2.5. 
-  Dann $$\phi'(r) = \frac{r}{n} \dashint_{B(x,r)} \Delta u(y) dy > 0,$$ aber $$\phi(r) = \dashint_{\partial B(x,r)} u(y) d\sigma(y) = u(x)$$ fÃ¼r alle $r$, also $\phi'(r) = 0$ fÃ¼r alle $r$.
+  Dann $$\phi'(r) = \frac{r}{n} \dashint_{B(x,r)} \Delta u(y) dy > 0,$$ aber $$\phi(r) = \dashint_{\partial B(x,r)} u(y) d\sigma(y) = u(x)$$ für alle $r$, also $\phi'(r) = 0$ für alle $r$.
   Widerspruch.
 \end{proof}
 
@@ -205,16 +205,16 @@ Als Folgerung erhalten wir das \underline{Maximumsprinzip}.
 
 \subsection{Theorem (Maximumsprinzip)}
 
-Sei $\Omega \subseteq \R^n$ offen, beschrÃ¤nkt und $u \in C^2(\Omega) \cap C(\overline\Omega)$ sei harmonisch in $\Omega$. 
+Sei $\Omega \subseteq \R^n$ offen, beschränkt und $u \in C^2(\Omega) \cap C(\overline\Omega)$ sei harmonisch in $\Omega$. 
 Dann
 \begin{enumerate}[(i)]
   \item $\max_{\overline\Omega} u = \max_{\partial \Omega} u$
-  \item ist $\Omega$ zusammenhÃ¤ngend, $x_0 \in \Omega$ mit $u(x_0) = \max_{\overline\Omega} u$, dann ist $u$ konstant in $\Omega$.
+  \item ist $\Omega$ zusammenhängend, $x_0 \in \Omega$ mit $u(x_0) = \max_{\overline\Omega} u$, dann ist $u$ konstant in $\Omega$.
 \end{enumerate}
 
 \begin{proof}
   (ii) Sei $x_0 \in \Omega$ mit $u(x_0) = M := \max_{\overline\Omega} u$.
-  WÃ¤hle $r > 0$ mit $r < \dist(x_0, \partial \Omega)$.
+  Wähle $r > 0$ mit $r < \dist(x_0, \partial \Omega)$.
 
   Mittelwert eigenschaft liefert:
 
@@ -231,14 +231,14 @@ Dann
 
 \subsection{Korollar (Eindeutigkeit des Dirichlet Problems)}
 
-Seien $f \in C(\Omega), g \in C(\partial \Omega), \Omega \subseteq \R^n$ offen, beschrÃ¤nkt.
-Dann existiert hÃ¶chsten eine LÃ¶sung $u \in C^2(\omega) \cap C(\overline\Omega)$ des Dirichlet Problems
+Seien $f \in C(\Omega), g \in C(\partial \Omega), \Omega \subseteq \R^n$ offen, beschränkt.
+Dann existiert höchsten eine Lösung $u \in C^2(\omega) \cap C(\overline\Omega)$ des Dirichlet Problems
 $$
 (\text{DP}) \begin{cases} -\Delta u &= f \text{ in }\Omega \\ u &= g \text{ auf } \partial \Omega \end{cases}
 $$
 
 \begin{proof}
-  Seiein $u_1, u_2$ LÃ¶sungen des (DP).
+  Seiein $u_1, u_2$ Lösungen des (DP).
 
   Setze $w_1 := u_1 - u_2, w_2 := u_2 - u_1$.
 
@@ -249,7 +249,7 @@ $$
 
 \subsection{Satz (Glattheit ``harmonischer Funktionen'')}
 
-FÃ¼r $u \in C(\Omega)$ gelte die Mittelwerteigenschaft. 
+Für $u \in C(\Omega)$ gelte die Mittelwerteigenschaft. 
 Dann $u \in C^\infty(\Omega)$.
 
 \begin{bem}
@@ -267,7 +267,7 @@ Dann $u \in C^\infty(\Omega)$.
 
   Setze $\varphi_\varepsilon := \varphi_\varepsilon \ast u$ in $\Omega_\varepsilon = \{x \in \Omega \colon \dist(x, \partial \Omega) > \varepsilon \}$
 
-  {\tiny{Falls $\partial \Omega = \emptyset$, setze $\dist(x, \partial\Omega) = 0$ fÃ¼r alle $x$.}}
+  {\tiny{Falls $\partial \Omega = \emptyset$, setze $\dist(x, \partial\Omega) = 0$ für alle $x$.}}
 
   Dann: $u_\varepsilon \in C^\infty(\Omega_\varepsilon)$ (Ana 4!)
 
@@ -292,15 +292,154 @@ Weitere Eigenschaften harmonischer Funktionen (ohne Beweis!)
 \begin{enumerate}[a)]
   \item Sei $u$ harmonisch in $\Omega$.
     $$
-    |D^\alpha u(x_0)| \leq \frac{C_k}{r^{n + k}} \norm{u}_{L^1(B(x_0,r))} \text{ fÃ¼r alle } B(x_0, r) \subseteq \Omega, \alpha \colon |\alpha| = k
+    |D^\alpha u(x_0)| \leq \frac{C_k}{r^{n + k}} \norm{u}_{L^1(B(x_0,r))} \text{ für alle } B(x_0, r) \subseteq \Omega, \alpha \colon |\alpha| = k
     $$
   \item Verallgemeinerung: Satz von Liouville
 
-    $u \colon \R^n \to \R$ harmonisch und beschrÃ¤nkt, dann $u$ konstant.
+    $u \colon \R^n \to \R$ harmonisch und beschränkt, dann $u$ konstant.
 
     \item Harnacksche Ungleichung:
-
-      Sei $u \geq $
+    Sei $u \geq 0$ harmonisch auf $\Omega$. Dann gilt für jede zusammenhängende, offene Menge $V \subset\subset \Omega$ ( $V \subset \overline V \subset \Omega$ ):
+    $$ \sup_V u \leq C \inf_V u, \quad \text{mit } C = C(V) $$ 
 \end{enumerate}
 
+Betrachte $\Omega \subseteq \R^n$ offen, beschränkt, $\partial \Omega$ glatt.
 
+Betrachte (DP):
+$$
+\begin{cases}
+  -\Delta u &= f \quad\text{in } \Omega \\
+  u &= g \quad\text{auf } \partial\Omega
+\end{cases}
+$$
+
+Sei $u \in C^2(\Omega) \cap C(\overline \Omega), x \in \Omega, \varepsilon > 0$ mit $B_\varepsilon(x) \subseteq \Omega$.
+
+Setze $V_\varepsilon = \Omega \setminus B_\varepsilon(x)$. Wende Satz von Green (2.4 ii) an auf $V_\varepsilon$ mit $u$ und $\phi(x -y)$
+
+$$
+\int_{V_\varepsilon} u(y) \underbrace{\Delta \phi(y - x)}_{= 0 \text{ für } y \neq x} - \phi(y - x)\Delta u(y) dy
+\overset{\text{Green}}{=} \int_{\partial V_\varepsilon} u(y) \frac{\partial \phi}{\partial \nu}(y - x) - \phi(y - x) \frac{\partial u}{\partial \nu}(y) d\sigma(y)
+$$
+
+Da $\partial V_\varepsilon = \partial \Omega \cup \partial B_\varepsilon(x)$ und
+$$
+\left| \int_{\partial B_\varepsilon(x)} \phi(y - x) \underbrace{\frac{\partial u}{\partial \nu}(y)}_{|\cdot| \leq C \\\text{ wegen $u$ stetig und $\partial B_\varepsilon$ kompakt}} d\sigma(y) \right|
+$$
+sowie
+$$
+\int_{\partial B_\varepsilon(x)} u(y) \underbrace{\frac{\partial \phi}{\partial \nu} (y - x)}_{C_n \frac{1}{\varepsilon^{n - 1}} \\\text{vgl. Ende Bew 2.3}} d\sigma(y)
+= C \dashint_{\partial B_\varepsilon(x)} u(y) d\sigma(y) \to u(x) \quad\text{für } \varepsilon \to 0
+$$
+gilt, folgt:
+\begin{displaymath}
+  u(x) = -\int_\Omega \phi(y - x) \Delta u(y) dy + \int_{\partial \Omega} \phi(y - x) \underbrace{\frac{\partial u}{\partial \nu}(y)}_{\text{unbekannt}} - u(y) \frac{\partial \phi}{\partial \nu}(y - x) d\sigma(y) \tag{1}
+\end{displaymath}
+
+\underline{Idee: } Green: Addire harmonische Funktion, um unbekannten Term zu kompensieren.
+
+Für $x \in \Omega$ setze $\phi^x := \phi^x(y)$ mit $\begin{cases} \Delta \phi^x &= 0 \text{ in } \Omega \\ \phi^x &= \phi(y - x) \text{ auf } \partial \Omega \end{cases}$
+
+Green mit $\phi^x$ liefert: (durch Ausnutzung von $\Delta \phi^x = 0$:
+\begin{displaymath}
+  - \int_\Omega \phi^x(y) \Delta u(y) dy = \int_{\partial \Omega} u(y) \frac{\partial \phi^x}{\partial \nu}(y) - \underbrace{\phi^x(y)}_{= \phi(y - x)} \frac{\partial u}{\partial \nu}(y) d\sigma(y) \tag{2}
+\end{displaymath}
+
+Addiere (1) und (2): Dann gilt via
+$$
+G(x,y) := \phi(y - x) - \phi^x(y), \quad x \neq y
+$$
+folglich: (mit $\phi^x = \phi(y - x)$ auf $\partial\Omega$)
+\begin{align*}
+	u(x) &= -\int_{\Omega} \underbrace{(\phi(y - x) - \phi^x(y))}_{= G(x,y)} \Delta u(y) dy - \int_{\partial \Omega} u(y) ( \frac{\partial \phi}{\partial \nu}(y - x) - \frac{\partial \phi^x}{\partial \nu}(y)) d\sigma(y) \\
+	&= -\int_\Omega G(x,y) \underbrace{\Delta u(y)}_{= -f(y)} dy - \int_{\partial \Omega} \underbrace{u(y)}_{= g(y)} \frac{\partial G}{\partial \nu}(x,y) d\sigma(y)
+\end{align*}
+
+Schritt vorwärts, da unbekannter Term verschwunden. Also bewiesen:
+
+\subsection{Theorem (Darstellungsformel von Green)}
+
+Sei $u \in C^2(\overline\Omega)$ eine Lösung von (DP) mit $f \in C(\overline\Omega), g \in C(\partial \Omega)$, dann gilt:
+$$
+u(x) = \int_\Omega G(x,y) f(y) dy - \int_{\partial \Omega}  \frac{\partial G}{\partial \nu}(x,y) g(y) d\sigma(y).
+$$
+
+\subsection{Bemerkungen}
+
+\begin{enumerate}[a)]
+  \item erhalten Lösung von (DÖP), falls $G$ bekannt.
+  \item $G \colon \Omega \times \Omega \to \C$ definiert durch 
+	$$G(x,y) := \phi(y - x) - \phi^x(y), x \neq y$$
+	heißt \underline{Greensche Funktion}
+  \item Die Greensche Funktion ist symmetrisch, d.h.
+	$$
+	G(x,y) = G(y,x) \text{ für } x \neq y
+	$$
+	{\tiny{Greensche Formeln auf $\Omega \setminus (B_\varepsilon(x) \cup B_\varepsilon(y))$ anwenden und Grenzwert nehmen}}
+	Beweis: Übung.
+  \item Bestimmung einer Greenschen Funktion ist im Allgemeinen schwierig, betrachte daher Spezialfälle:
+    \begin{enumerate}[i)]
+      \item Halbraum $\R^n_+ := \{x \in \R^n \colon x_n > 0\}$
+      \item $\Omega = B_1(0)$
+    \end{enumerate}
+\end{enumerate}
+
+\underline{zu i):} Für $x \in \R_+^n$ definiere Reflexion auf $\partial \R_+^n$ via 
+$$
+\tilde x := (x-1, \dots, x_{n - 1}, -x_n)
+$$
+Ansatz für Greensche Funktion:
+$$
+\phi^x(y) := \phi(y - \tilde x).
+$$
+Dann $\phi^x(y) = \phi(y - x)$ für $y \in \partial R_+^n$, denn
+$$
+\phi^x(y) = \phi(y_1 - x_1, \dots, \underbrace{y_n}_{=0} + x_n) = \phi(y_1 - x_1, \dots, y_n + x_n),
+$$
+"da derBetrag in $\phi$ das Minus nicht sieht"
+und deshalb
+\begin{align*}
+	\Delta \phi^x &= 0 \quad\text{in } R_+^n \\
+	\phi^x &= \phi(y - x) \quad\text{auf } \partial\R_+^n
+\end{align*}
+{\tiny{$x \in \R_+^n \implies \tilde x \in \partial \R_+^n \implies y - \tilde x \neq 0$}}
+
+\subsection{Definition}
+
+Die Greensche Funktion für $R_+^n$ ist gegeben durch:
+$$
+  G(x,y) &:= \phi(x - y) - \phi(y - \tilde x), \quad x, y \in \R_+^n, x \neq y.
+$$
+Weiter:
+$$
+  \frac{\partial G}{\partial \nu}(x,y) \overset{\text{Übung}} = - \frac{1}{n \omega_n} \frac{2 x_n}{|x - y|^n}, \quad x, y \in \R_+^n
+$$
+und via Theorem 2.11 erwarten wir für $\begin{cases} -\Delta u &= 0 \text{ auf } \R_+^n \\ u&= g \text{ auf } \partial \R_+^n \end{cases}$, dass Lösung $u$ die Gestalt
+$$
+  u(x) = \frac{2 x_n}_{n \omega(n)} \int_{\partial \R_+^n} \frac{g(y){x - y}^n dy
+$$
+hat.
+
+\subsection{Satz}
+
+Sei $g \ion C(\R^{n  - 1}) \cap L^\infty(\R^{n - 1}$ und $u$ sei definiert wie oben. Dann:
+\begin{enumerate}[i)]
+	\item $u \in C^\infty(\R^n_+) \cap L^\infty(\R^n_+)$
+	\item $\Delta u = 0$ in $\R^n_+$
+	\item $\lim_{x \to x_0, x \in \R^n_+} u(x) = g(x_0), x_0 \in \partial \R^n_+$
+\end{enumerate}
+
+Beweis: später via Fourier-Trafo, ohne Rechnen.
+
+\subsection{Satz (Eindeutigkeit des (DP) via Energiemethode)}
+
+Seien $u, \tilde u$ Lösungen des (DP). Setze $w:= u - \tilde u$. Dann
+\begin{align*}
+	\Delta w &= 0 \quad\text{in } \Omega \\
+	w &= 0 \quad\text{auf } \partial \Omega
+\end{align*}
+somit
+$$
+0 = -\int_\Omega \underbrace{\Delta w}_{= 0 } \cdot w + \int_{\partial \Omega} (\partial_\nu w) \underbrace{w}_{=0} \overset{\text{Green}}{=} \int_\Omega |\nabla w|^2
+$$
+$\implies |\nabla w| = 0$ in $\Omega$ $\implies w = u - \tilde u = 0$, da $w = 0$ auf $\partial \Omega$.
