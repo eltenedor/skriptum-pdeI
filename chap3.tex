@@ -1,1 +1,418 @@
 \section{Die Wärmeleitungsgleichung}
+
+Ziel dieses Abschnitts: untersuche die Wärmeleitungsgleichung.
+$$
+\begin{cases}
+  u_t - \Delta &= f, \quad x \in \Omega, t > 0 \\
+  u|_{\partial\Omega} &= g, \quad x \in \partial \Omega, t > 0 \\
+  h(0,x) &= u_0(x), \quad x \in \Omega
+\end{cases}
+$$
+
+gegeben: $f, g, u_0$, gesucht: $u \colon [0, \infty) \times \overline \Omega \to \R$
+
+\subsection{Physikalische Interpretation}
+
+$u \hat = $ Konzentration eines bestimmten Stoffes in $\Omega$.
+
+$V \subset \Omega:$
+
+$$
+\frac{\partial}{\partial t} \int_V u dx = -\int_{\partial V} \underbrace{F}_{= \text{Flussdichte}} \cdot \nu d\sigma
+$$
+
+Satz von Gauß $\implies$ $u_t = -\div F$.
+
+Im einfachsten Fall: $F \sim \nabla F, F = -a\nabla u, a > 0$.
+
+Einsetzen liefert: 
+$$
+u_t = \div a \nabla u = a \div \nabla u = a \Delta u
+$$
+d.h
+$$
+u_t = \Delta u
+$$
+ist Modellgleichung.
+  
+\subsection{Die Fundamentallösung}
+
+Betrachte Wärmeleitungsgleichung auf $\R^n$, d.h.
+$$
+\begin{cases}
+  u_t - \Delta u &= 0, x \in \R^n, t > 0 \\
+  u(x,0) &= u_0(x), x \in \R^n
+\end{cases}
+$$
+
+Wende Fourier-Transformation an auf x.
+
+Sei $u_0 \in \Sc(\R^n)$ (Schwatzraum). Dann gilt:
+$$
+\begin{cases}
+  \hat u_t(t, \xi) + |\xi|^2 \hat u (t, \xi) &= 0, t > 0 \\
+  \hat u(0,\xi) &= \hat u_0 (\xi)
+\end{cases}
+$$
+
+Dies ist gewöhnliche Differentialgleichung, explizit lösbar mit
+$$
+\hat u (t, \xi) = e^{-t |\xi|^2} \hat u_0(\xi)
+$$
+
+Faltungssatz der Fourier-Transformation: ($\hat f \cdot \hat g = (f \ast g)^{\hat{}}$)
+$$
+  u(t,x) = (G_t \ast u_0)(x)
+$$
+mit
+$$
+\hat G_t(\xi) = e^{-t|\xi|^2}
+$$
+Ana II: 
+$$
+G(t,x) = \frac{1}{(4\pi t)}^{\frac{n}{2}} e^{-\frac{|\xi|^2}{4t}}
+$$
+
+\subsection{Definition}
+
+Die Funktion $G \colon \R \times \R^n \to (0, \infty)$ gegeben durch
+$$
+G(t,x) = \begin{cases}
+  \frac{1}{(4\pi t)}^{\frac{n}{2}} e^{-\frac{|\xi|^2}{4t}}, &\quad t > 0 \\
+  0, &\quad t < 0
+\end{cases}
+$$
+heißt \underline{Fundamentallösung} der Wärmeleitungsgleichung oder \underline{Gauß-Kern}
+
+\subsection{Bemerkungen (Eigenschaften von $G$)}
+
+\begin{enumerate}[a)]
+  \item $G_t(x) = t^{-\frac{n}{2}} G_1\left(\frac{x}{\sqrt{t}}\right)$
+  \item $\int_{\R^n} G_t(x) dx = \hat G_t(0) = 1$
+  \item Dies bedeutet, dass $(G_t)_{t > 0}$ ein Mollifier ist.
+\end{enumerate}
+
+\subsection{Theorem}
+
+Sei $u$ gegeben durch
+$$
+u(t,x) = (G_t \ast u_0)(x), x \in \R^n, t> 0,
+$$
+wobei
+\begin{enumerate}[a)]
+  \item $u_0 \in \BUC(\R^n)$. Dann gilt:
+    \begin{enumerate}[(i)]
+      \item $u \in C^\infty(\R^n \times (0,\infty))$
+      \item $u_t - \Delta u = 0, x \in \R^n, t> 0$
+      \item $\lim_{t \to 0} u(t,x) = u_0(x), x \in \R^n$
+    \end{enumerate}
+  \item $u_0 \in L^p(\R^n), 1 \leq p < \infty$. Dann
+    \begin{enumerate}[(i)]
+      \item $u \in C^\infty(\R^n \times (0, \infty))$
+      \item Wärmeleitungsgleichung (klassisch) erfüllt.
+      \item $\norm{u(\cdot, t) - u_0} \to 0$ für $t \to 0$.
+    \end{enumerate}
+\end{enumerate}
+
+Beweis: Übungsaufgabe $\leadsto$ Mollifier
+
+\subsection{Bemerkung}
+
+Sei $u_0 \in \BUC(\R^n), u_0 \geq 0, u_0 \neq 0$
+
+$\implies u(t,x) = (G_t \ast u_0)(x)$ ist \underline{strikt} positiv für alle $x \in \R^n, t > 0$!!
+
+``unendliche Ausbreitungsgeschwindigkeit''
+
+Übungsaufgabe.
+
+Betrachte Inhomogenes Anfangsproblem
+$$
+\begin{cases}
+  u_t - \Delta u &= f, \quad x \in \R^n, t > 0 \\
+  u(0,x) &= 0, \quad x \in \R^n
+\end{cases}
+$$
+und sei
+$$
+u(t,x) := \int_0^t \int_{\R^n} G(x - y, t - s)f(y,s) dy ds, \quad t> 0, x \in R^n
+$$
+mit $f \in C_c^{2,1}(\R^n \times[0,\infty))$
+
+\subsection{Satz (Lösung der inhomogenen Wärmeleitungsgleichung / Prinzip von Duhamel)}
+
+Seien $u, f$ wie oben. Dann:
+\begin{enumerate}[(i)]
+  \item $u \in C^{2,1}(\R^n \times [0, \infty))$
+  \item $u_t - \Delta u = f, x \in \R^n, t> 0$
+  \item $u(0,x) = 0, x \in \R^n$
+\end{enumerate}
+
+\begin{proof}
+  Variablentransformation:
+  $u(x,t) = \int_0^t \int_{\R^n} G(y,s) f(x - y, t - s) dy ds$
+
+  $\leadsto u_t(x,t) \overset{\text{Leibniz}}{=} \int_0^t \int_{\R^n} G(y,s) f_t(x - y, t - s) dy ds + \int_{\R^n} G(y,t) f(x - y, 0) dy$
+
+  $\Delta (x,t) = \int_0^t \int_{\R^n} G(y,s) \Delta f(x - y, t - s) dy ds$
+
+  $\implies u_t, D^2 u$ (Ableitung nach $x$) stetig $\implies$ (i)
+
+  (ii) 
+  \begin{align*}
+    u_t(x,t) - \Delta u(x,t) 
+    &= \int_0^t \int_{\R^n} G(y,s) (\frac{\partial}{\partial t} - \Delta) f(x - y, t - s) dy ds + \int_{\R^n} G(y,t) f(x - y, 0) dy \\
+    &= \int_\varepsilon^t \int_{\R^n} G(y,s) [ - \frac{\partial}{\partial s} - \Delta_y] f(x - y, t - s) dy ds \big\} \quad\text{(I)} \\
+    &+ \int_0^\varepsilon \int_{\R^n} G(y,s) [-\frac{\partial}{\partial s} - \Delta y] f(x - y, t - s) dy ds \big\} \quad\text{(II)} \\
+    &+ \int_{\R^n} G(y,t) f((x-y), 0) dy \big\} \quad\text{(III)}
+  \end{align*}
+
+  $$
+  |II| \leq C \int_0^\varepsilon \int_{\R^n} G*y,s) dy ds = C \cdot \varepsilon
+  $$
+  \begin{align*}
+  I &\overset{\text{p.I.}}{=} \int_\varepsilon^t \int_{\R^n} \left( [ \frac{\partial}{\partial s} - \Delta y] G(y, s)\right) f(x - y, t- s) dy dy \\
+                          &+ \int_{\R^n} G(y,\varepsilon) f(x-y, t-\varepsilon) dy - \underbrace{\int_{\R^n} G(y,t) f(x - y, 0) dy}{= \text{III}}
+  \end{align*}
+
+  $\implies u_t(x,t) - \Delta u(x,t) = \lim_{\varepsilon \to 0} \int_{\R^n} G(y, \varepsilon) f(x - y, t - \varepsilon) dy \underset{\text{Übung}\leadsto\text{Mollifier}}{=} f(x,t)$
+\end{proof}
+
+Betrachte \underline{Mittelwerteigenschaft} für parabolische Gleichungen (ähnlich Wärmeleitungsgleichung)
+
+\subsection{Definition}
+
+Sei $\Omega \subset \R^n$ beschränkt, offen, $T>0$.
+
+Definiere \underline{parabolischen Zylinder} $Q_T$ als
+\begin{enumerate}[a)]
+  \item $Q_T := \Omega \times (0, T]$
+  \item Der \underline{parabolische Rand} $\partial Q_T$ ist definiert durch
+    $$
+    \Gamma_T := \partial Q_T := \overline Q_T \setminus Q_T
+    $$
+\end{enumerate}
+
+\underline{Bemerkung}
+\begin{enumerate}[a)]
+  \item $Q_T$ enthält $\Omega \times \{ t = T\}$
+  \item parabolischer entält Boden $\times$ vertikale Seite von $Q_T$, aber \underline{nicht} den ``Deckel''
+\end{enumerate}
+
+\subsection{Definition}
+
+Sei $x \in \R^n, t \in \R, r > 0$. Dann heißt
+$$
+E(x, t, r) := \{ (y, s) \in \R^{n + 1}, s \leq t, \phi(x - y, t- s) \geq \frac{1}{r^n} \}
+$$
+``heat-ball'' oder \underline{parabolische Umgebung}
+
+\subsection{Satz (Mittelwerteigenschaft für Wärmeleitungsgleichung)}
+
+Sei $u \in C^{(2,1)}(Q_T)$ der Wärmeleitungsgleichung und $f = 0$. 
+Dann:
+$$
+u(x,t) = \frac{1}{4r^n} \iint_{E(x,t,r)} u(y,s) \frac{|x - y|^2}{(t - s)^2} dy ds
+$$
+für alle $E(x,t,r) \subseteq Q_T$.
+
+Beweis: ohne.
+
+Folgerung aus Satz 3.10 ist:
+
+\subsection{Satz (Starkes Maximumsprinzip für Wärmeleitungsgleichung)}
+
+Sei $u \in C^{(2,1)}(Q_T) \cap C(\overline{Q_T})$ Lösung der Wärmeleitungsgleichung in $Q_T$.
+\begin{enumerate}[(i)]
+  \item $\max_{\overline Q_T} u = \max_{\Gamma_T} u$
+  \item Fall $\Omega$ zusammenhängend und $(x_0, t_0) \in Q_T$ existiert mit
+    $$
+    u(x_0, t_0) = \max_{\overline Q_T} u,
+    $$
+    dann $u$ konstant in $\overline Q_{t_0}$
+\end{enumerate}
+
+\underline{Bemerkung:} (i) $u$ nimmt Maximum entweder auf $\Omega \times \{0\}$ oder $\partial \Omega \times [0, T]$ an (Übungsaufgabe)
+
+\underline{Beweisskizze:} Sei $(x_0, t_0) \in Q_T$ mit $u(x_0, t_0) = M = \max_{\overline Q_T} u$.
+
+$$
+u(x_0, t_0) = \frac{1}{4r^n} \iint_{E(x_0, t_0, r)} u(y, s) \frac{|x_0 - y_0|^2}{(t_0 - s)^2} dy ds \leq M
+$$
+
+``$=$'' gilt genau dann, wenn $u \equiv M$ in $E(x_0, t_0, r)$
+
+$\implies u(y, s) = M$ für alle $(y, s) \in E(x_0, t_0, r)$
+
+Sei $(y_0, s_0) \in Q_T$ mit $s_0 < t_0$ und $L = \overline{(x_0, t_0), (y_0, s_0)}$.
+
+Sei $r_0 := \min\{ s > s_0 \colon u(x, t) = M$ für alle $(x, t) \in L, s \leq t \leq t_0\}$
+
+Angenommen $r_0 > s_0$.
+
+$\implies u(z_0, r_0) = M$ für ein $(z_0, r_0) \in L \cap Q_T$
+
+$\implies u \equiv M$ auf $E(z_0, r_0, r), r$ klein
+
+$$
+E(z_0, r_0, r) \supset L \cap \{ r_0 - \underbrace{\tau}_{\text{für ein $\tau > 0$}} \leq t \leq r_0 \}
+$$
+Widerspruch.
+
+\subsection{Korollar (Eindeutigkeit in beschränkten Gebieten)}
+
+Sei $f \in C(\overline Q_T), g \in C(\Gamma_T)$: Dann existiert höchstens eine Lösung $u \in C^{2,1}(Q_T) \cap C(\overline Q_T)$ von 
+$$
+\begin{cases}
+  u_t - \Delta u &= f \quad\text{in } Q_T \\
+  u &= g \quad\text{auf } \Gamma_T
+\end{cases}
+$$
+
+\begin{proof}
+  $w:= u - \tilde u, u \tilde u$ seien Lösungen.
+
+  Maximumsprinzip $\implies$ Behauptung \checkmark.
+\end{proof}
+
+\subsection{Bemerkung: }
+
+Für unbeschränkte Gebiete ist Korollar 3.12 im Allgemeinen nicht mehr richtig.
+
+Es existiert $\underline{u \not\equiv 0}$ Lösung von
+\begin{align*}
+  u_t - u_{xx} &= 0 \quad\text{in } \R \times (0, \infty) \\
+  u(x, 0) &= 0
+\end{align*}
+
+Idee: Für $z \in \C$ setze $\varphi(z) = \begin{cases} e^{-\frac{i}{z^2}} &, z \neq 0 \\  0 &, z = 0 \end{cases}$
+
+Setze $u(x, t) := \begin{cases} \sum_{n = 0}^\infty \frac{d^n}{dt^n} \varphi(t) \frac{x^{2n}}{(2n)!} &, t > 0 \\
+  0 &, t = 0 \end{cases}$
+
+Dann ``formal'':
+\begin{enumerate}[(i)]
+  \item $\lim_{t \to 0} u(x, t) = \sum_{n = 0}^\infty \frac{d^n}{dt^n} \varphi(0) \frac{x^{2n}}{(2n)!} = 0$
+  \item 
+    \begin{align*} 
+      \frac{\partial^2u}{\partial x^2} 
+      &= \sum_{n = 0}^\infty \frac{d^n}{dt^{n + 1}} \varphi(t) \frac{x^{2n - 2}}{(2n)!} 2n(2n - 1) \\
+      &= \sum_{n = 1}^\infty \frac{d^n}{dt^n} \varphi(t) \frac{x^{2(n - 1)}}{(2(n - 1))!} \\
+      &= \sum_{n = 0}^\infty \frac{d^{n+1}}{dt^{n+1}} \varphi(t) \frac{x^{2n}}{(2n)!} = \frac{\partial u}{\partial t}
+    \end{align*}
+\end{enumerate}
+
+\subsection{Satz}
+
+Sei $u \in C^{2,1}(\R^n \times (0, T]) \cap C(\R^n \times [0, T])$ eine Lösung von 
+$$
+\begin{cases}
+  u_t - \Delta u &= 0, \quad x \in \R^n, t > 0 \\
+  u(x, 0) &= g(x), \quad x \in \R^n.
+\end{cases}
+$$
+
+Falls Konstanten $m, w \geq 0$ mit
+$$
+u(x, t) \leq M e^{w |x|^2}, x \in \R^n, 0 \leq t \leq T
+$$
+existieren, dann $\sup_{\R^n \times [0, T]} = \sup_{\R^n} g$
+
+Beweis: Übungsaufgabe.
+
+Betrachte (WLG) auf beschränkten Gebieten und unterscheide Randbedingungen:
+\begin{enumerate}[a)]
+  \item $u = g$ auf $\partial \Omega, t > 0$ (\underline{Dirichletsche} Randbedingung)
+  \item $\partial_\nu u = g$ auf $\partial \Omega, t > 0$ (\underline{Neumannsche} Randbedingung)
+  \item $\partial_\nu u + cu = 0$ (\underline{Robin}-Rand)
+\end{enumerate}
+
+Betrachte (WLG) mit Dirichlet Randbedingung:
+$$
+\begin{cases}
+  u_t - \Delta u &= 0, \quad x \in \Omega, t > 0 \\
+  u &= 0, \quad x \in \partial \Omega, t > 0 \\
+  u(x,0) &= u_(0), \quad x \in \Omega
+\end{cases}
+$$
+
+Ansatz über Separation der Variablen.
+
+Sei $u(x,t) = F(x) G(t)$.
+Dann
+
+$0 = u_t - \Delta u = FG' - (\Delta F) G$
+
+$\implies \frac{G'}{G} = \frac{\Delta F}{F}$, wobei die linke Seite nur von $t$ und die rechte Seite nur von $x$ abhängt.
+
+\begin{align*}
+  \implies G' &= \lambda G, \quad G(t) = c e^{\lambda t} \\
+  \Delta F = \lambda F, \quad F(x) = ?
+\end{align*}
+
+\underline{Falls} wir eine Orthonormalbasis $\{F_j\}$ von $L^2(\Omega)$ finden mit ``$\Delta F_j = \lambda F_j$'', $F_j(x) = 0$ auf $\partial \Omega$, so ist $u_0 = \sum \alpha_j F_j$ und $u(x,t) = \sum \alpha_j F_j(x) e^{\lambda_j t}$ Lösungkandidat.
+
+Schwierigkeiten beim Beweis:
+
+Reihen konvergent: $\leadsto \alpha_j, \Omega$
+
+analog: Neumann-Rand: 
+
+Finge ONB von $L^2(\Omega)$ mit $\begin{cases} \Delta F_j &= \lambda_j F_j \\ \partial_\nu F_j = 0 \end{cases}$
+
+Alles heikel ...
+
+\subsection{Bessel- und Riesz Potentiale}
+
+Erinnerung: 
+\begin{align*}
+  (\Delta t)^{\hat{}}(\xi) &= -|\xi|^2 \hat f(\xi) \\
+  (\varphi \ast G_t)^{\hat{}}(\xi) &= e^{-t|\xi|^2} \hat \varphi(\xi)
+\end{align*}
+
+Definiere daher: $e^{t\Delta} \varphi := G_t \ast \varphi$
+
+Sei $f \colon [0, \infty] \to \R, |f(t)| \leq M e^{wt}, t \geq 0$
+$$
+  \tilde f(\lambda) := \int_0^\infty e^{-\lambda t} f(t) dt, \quad \lambda > \omega
+$$
+
+Idee: Ersetze $\lambda$ durch $-\Delta$.
+$$
+\tilde f(-\Delta) = \int_0^\infty e^{\Delta t} f(t) dt
+$$
+{\tiny{Faltungskern: $\int_0^\infty G(x,t) f(t) dt$}}
+
+\underline{Beispiel 1:} $\lambda^{-\beta} = \int_0^\infty e^{-\lambda t} \frac{t^{\beta - 1}}{\Gamma(\beta)} dt, \beta > 0$
+
+also ist $ (-\Delta)^{-\beta}$ von der Form:
+$$
+\int_0^\infty G(x, t) \frac{t^{\beta - 1}}{\Gamma(\beta)} dt
+$$
+
+Für $0 < \beta < \frac{n}{2}$, so konvergiert obiges Integral
+\begin{align*}
+  \int_0^\infty G(x,t) \frac{t^{\beta - 1}}{\Gamma(\beta)} dt 
+  &= \frac{1}{\Gamma(\beta)(4\pi)^{\frac{n}{2}}} \int_0^\infty e^{-\frac{|x|^2}{4t}} t^{\beta - 1 - \frac{n}{2}} dt \\
+  &= \frac{1}{\Gamma(\beta)} \frac{1}{(4\pi)^{\frac{n}{2}}} \int_0^\infty e^{-\sigma}\sigma^{(\frac{n}{2} - \beta - 1)} d\sigma \left(\frac{4}{|x|^2}\right)^{\frac{n}{2}- \beta} \\
+  &= c_n \frac{1}{|x|^{n - 2\beta}}
+\end{align*}
+ mit $\tau = \frac{1}{t}, \sigma = |x|^2 \frac{\tau}{4}$.
+
+Speziell $n > 2, \beta = 1$
+
+$= \frac{1}{(n - 2) \omega_n} \frac{1}{|x|^{n - 2}} \hat = $ Fundamentallösung von $\Delta$.
+
+allgemein $\alpha = 2\beta:$
+$$
+R_\alpha := c_n \frac{1}{|x|^{n - \alpha}}
+$$
+heißt \underline{Riesz-Potential} der Ordnung $\alpha$.
+
+\underline{Beispiel 2:} $(\lambda + 1)^{-\beta} = \int_0^\infty e^{-(\lambda + 1)} \frac{t^{\beta - 1}}{\Gamma(\beta)} dt$
+
+$B_\alpha(x) := \frac{1}{\Gamma(\frac{\alpha}{2})} \int_0^\infty G(x,t) e^{-t} t^{\frac{\alpha}{2} - 1} dt$ Besselpotential
+
+und $(\id - \Delta)^{-\frac{\alpha}{2}} f = f \ast B_\alpha$
+
+
