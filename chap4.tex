@@ -1,1 +1,270 @@
-\section{Die Wellengleichung}
+\subsection{Die Wellengleichung}
+
+Betrachten in diesem Abschnitt die Wellengleichung:
+$$
+\text{(WGL)} u_{tt} - \Delta u = 0, \quad x \in \Omega, t > 0
+$$
+
+Versehen mit Rand- und Anfangsbedingungen.
+
+\begin{ntion}
+  $\square u = u_{tt} - \Delta u$ "d'Alembert Operator"
+\end{ntion}
+
+\begin{itemize}
+  \item Lösungen der Wellengleichung (hjyperbolische Gleichung) zeigen ein sehr verschiedenes Verhalten im Vergleich zu parabolischen Gleichungen.
+  \item Lösungen nicht in $C^\infty$.
+  \item endliche Ausbreitungsgeschwindigkeit
+\end{itemize}
+
+\subsection{Physikalische Interpretation}
+
+$u(x,t)  \hat = $ Auslenkung im Punkt $x$ zur Zeit $t$ einer Stange ($n = 1$), einer Membran ($n = 2$), eines Festkörpers ($n = 3$) für $V \subset \Omega$ glatt.
+Dann ist $u_{tt}$ die Beschleunigung und innerhalb von $V$ gilt: 
+$$
+\frac{d^2}{dt^2} \int udx = \int u_{[tt} dx = \text{Masse} \times \tex{Beschleunigung}
+$$
+
+Äußere Kraft $-\int_{\partial V} F \cdot \nu d \sigma$, $F \hat =$ Kraft auf $\partial V$, $\nu$ Normale.
+
+Newton: $\int_V u_{tt} dx = -\int_{\partial V} F \cdot \nu d\sigma = - \int_V \div F dx$, d.h. $u_{tt} = -\div F$.
+
+In vielen Fällen $F = F(\nabla u)$.
+
+Linearisierung: $F(\nabla u) \approx -a \dot \nabla u$, also: $u_{tt} = a \cdot \Delta u$.
+
+Betrachten nun Lösungsdarstellungen für $n = 1$, d.h.
+\begin{align*}
+  u_{tt} - u_{xx} &= 0, \quad x \in \R, t > 0 \\
+  u(x,0) &= g(x), \quad x \in \R \\
+  u_t(x,0) = 0, \quad x \in \R
+\end{align*}
+
+\subsection{D'Alembertsche Formel}
+
+Da
+$$
+(\ast) \quad \left(\frac{\partial}{\partial t} + \frac{\partial}{\partial x}\right)\left(\frac{\partial}{\partial t} - \frac{\partial}{\partial x}\right) u = 0,
+$$
+Setze
+$$
+v(x,t) = \left(\frac{\partial }{\partial t} - \frac{\partial}{\partial x}\right) u,
+$$
+also folgt aus ($\ast$), dass:
+$$
+v_t + v_x = 0, \quad x \in \R, t > 0
+$$
+
+Dies ist eine Transportgleichung und daher gilt:
+
+$v(x,t) = h(x - t)$ mit $h(x) = v(x,0)$
+
+$\implies u_t(x,t) - u_x(x,t) = h(x - t), x \in \R, t > 0$
+
+\begin{displaymath}
+  \implies u(x,t) = u(x, t, 0) + \int_0^t h(x + (t - s) - s) ds = g(x + t) + \frac{1}{2} \int_{x - t}^{x + t} h(y) dy \tag{$\ast\ast$}
+\end{displaymath}
+
+Wegen $h(x) = v(x, 0) = u_t(x, 0) - u_x(x, 0) = -g'(x)$ folgt aus ($\ast\ast$): $u(x, t) = \frac{1}{2}(g(x + t) + g(x - t))$ und damit
+
+\subsection{Satz (Lösung der Wellengleichung für $n = 1$}
+
+Sei $g \in C^2(\R)$ und $u$ definiert als $u(x,t) = \frac{1}{2}(g(x + t) + g(x - t))$ (d'Alambertsche Formel). Dann:
+\begin{enumerate}[(i)]
+  \item $u \in C^2(\R \times [0, \infty)$
+  \item $u_{tt} - u_{xx} = 0, x \in \R, t > 0$
+  \item $u(x,0) = g(x) , u_t(x, 0) = 0, x \in \R$
+\end{enumerate}
+
+\subsection{Bemerkungen}
+
+\begin{enumerate}[a)]
+\item Obige Darstellung zeigt $g \in C^k \implies u \in C^k$ aber keine Glättung im Unterschied zu parabolischen Gleichungen.
+\item Allgemein: $u(x, t) = \frac{1}{2} (g(x + t) + g(x - t) + \int_{x - t}^{x + t} h(s) ds)$ löst
+$$
+\begin{cases}
+u_{tt} - \Delta u &= 0, \quad t > 0, x \in \R \\
+u(x,0) &= g(x), u_t(x,0) = h(x), \quad x \in \R
+\end{cases}
+$$
+
+\subsection{Bemerkung:}
+
+Für $n = 1$ auch Fourier-Ansatz möglich. Für $n > 1$ schwer!
+
+Übungsaufgabe
+
+Für $n > 1$ mehrere Zugänge möglich. Standard-Methode: sphärische Mittel, technisch aufwändig (siehe Evans)
+
+Hier: Rückführung auf parabolische Gleichung
+
+\subsection{$n$ ungerade (Evans S204, Ex.9)}
+
+Sei $u$ eine Lösung von 
+$$
+\begin{cases} 
+u_{tt} - \Delta u &= 0, \quad t > 0, x \in \R^n \\ 
+u(x, 0) &= g(x), \quad x \in \R^n \\ 
+u_t(x, 0) &= 0, \quad x \in \R^n 
+\end{cases}
+$$
+
+Annahme $g \in C_c^\infty(\R^n)$. {\tiny{Später unnötig, aber wichtig für die Herleitung}}
+
+Für $t < 0$ setze $u(x, t) = u(x, -t)$, also:
+$$
+u_{tt} - \Delta u = 0, \quad x \in \R^n, t \in \R\setminus\{0\}
+$$
+
+Setze
+$$
+(\ast) \quad v(x,t) = \frac{1}{(4\pi t)^{\frac{1}{2}}} \int_\R e^{-\frac{s^2}{4 t}} u(x,s) ds, \quad t > 0, x \in \R^n
+$$
+
+Dann
+\begin{align*}
+(4 \pi t)^{\frac{1}{2}} \Delta v(x,t) 
+&= \int_\R e^{-\frac{s^2}{4t}} \Delta u(x,s) ds 
+&= \int_\R e^{-\frac{s^2}{4t} u_{ss}(x,s) ds 
+&\overset{p.I.}{=} \int_\R \frac{s}{2t} e^{\frac{-s^2}{4t}} 4s(x,s) ds
+\end{align*}
+
+Außerdem: $$v_t(x,t) = \frac{1}{(4\pi t)^{\frac{1}{2}}} \int\left( \frac{s^2}{4t^2} - \frac{1}{2t}\right) e^{-\frac{s^2}{4t}} u(x,s) ds$$
+
+$\implies v$ löst $\begin{cases} v_t - \Delta v &= 0, x \in \R^n, t > 0 \\ v(0) &0 g \end{cases}$
+
+$\overset{g \in C^\infty_c}{\implies} $ v beschränkt und $v = G_t \ast g$ ($\ast\ast$).
+
+Vgl. ($\ast$) und ($\ast\ast$):
+\begin{align*}
+\frac{1}{(4\pi t)^{\frac{1}{2}}} \int_{\R^n} e^{-\frac{|x - y|^2}{4t}} g(y) dy
+&= \frac{1}{(4 \pi t)^{\frac{1}{2}}} \int_\R e^{-\frac{s^2}{4t}} u(x, s) ds \\
+&= \frac{2}{(4\pi t)^{\frac{1}{2}}} \int_0^\infty e^{-\frac{s^2}{4t}} u(x,s) ds\\
+\intertext{mit $J = \frac{1}{4t}$ gitl also:}
+(\ast\ast\ast) \quad &= \frac{1}{2} \left(\frac{J}{\pi}\right)^{\frac{n - 1}{2}} \int_0^\infty e^{-Jr^2} r^{n - 1} G(x,r) dr n \omega_n
+\end{align*}
+
+mit $G(x,r) = \int_{\partial B(x,r)} g(s) d\sigma(s) \frac{1}{n \omega_n r^{n - 1}}$
+
+Wir schreiben $n = 2k + 1, k \in \N$, dann
+\begin{align*}
+J^k \int_0^\infty e^{-J r^2} r^{2k} G(x,r) dr 
+&= \frac{(-1)^k}{2^k} \int_0^\infty \left[ (\frac{1}{r}\frac{\partial}{\partial r}|^k e^{-Jr^2} \right] r^{2k} G(x,r) dr \\
+&= \frac{1}{2^k} \int_0^\infty r\left[(\frac{1}{r} \frac{\partial}{\partial r}|^r r^{2k - 1} G(x, r) \right] e^{-Jr^2} dr.
+\end{align*}
+
+Eindeutigkeit der Laplace-Transformation liefert mit $(\ast\ast\ast)$
+$$
+u(x, t) = \underbrace{\frac{n \cdot \omega_n}{\pi^k 2{k + 1}}}_{= \frac{n(n - 1)}{n!}} t (\frac{1}{t} (\frac{\partial }{\partial t})^k (t^{2k - 1} g(x,t))
+$$
+
+Deshalb gilt
+$$
+u(x,t) = \frac{n(n -1)}{n!} \frac{\partial}{\partial t} \left(\frac{1}{t} \frac{\partial}{\partial t}\right)^{\frac{ n -3}{2}} t^{n - 2} \dashint_{\partial B(x, t)} g d\sigma,
+$$
+für $x \in \R^n, t > 0$.
+
+\subsection{Satz (Lösung der Wellengleichung für ungerade Raumdimension)}
+
+Sei $n \geq 3$ ungerade, $g \in C^{\frac{n + 1}{2} + 1}(\R^n)$ und $n $ wie oben. Dann
+\begin{enumerate}[(i)]
+\item $u \in C^2(\R^n \times [0 , \infty))$ $\to$ nicht so glatt wie der Anfangswert
+\item $u_{tt} - \Delta u  = 0, x \in \R^n, t > 0$
+\item $\lim_{(x, t) \to (\tilde x, 0)} u(x,t) = g(\tilde x, 0), \tilde x \in \R^n$.
+\end{enumerate}
+
+Beweis: nachrechnen!
+
+\subsection{Bemerkung}
+
+Für $n = 3$ heißt die obige darstellung auch Kirchhoffsche Formel und es gilt:
+
+Sei $u_0 \in C^3, u_1 \in C^2$, dann $u(x,t) = \frac{\partial}{\partial t}( \frac{1}{4\pi t} \int_{\partial B(x,t)} g d\sigma) + \frac{1}{4\pi t} \int_{\partial B(x,t)} u_1 d\sigma$ löst $\square u = 0, u(x,0) = u_0(x), u_t(x, 0) = u_1(x)$.
+
+\subsection{Bemerkung}
+
+$u(x,t)$ spürt nur Information en über $u_0, u_1$ auf $\partial B(x,t)$ nicht auf $B(x,t)$.
+
+\subsection{Der Fall $n = 2$, die Absteigemethode}
+
+Idee: Wir führen den Fall $n = 2$ auf $n = 3$ zurück.
+
+Sei $u(x_1, x_2, t)$ Lösung der Wärmeleitungsgleichung für $a = 2$. 
+Setze $\overline u(x_1, x_2, x_3, t) = u(x_1, x_2, t)$
+
+Dann gilt:
+\begin{align*}
+\partial_t^2 \overline u = \Delta \overline u \text{ (in $\R^3$) und } 
+\overline u(x_1, x_2, x_3, 0) &= \overline u_0(x_1, x_2, x_3) := u_0(x_1, x_2), \\
+\partial_t \overline u (x_1, x_2, x_3, 0) &= \overline u_1(x_1, x_2, x_3) := u_1(x_1, x_2)
+\end{align*}
+
+$$\overset{4.8}{\implies} u(x,t) = \overline u(x,t) = \frac{\partial}{\partial t} \left(\frac{1}{4 \pi t} \int_{\partial B^3(\overline x, t)} \overline u_0 d\sigma \right) + \frac{1}{4 \pi t} \int_{\partial B^3(\overline x, t)} \overline u_1 d\sigma$$
+{\tiny{$\overline x = (x_1, x_2, x_3)$}}
+
+Schreibe Integral um mittels Parametrisierung der oberen Halbebene
+
+$s^+(\overline x, t) = \{ \overline y \in \partial B^3(\overline , t), y_3 \geq 0\}$
+
+$\phi \colon  B(\overline x, t) \to S^+(\overline x, t), (y_1, y_2) \mapsto \phi(y_1, y_2) = (y_1, y_2, \sqrt{t^2 - |x - y|^2}$
+
+$\implies \int_{\partial B^3(\overline, t)} = \int_{S^+ (\overline x, t)} \overline u_0 + \int_{S^- (\overline x, t)} \overline u_0 = 2 \int_{S^+(\overline x, t)} = 2t \int_{B(x,t)} \frac{\overline u_0(y)}{\sqrt{t^2 - |x - y|^2}} dy$
+
+Deshalb gilt:
+$$
+u(x,t) = \frac{n \cdot (n - 1)}{n!} \frac{\partial }{\partial t} (\frac{1}{t} \frac{\partial }{\partial t})^{\frac{n - 3}{2}} t^{n - 2} \dashint_{\partial B(x,t)} g d\sigma, x \in \R^n, t > 0.
+$$
+
+\subsection{Satz (Lösung der Wellengleicbhung in $\R^2$)}
+
+Sei $n = 2$, $u_0 \in C^3(\R^2), u_1 \in C^2(\R^2)$.
+Dann ist $u$ definiert als
+$$
+u(x,t) 
+= \left(\frac{\partial}{\partial t} \frac{1}{2\pi} \int_{B(x,t)} \frac{u_0(y)}{\sqrt{t^2 
+- |x - y|^2}} dy\right) + \frac{1}{2\pi} \int_{B(x,t)} \rac{u_1(y)}{\sqrt{t^2 - |x - y|^2} } dy
+$$
+eine Lösung von
+$$
+\begin{cases}
+\sqare u(x, t) &= 0, \quad t > 0, x \in \R^2 \\
+u(x,0) &= u_0(x), \quad x \in \R^2 \\
+u_t(x, 0) &= u_1(x), \quad x \in \R^2
+\end{cases}
+$$
+
+\underline{Erinnerung:}
+
+\begin{align*}
+n = 2 \colon  u(t, x) &= \frac{\partial }{\partial t} \frac{1}{2\pi} \int_{B_t(x} \frac{u_0(y)}{\sqrt{t^2 - |x - y|^2}} dy + \frac{1}{2\pi} \int_{B_t(x)} \frac{u_1(y)}{\sqrt{t^2 - |x - y|^2}} dy \\
+n = 3 \colon u(t,x) &= \frac{\partial}{\partial t} \frac{1}{4\pi t}\int_{\partial B_t(x)} u_0 d\sigma + \frac{1}{4\pi t} \int_{\partial B_t(x)} u_1 d\sigma
+\end{align*}
+
+\subsection{Bemerkung}
+
+Im Gegensatz zu $n = 3$ (hier Lösung abhängig von $\partial B_t(x)$) ist Lösung für $n = 2$ nur abhängig von $B_t(x)$.
+
+$u_0 = 0, u_1 = $"funktion in $y = x$ konzentriert" $\leadsto$ Distribution
+
+\begin{align*}
+n = 3 \colon &u(t,x) \neq 0 \iff y \in \partial B_t(x) \\
+n = 2 \colon &u(t,x) \neq 0 \iff y \in B_t(x)
+\end{align*}
+
+\subsection{Satz (Eindeutigkleit der Wärmeleitungsgleichung)}
+
+Sei $\Omega \subseteq \R^3$ offen, beschränkt, $\partial \Omega$ glatt. Betrachte
+$$
+(\ast) 
+\begin{cases} 
+u_{tt} - \Delta u &= f, \quad x \in \Omega, 0 < t < T, Q_t := \Omega \times (0, T], \Gamma_T :=  \overline Q_T \setminus Q_T \\
+u(0,x) &= u_0(x), \quad x \in \partial \Omega \\
+u_t(0,x) = u_1(x)
+\end{cases}
+$$
+
+$\implies$ es existiert höchstens eine Lösung $u \in C(\overline \Omega \times [0, T])$ von ($\ast$).
+
+\begin{proof}
+
+
