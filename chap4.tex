@@ -265,6 +265,52 @@ $$
 
 $\implies$ es existiert höchstens eine Lösung $u \in C(\overline \Omega \times [0, T])$ von ($\ast$).
 
-\begin{proof}
+\begin{proof} (Energiemethode)
 
+Sei $\tilde u$ weitere Lösung, setze $w := u - \tilde u$.
+\begin{align*}
+w_{tt} - \Delta w &= 0 \quad \text{in } Q_T \\
+w &= 0 \quad \text{auf } \Gamma_T \\
+w_t &= 0 \quad\tex{auf } \Omega \times \{0\}
+\end{align*}
+
+Definiere Energie:
+$$
+E(t) := \frac{1}{2} \int_\Omega w_t^2(t,x) + |\nabla w(t,x)|^2 dx
+$$
+
+Dann:
+$$
+E'(t) = \int_\Omega w_t w_{tt} + \nabla w \cdot \nabla w_t dx \overset{\text{Green}}{=} \int_\Omega w_t\underbrace{(w_{tt} - \Delta w)}{=0} dx + \underbrace{0}_{\text{Randterm}} = 0
+$$
+
+$\implies E(t) = E(0) = 0 \implies w_t \equiv 0 \equiv \nabla w$ in $\Omega \times (0, T] \implies w \equiv 0$. 
+
+Definiere:
+$$
+C_{x_0, t_0} := \{ (x,t) \in \R^n \times \R_+  \colon 0 < t \leq  t_0, |x - x_0 \leq t_0 - t \}
+$$
+
+\subsection{Satz (endliche Ausbreitungsgeschwindigkeit)}
+
+Es gelte $u \equiv u_t \equiv 0$ in $B_{x_0}(t_0) \times \{0 \}$. Dann $u \equiv 0$ in $C_{x_0, t_0}$.
+
+\begin{proof}
+$$
+E(t) := \frac{1}{2} \int_{B_{x_0}(t_0 - t)} (u_t^2 + |\nabla u|^2) dx
+$$
+
+Dann
+\begin{align*}
+E'(t) 
+&\overset{Anhang C.4 Thm 6 Evans}{:=} \int_{B_{x_0}(t_0 - t) u_t u_{tt} + \nabla u \cdot \nabla u_t dx - \frac{1}{2} \int \int_{\partial B_{x_0}(t_0 - t)} (u_t^2 + |\nabla u|^2) d\sigma \\
+&= \int_B u_t \underbrace{(u_{tt} - \Delta u)}_{=0} dx + \int_{\partial B} \frac{\partial u}{\partial \nu} u_t d\sigma - \frac{1}{2} \int_{\partial B} (u_t^2 + |\nabla u|^2 d\sigma \\
+&\leq 0
+\end{align*}
+{\tiny{$|\cdot| \overset{\text{C.S.}}{\leq} C|u_t||\nabla u|$}}
+
+$\implies E(t) \leq E(0) = 0$ für alle $t \in (0,t_0) \implies u_t \equiv 0 \equiv \nabla u$
+
+$\implies u \equiv 0$ in $C_{x_0, t_0}$.
+\end{proof}
 
