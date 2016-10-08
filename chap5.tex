@@ -1,1 +1,82 @@
-\section{Die SchrÃ¶dingergleichung}
+\section{Die Schrödingergleichung}
+
+Betrachte
+$$
+\begin{cases}
+u_t &= i \Delta u, \quad x \in \R^n, t > 0 \text{( oder $t \in \R$)} \\
+u(0,x) &= u_0(x)
+\end{cases}
+$$
+
+Ansatz via Fourier-Transformation bezüglich $x$.
+
+$\implies \hat u_t(\xi) = -i\xi|^2 \hat u(\xi), \hat u(\xi, 0) = \hat u_0 (\xi)$
+
+$\implies \hat u(t, \xi) = e^{-it |\xi|^2} \hat u_0(\xi)$
+
+$\implies u(t, x) = (\F^{-1}(e^{-it|\cdot|^2}) \ast u_0)(x) = \left( \frac{e^{i \frac{|\cdot|^2}{4t}}}{(4\pi i t)^{\frac{n}{2}}} \ast u_0 \right)(x)$
+
+Setze
+$$
+e^{it\Delta} f:= \frac{e^{-\frac{|\cdot|^2}{4it}}}{(4\pi t)^{\frac{n}{2}}} \ast f
+$$
+
+\subsection{Satz}
+
+Sei $u_0 \in L^2(\R^n)$. Dann ist Lösung der Schrödingergleichung gegeben durch
+$$
+u(t,x) := (G_{it} \ast u_0)(x) = \left( \frac{e^{-\frac{|\cdot|^2}{4it}}}{(4 \pi it)^{\frac{n}{2}}} \ast u_0 \right)(x)
+$$
+
+\subsection{Satz (Eigenschaften)}
+
+Für $t \in \R$ gilt:
+\begin{enumerate}[a)]
+\item $\norm{e^{it\Delta} f}_{L^2} = \norm{f}_{L^2}$
+\item $e^{i(t + s)\Delta} = e^{it\Delta} e^{i s\Delta}$ und $(e^{it}Delta)^{-1} = e^{-it\Delte} = \left(\e^{it\Delta}\right)^*$
+\item $e^{i 0 \Delta} = I$
+\end{enumerate}
+
+Beweis: Übungsaufgabe
+
+\subsection{Lemma (Skalierung)}
+
+Ist $u$ eine Lösung der Schrögdingergleichung, so sind auch 
+\begin{enumerate}[(i)] 
+\item $u_1(t,x) = e^{i\theta} u(t, x), \theta \in \R$ 
+\item $u_2(t,x) = u(t, A,x)$, $A$ orthogonale $n\times n$-Matrix
+\item $u_3(t, x) = \lambda^{\frac{n}{2}} u(\lambda^2 t, \lambda x), \lambda \in \R$
+\end{enumerate}
+ebenfalls Lösungen der Schördingergleichung.
+
+\subsection{Lemma (Abbildungseigenschaften von $e^{it\Delta}$)}
+
+Sei $t \in \R, t \neq 0, \frac{1}{p} + \frac{1}{q} = 1, p \in [1,2]$.
+
+$\implies$ es existiert $C > 0$:
+$$
+\norm{e^{it\Delta} f}_{L^q} \leq C t^{-\frac{n}{2} (\frac{1}{p} - \frac{1}{q}) \norm{f}_{L^p}.
+$$
+
+\begin{proof}
+Satz 5.2: $e^{it\Delta}$ Isometrie in $L^2$.
+
+Weiter:
+$$
+\norm{e^{it\Delta} f}_{L^\infty} \overset{\text{Young}}{\leq} \norm{\frac{e^{i\frac{|\cdot|^2}{4t}}}{(4\pi t)^{\frac{n}{2}}}}_{L^\infty} \norm{f}_1 \leq C t^{-\frac{n}{2}} \norm{f}_{L^1}
+$$
+also 
+\begin{align*}
+  e^{it\Delta} = &L^2 \to L^2 \\ &L^1 \to L^\infty
+\end{align*}
+
+$\overline{\text{Riesz-thorin}}{\implies} \norm{e^{it\Delta} f}_{L^q} \leq C |t|^{-\frac{n}{2}(\frac{1}{p} - \frac{1}{q}} \norm{f}_{L^p}$
+
+\subsection{Bemerkungen}
+\begin{enumerate}[a)]
+\item $e^{it\Delta}$ ist für $t \neq 0$ \underline{nicht} beschränkt von $L^p(\R^n) \to L^p(\R^n)$, falls $p \neq 2$.
+\item Schrödingergleiochung ist Beispiel einer disp. Gleichung.
+\end{enumerate}
+\end{proof}
+
+
