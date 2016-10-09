@@ -22,7 +22,7 @@ Dann gilt: $u$ hat Maximum in $\overline G$ auf $\Omega \times \{0\}$ oder auf $
   \begin{enumerate}[a)]
     \item Annahme: Maximum in einem inneren Punkt $(x_0, t_0)$ von $\overline \Omega \times [0,T']$.
 
-      $\implies \partial_t u(t_0, x_0) = \partial_i u(t_0, x_0) = 0$ und $partial_i^2 u(t_0, x_0) \leq 0$ für alle $i = 1, \dots, n, $ d.h. $\Delta u(t_0, x_0) \leq 0$.
+      $\implies \partial_t u(t_0, x_0) = \partial_i u(t_0, x_0) = 0$ und $\partial_i^2 u(t_0, x_0) \leq 0$ für alle $i = 1, \dots, n, $ d.h. $\Delta u(t_0, x_0) \leq 0$.
 
     \item Annahme: Maximum in $(T', x_0)$ mit $x_0 \in \Omega$.
 
@@ -31,7 +31,7 @@ Dann gilt: $u$ hat Maximum in $\overline G$ auf $\Omega \times \{0\}$ oder auf $
       $\implies (Lu)(T', x_0) \geq 0$ Widerspruch. 
   \end{enumerate}
 
-  Damit $\max_{(t,x) \in [0,T'] \times \overline \Omega} u(t,x) \leq \max_{(t,x) \in \Omega \times \{0\} \cup \partial \Omega times [0, T']} u(t,x)$
+  Damit $\max_{(t,x) \in [0,T'] \times \overline \Omega} u(t,x) \leq \max_{(t,x) \in \Omega \times \{0\} \cup \partial \Omega \times [0, T']} u(t,x)$
 \end{proof}
 
 Jetzt $T' \to T$.
@@ -111,7 +111,7 @@ Existiert ein $(t_0, x_0) \in l$ mit $u(t_0, x_0) < M$, so ist $u < M$ auf ganz 
   $$
   \dist((x_0 + \delta l_1, t_0), (t_0 \pm d(x), x)) = (d(x)^2 + \delta^2)^{\frac{1}{2}}
   $$
-  mit der gewichteten Youngschen Ungleichung $a b \leq \frac{\varepsilon}{2} a^2 + \frac{2}{varepsilon} b^2$.
+  mit der gewichteten Youngschen Ungleichung $a b \leq \frac{\varepsilon}{2} a^2 + \frac{2}{\varepsilon} b^2$.
 
   $\implies d(x + \delta^2)^{\frac{1}{2}} \leq d(x) + \frac{\delta^2}{2d(x)}$ (i)
 
@@ -168,7 +168,6 @@ $\implies u < M$ auf $G \cap \{(x, t_1) \colon x \in \R^n\}$.
    Setze nun $w:= u + \varepsilon v$. Dann
 
    $v = 0$ auf RP $\implies  v = 0$ auf $C''$, d.h. für $\varepsilon$ klein gilt:
-
    \begin{align*}
      Lw &= Lu + \varepsilon Lv < 0 \text{ in } D \\
      w &= u + \varepsilon < M \text{ auf } C' \\
