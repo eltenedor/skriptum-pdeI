@@ -12,7 +12,6 @@ $ \Delta u = \sum_{i = 1}^^n \frac{\partial_i^2 u}{2 x_i^2}$ Laplace-Operator.
 \subsection{physikalische Interpretation}
 
 Sei $u$ Dichte, z.b. eines Feststoffes, Konzetration einer Lösung und $V \subset \Omega$. Dann
-
 $$
 \int_{\partial V} F \cdot \nu = 0, \quad F \text{ Fluss}, \nu \text{ äußere Normale}
 $$
@@ -130,7 +129,7 @@ Dann gilt: ($\nu$ äußere Normale an $\partial \Omega$)
     &\overset{2.4(i)}{=} \underbrace{-\int_{R^n \setminus B_\varepsilon(0)} \nabla \phi(y) \nabla f(x - y) dy}_{=: I_\varepsilon^a}  +  \underbrace{\int_{\partial B_\varepsilon(0)} \phi(y) \frac{\partial f}{\partial \nu}(x - y) d\sigma(y)}_{\#}
   \end{align*}
 
-  $II_\varepsilon^a = \overset{2.4(i)}{=} \underbrace{\int_{\R^n \setminus B_\varepsilon(0)} \Delta \phi(y) f(x - y) dy}_{= 0, \text{ da } \Delta \phi = 0} - \int_{\partial B_\varepsilon(0)} \frac{\partial \phi}{\partial \nu}(y) \cdot f(x - y) d\sigma(y)$
+  $II_\varepsilon^a \overset{2.4(i)}{=} \underbrace{\int_{\R^n \setminus B_\varepsilon(0)} \Delta \phi(y) f(x - y) dy}_{= 0, \text{ da } \Delta \phi = 0} - \int_{\partial B_\varepsilon(0)} \frac{\partial \phi}{\partial \nu}(y) \cdot f(x - y) d\sigma(y)$
 
   Nun gilt $\nabla \varphi(y) = - \frac{1}{\omega_n \cdot n} \frac{y}{|y|^n}$, für $y \neq 0$ und $\nu = -\frac{y}{|y|} = - \frac{y}{\varepsilon}$.
 
@@ -275,12 +274,12 @@ Dann $u \in C^\infty(\Omega)$.
 
   \begin{align*}
     u_\varepsilon(x) &= \int_\Omega \varphi_\varepsilon(x - y) u(y) dy \\
-    &\overset{\text{Def. } \varphi_\varepsilon}{=} \frac{1}{\varepsilon^n} \int_{B(x,\varepsilon)} \varphi(\frac{|x - y|}{\varepsilon}) u(y) dy \\
-    \overset{\text{Cavalieri}}{=} \frac{1}{\varepsilon^n} \int_0^\varepsilon \int_{\partial B(x,r)} \varphi(\frac{r}{\varepsilon} u(y) d\sigma(y) dr \\
+    &\overset{\text{Def. } \varphi_\varepsilon}{=} \frac{1}{\varepsilon^n} \int_{B(x,\varepsilon)} \varphi\left(\frac{|x - y|}{\varepsilon}\right) u(y) dy \\
+    &\overset{\text{Cavalieri}}{=} \frac{1}{\varepsilon^n} \int_0^\varepsilon \int_{\partial B(x,r)} \varphi\left(\frac{r}{\varepsilon}\right) u(y) d\sigma(y) dr \\
     &= \frac{1}{\varepsilon^n} \int_0^\varepsilon \varphi(\frac{r}{\varepsilon}) \int_{\partial B(x,r)} u d\sigma dr \\
     &\overset{\text{MWE}}{=} \frac{1}{\varepsilon^n} u(x) \int_0^\varepsilon \varphi(\frac{r}{\varepsilon}) n \omega_n r^{n - 1} dr \\
     &= u(x) \int_0^\varepsilon \varphi_\varepsilon(r) n \omega_n r^{n - 1} dr \\
-    &= u(x) \int_{B(0,varepsilon)} \varphi_varepsilon (y) dy
+    &= u(x) \int_{B(0,\varepsilon)} \varphi_\varepsilon (y) dy
   \end{align*}
 
   $\implies u_\varepsilon = u$ auf $\Omega_\varepsilon$ und somit $u \in C^\infty(\Omega)$.
@@ -336,11 +335,11 @@ gilt, folgt:
   u(x) = -\int_\Omega \phi(y - x) \Delta u(y) dy + \int_{\partial \Omega} \phi(y - x) \underbrace{\frac{\partial u}{\partial \nu}(y)}_{\text{unbekannt}} - u(y) \frac{\partial \phi}{\partial \nu}(y - x) d\sigma(y) \tag{1}
 \end{displaymath}
 
-\underline{Idee: } Green: Addire harmonische Funktion, um unbekannten Term zu kompensieren.
+\underline{Idee: } Green: Addiere harmonische Funktion, um unbekannten Term zu kompensieren.
 
 Für $x \in \Omega$ setze $\phi^x := \phi^x(y)$ mit $\begin{cases} \Delta \phi^x &= 0 \text{ in } \Omega \\ \phi^x &= \phi(y - x) \text{ auf } \partial \Omega \end{cases}$
 
-Green mit $\phi^x$ liefert: (durch Ausnutzung von $\Delta \phi^x = 0$:
+Green mit $\phi^x$ liefert: (durch Ausnutzung von $\Delta \phi^x = 0$):
 \begin{displaymath}
   - \int_\Omega \phi^x(y) \Delta u(y) dy = \int_{\partial \Omega} u(y) \frac{\partial \phi^x}{\partial \nu}(y) - \underbrace{\phi^x(y)}_{= \phi(y - x)} \frac{\partial u}{\partial \nu}(y) d\sigma(y) \tag{2}
 \end{displaymath}
@@ -367,7 +366,7 @@ $$
 \subsection{Bemerkungen}
 
 \begin{enumerate}[a)]
-  \item erhalten Lösung von (DÖP), falls $G$ bekannt.
+  \item erhalten Lösung von (DP), falls $G$ bekannt.
   \item $G \colon \Omega \times \Omega \to \C$ definiert durch 
 	$$G(x,y) := \phi(y - x) - \phi^x(y), x \neq y$$
 	heißt \underline{Greensche Funktion}
@@ -396,7 +395,7 @@ Dann $\phi^x(y) = \phi(y - x)$ für $y \in \partial R_+^n$, denn
 $$
 \phi^x(y) = \phi(y_1 - x_1, \dots, \underbrace{y_n}_{=0} + x_n) = \phi(y_1 - x_1, \dots, y_n + x_n),
 $$
-"da derBetrag in $\phi$ das Minus nicht sieht"
+"da der Betrag in $\phi$ das Minus nicht sieht"
 und deshalb
 \begin{align*}
 	\Delta \phi^x &= 0 \quad\text{in } R_+^n \\
