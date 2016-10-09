@@ -15,13 +15,13 @@ wobei $u \colon [0,\infty] \to X$, $' \hat = \frac{d}{dt}, u_0 \in X$
 
 \underline{Grundidee:}
 
-Wähle z.B. $X = L^2(\Omega), u \colon [0,\infty) \to X$, $(u(t))(x) =: u(t,x)$, und studiere gewoöhnliche DGL erster Ordnung im Banachraum $X$.
+Wähle z.B. $X = L^2(\Omega), u \colon [0,\infty) \to X$, $(u(t))(x) =: u(t,x)$, und studiere gewöhnliche DGL erster Ordnung im Banachraum $X$.
 
 \underline{Ziel:}
 
 \begin{enumerate}[a)]
   \item Finde abstrakten Rahmen, in welchem "viele PDES" behandelt werden können.
-  \item Finde Bedingugne an $A$, welche Lösbarkeit und Eigenschaften für "viele" Anfangswerte $u_0$ garantieren.
+  \item Finde Bedingungen an $A$, welche Lösbarkeit und Eigenschaften für "viele" Anfangswerte $u_0$ garantieren.
 \end{enumerate}
 
 \subsection{Definition}
@@ -283,7 +283,7 @@ T_\lambda f - f \overset{\text{Hauptsatz}}{=} \int_0^t T_\lambda(s) A_\lambda f 
 \norm{T_\lambda(s) A_\lambda f - T(s) A f}
 &= \norm{T_\lambda(s) A_\lambda f - T_\lambda(s)Af + T_\lambda(s) Af - T(s) Af } \\
 &\leq \norm{T_\lambda(s) } \underbrace{\norm{A_\lambda f - A f}}_{\to 0 \text{ Schritt 1}} + \underbrace{\norm{(T_\lambda(s) - T(s))Af }}_{\to 0 \text{ Schritt 3}} \to 0 \quad\text{für } f \in D(A) \\
-&\overset{\lambda \to \infty}{\underset{\text{in ($\ast$)}}{\implies}} T(t) f - f = \int_0^t T(s) A f ds, \quad t \in D(A)
+&\overset{\lambda \to \infty}{\underset{\text{in ($\ast$)}}{\implies}} T(t) f - f = \int_0^t T(s) A f ds, \quad t \in D(A) \\
 &\implies  Bf = \lim_{t \to 0} \frac{ T(t) f - f}{t} = Af, \quad f \in D(A) \tag{$\ast\ast$} \\
 &\implies D(A) \subseteq D(B).
 \end{align*}
