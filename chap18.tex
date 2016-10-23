@@ -18,10 +18,9 @@ wobei $u \colon [0,\infty] \to X$, $' \hat = \frac{d}{dt}, u_0 \in X$
 Wähle z.B. $X = L^2(\Omega), u \colon [0,\infty) \to X$, $(u(t))(x) =: u(t,x)$, und studiere gewöhnliche DGL erster Ordnung im Banachraum $X$.
 
 \underline{Ziel:}
-
 \begin{enumerate}[a)]
-  \item Finde abstrakten Rahmen, in welchem "viele PDES" behandelt werden können.
-  \item Finde Bedingungen an $A$, welche Lösbarkeit und Eigenschaften für "viele" Anfangswerte $u_0$ garantieren.
+  \item Finde abstrakten Rahmen, in welchem ``viele PDES'' behandelt werden können.
+  \item Finde Bedingungen an $A$, welche Lösbarkeit und Eigenschaften für ``viele'' Anfangswerte $u_0$ garantieren.
 \end{enumerate}
 
 \subsection{Definition}
@@ -33,7 +32,7 @@ Eine Familie $T := (T(t))_{t \geq 0}$ von beschränkten, linearen Operatoren auf
   \item für alle $f \in X \colon [0,\infty) \ni t \mapsto T(t) f \in X$ stetig, also $t \mapsto T(t)$ stark stetig.
 \end{enumerate}
 
-Eine $C_0$-Halbgruppe $T$ auf $X$ heißt \underline{Kontraktionshalbgruppe} auf $X$, fall $\norm{T(t)} \leq 1$ f+r alle $t \geq 0$.
+Eine $C_0$-Halbgruppe $T$ auf $X$ heißt \underline{Kontraktionshalbgruppe} auf $X$, falls $\norm{T(t)} \leq 1$ für alle $t \geq 0$.
 
 \underline{Frage:} Wie hängen $T$ und $A$ zusammen?
 
@@ -58,32 +57,32 @@ Dann heißt $(A, D(A))$ \underline{Generator} von $T$, $D(A)$ heißt \underline{
 
 Sei $T$ $C_0$-Halbgruppe auf $X$ mit Generator $A$ und $f \in D(A)$. Dann:
 \begin{enumerate}[i)]
-  \item $T(t) f \in D(A)$ für alle $t \geq 0$
-  \item $AT(t) f = T(t) A f$ für alle $t \geq 0$
+  \item $T(t) f \in D(A)$ für alle $t \geq 0$.
+  \item $AT(t) f = T(t) A f$ für alle $t \geq 0$.
   \item Die Abbildung $t \mapsto T(t) f $ ist für alle $t > 0$ differenzierbar und es gilt:
   $$
-    \frac{d}{dt} T(t) f = A T(t) f 
+    \frac{d}{dt} T(t) f = A T(t) f.
   $$
 \end{enumerate}
 
 \begin{bem}
-  Da $t \mapsto AT(t) f$ stetig, gilt $t \mapsto T(t) f \in C^1((0,\infty), X)$ für alle $f \in D(A)$.
+  Da $t \mapsto AT(t) f$ stetig ist, gilt $t \mapsto T(t) f \in C^1((0,\infty), X)$ für alle $f \in D(A)$.
 \end{bem}
 
 \begin{proof}
-i) Sei $f \in D(A)$.
+i) Sei $f \in D(A)$. Dann gilt
 $$
-\lim_{t \to 0} \frac{T(s)T(t) f - T(t) f}{s} = \lim_{s \to 0} \frac{T(t)T(s) f - T(t) f}{s} = T(t) \lim_{s \to 0} \frac{T(s)f - f}{s} \overset{(\ast)}{=} T(t)A f,
+\lim_{s \to 0} \frac{T(s)T(t) f - T(t) f}{s} = \lim_{s \to 0} \frac{T(t)T(s) f - T(t) f}{s} = T(t) \lim_{s \to 0} \frac{T(s)f - f}{s} \overset{(\ast)}{=} T(t)A f,
 $$
 das heißt $T(t) f \in D(a)$ und
 
 ii) $AT(t) f = T(t) Af$.
 
-iii) ($\ast$) $\implies T(t) f$ rechsseitig differenzierbar. Betrachte also linksseitige Ableitung, das heißt
+iii) ($\ast$) $\implies T(t) f$ rechtseitig differenzierbar. Betrachte also linksseitige Ableitung, das heißt
 \begin{align*}
 &\lim_{h \to 0} \left[\frac{T(t)f - T(t - h)f}{h} - T(t) Af \right] \\
 &= \lim_{h \to 0} \underbrace{T(t - h)}_{\norm{\cdot} \leq M} \underbrace{\left[\frac{T(h) f - f}{h} - Af \right]}_{\to 0, \text{ da } f \in D(A)} 
-+ \lim_{h \to 0} \underline{\left[ T(t - h) Af - T(t) Af \right]}_{\to 0, \text{ da } T \text{ stark stetig}}
++ \lim_{h \to 0} \underbrace{\left[ T(t - h) Af - T(t) Af \right]}_{\to 0, \text{ da } T \text{ stark stetig}}
 \end{align*}
 
 $\implies t \mapsto T(t) f$ ist linksseitig differenzierbar, also differenzierbar.
