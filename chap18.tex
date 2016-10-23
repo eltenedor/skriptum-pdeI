@@ -93,50 +93,53 @@ $\implies t \mapsto T(t) f$ ist linksseitig differenzierbar, also differenzierba
 Sei $T$ eine $C_0$-Halbgruppe auf $X$ mit Generator $A$.
 Dann:
 \begin{enumerate}[i)]
-  \item $\overline{D(A)} = X$ 
-  \item $A$ abgeschlossen, das heißt $(f_n) \subseteq D(A)$ mit $f_n \to f, Af_n \to g \implies f \in D(A)$ und $A f = g$. 
+  \item $\overline{D(A)} = X$; der Operator $A$ ist also dicht definiert.
+  \item Der Operator $A$ ist abgeschlossen, das heißt für jede Folge $(f_n) \subseteq D(A)$ mit $f_n \to f$ und $Af_n \to g$ folgt $f \in D(A)$ und $A f = g$. 
 \end{enumerate}
 
 \begin{proof}
-Für $f \in X$ betrachte
+i) Für $f \in X$ betrachte das Bochner-Integral
 $$
 \int_0^t T(s) f ds.
 $$
 
-Dann:
+Dann folgt
 $$
-\frac{1}{t} \int_0^t T(s) f ds \overset{t \to 0}{\to} f, \text{ da $T$ stark stetig}.
+\frac{1}{t} \int_0^t T(s) f ds \overset{t \to 0}{\to} f
 $$
+da $T$ stark stetig ist. {\tiny{Hier gilt anscheinend eine Art Differentiationssatz}}
 
-Z. Z.: $\in D(A)$.
-
-Für $h > 0$ betrachte
+Zu zeigen ist nun, dass $f\in D(A)$ gilt.
+Für $h > 0$ betrachten wir dazu
 \begin{align*}
 \frac{T(h) - \id}{h} \int_0^t T(s) f ds 
 &= \frac{1}{h} \int_0^t T(s + h) f - T(s) f ds \\
 &= \frac{1}{h} \int_t^{t + h} T(s) f ds - \frac{1}{h} \int_0^h T(s) f ds \overset{h \to 0}{\to} T(t) f - f,
 \end{align*}
-also $\int_0^t T(s) f ds = T(t) f - f$
+also gilt
+$$A \int_0^t T(s) f ds = T(t) f - f.$$
+Dies implieziert wiederum
+$$\int_0^t T(s) f ds \in D(A),$$
+woraus letztlich Behauptung $(i)$ folgt.
 
-$\implies \int_0^t T(s) f ds \in D(A) \implies$ (i)
-
-ii) $f_n \to f, A f_n \to g$.
+ii) Angenommen es gelten $f_n \to f$ und $A f_n \to g$.
+Dann folgen
 $$
 T(t) f_n - f_n = \int_0^t \frac{d}{ds} T(s) f_n ds = \int_0^tT(s) Af_n ds \to \int_0^t T(s) g ds
 $$
 und
 $$
-T(t) f_n - f_n \to T(t) f - f = A \int_0^t T(s) f ds
+T(t) f_n - f_n \to T(t) f - f = A \int_0^t T(s) f ds.
 $$
 
-$\implies f \in D(A)$ und $Af = g$.
+Dies implieziert $f \in D(A)$ und $Af = g$.
 
 {\tiny{$Af = \lim_{t \to 0} \frac{T(t) f - f}{t} = \lim_{t \to 0} \frac{1}{t} \int_0^t T(s) g ds = T(0) g = g$}}
 \end{proof}
 
 \subsection{Definition}
 
-Sei $A \colon D(A) \to X$ abgeschlosse.
+Sei $A \colon D(A) \to X$ abgeschlossen.
 \begin{enumerate}[i)]
   \item Die Menge
   $$
@@ -152,25 +155,25 @@ Sei $A \colon D(A) \to X$ abgeschlosse.
 \subsection{Lemma (Eigenschaften der Resolvente)}
 
 \begin{enumerate}[i)]
-  \item $A R(\lambda, A) f = R(\lambda, A) A f, f \in D(A), \lambda \in \rho(A)$.
-  \item  Resolventengleichung: $\lambda, \mu \in \rho(A)$: 
+  \item Es gilt $A R(\lambda, A) f = R(\lambda, A) A f$, für alle $f \in D(A)$ und $\lambda \in \rho(A)$.
+  \item Resolventengleichung: Für alle $\lambda, \mu \in \rho(A)$ gilt 
   $$
-  R(\lambda, A) - R(\mu, A) = (\mu - \lambda) R(\lambda, A) R(\mu, A)
+  R(\lambda, A) - R(\mu, A) = (\mu - \lambda) R(\lambda, A) R(\mu, A).
   $$
-  \item $R(\lambda, A) R(\mu, A) = R(\mu, A) R(\lambda, A)$ für $\lambda, \mu \in \rho(A)$. 
+  \item Es gilt $R(\lambda, A) R(\mu, A) = R(\mu, A) R(\lambda, A)$ für alle $\lambda, \mu \in \rho(A)$. 
 \end{enumerate}
 
 Beweis: Übungsaufgabe.
 
-Charakterisierung von Generatoren von Kontraktions-Halbgruppen
+Wir beschäftigen uns im Folgenden mit der Charakterisierung von Generatoren von Kontraktions-Halbgruppen.
 
 \subsection{Theorem (Hille-Yosida)}
 
 Sei $A$ ein dicht definierter Operator auf $X$.
 Dann erzeugt $A$ eine $C_0$-Halbgruppe auf $X$ mit $\norm{T(t)} \leq 1$ für alle $t \geq 0$ genau dann, wenn
 \begin{enumerate}[i)]
-  \item $(0, \infty) \subseteq \rho(A)$
-  \item $\norm{R(\lambda, A)} \leq \frac{1}{\lambda}$ für alle $\lambda > 0$.
+  \item $(0, \infty) \subseteq \rho(A)$ und
+  \item $\norm{R(\lambda, A)} \leq \frac{1}{\lambda}$ für alle $\lambda > 0$ gilt.
 \end{enumerate}
 
 \begin{bem}
@@ -186,42 +189,41 @@ Dann erzeugt $A$ eine $C_0$-Halbgruppe auf $X$ mit $\norm{T(t)} \leq 1$ für all
 \end{bem}
 
 \begin{proof}
-"$\implies$": 
-Sei $T$ Kontraktions $C_0$-Halbgruppe, $A$ Generator, $f \in X$.
-
+"$\Rightarrow$": 
+Sei $T$ Kontraktions $C_0$-Halbgruppe, $A$ der zugehörige Generator und $f \in X$. {\tiny{Dies scheint zu viel des Guten. $f \in D(A)$ sollte ausreichen)}}
+Wir definieren
 $$R_\lambda f := \int_0^\infty e^{-\lambda t} T(t) f dt, \quad\text{für } \lambda > 0.$$
-
-Dann
+Dann gilt
 $$
 \norm{R_\lambda f} 
 \leq \int_0^\infty e^{-\lambda t} \underbrace{\norm{T(t) f}}_{\leq \norm{f}} dt 
 \leq \frac{1}{\lambda} \norm{f}
 $$
-\end{proof}
 
 Für $h > 0$ gilt
 \begin{align*}
 \frac{T(h) - \id}{h} R_\lambda f 
 &= \frac{1}{h} \int_0^\infty e^{-\lambda t} (T (t + h) f - T(t) f) dt \\
+&= \frac{1}{h} \int_h^\infty e^{-\lambda (t - h)} T(t)f dt - \frac{1}{h}\int_0^\infty T(t) f) dt \tag{Trafo}\\
 &= -\frac{1}{h}\int_0^h e^{-\lambda(t - h)} T(t) f dt + \frac{1}{h} \int_0^\infty (e^{-\lambda(t - h)} - e^{-\lambda t}) T(t) f dt \\
-&= -\frac{e^{\lambda h}}{h} \int_0^h e^{-\lambda t} T(t) fdt + \underbrace{\left(\frac{e^{\lambda h} - 1}{h}\right)}_{= \frac{d}{dt} e^{\lambda t}|_{t = 0} = \lambda} \int_0^\infty e^{-\lambda t} T(t) f dt
+&= -\frac{e^{\lambda h}}{h} \int_0^h e^{-\lambda t} T(t) fdt + \underbrace{\left(\frac{e^{\lambda h} - 1}{h}\right)}_{= \frac{d}{dt} e^{\lambda t}|_{t = 0} = \lambda} \int_0^\infty e^{-\lambda t} T(t) f dt \\
 &\overset{h \to 0}{\to } -f + \lambda R_\lambda f
 \end{align*}
 
-$\implies R_\lambda f \in D(A)$ und $A R_\lambda f = \lambda R_\lambda f - f \implies (\lambda - A) R_\lambda = \id$
+Daraus folgt $R_\lambda f \in D(A)$ und $A R_\lambda f = \lambda R_\lambda f - f$, was wiederum $(\lambda - A) R_\lambda = \id$ impliziert. Dies bedeutet jedoch gerade, dass $R_\lambda$ die Rechtsinverse zum Operator $(\lambda - A)$ ist.
 
-Linksinverse: $f \in D(A)$.
+Wir beweisen nun, dass $R_\lambda$ auch Linksinverse ist. Dazu sei $f \in D(A)$ und es gilt
 \begin{align*}
 R_\lambda A f 
 &= \int_0^\infty e^{-\lambda t} T(t) Af dt \\
 &= \int_0^\infty e^{-\lambda t} A T(t) f dt \\
 &\overset{A \text{ abg.}}{=} A \int_0^\infty e^{-\lambda t} T(t) f dt  \\
-&= A R_\lambda f
+&= A R_\lambda f.
 \end{align*}
 
-Also $R_\lambda(\lambda - A) f = f \implies R_\lambda = (\lambda - A)^{-1}$.
+Also folgt $R_\lambda(\lambda - A) f = f$ und wir erhalten $R_\lambda = (\lambda - A)^{-1}$.
 
-"$\impliedby$" "Yosida Approximation"
+``$\Leftarrow$'': Wir verwenden die sogenannte ``Yosida Approximation''.
 
 Für $\lambda > 0$ setze $A_\lambda := -\lambda + \lambda^2 R(\lambda, A) \overset{\text{G25}}{=} \lambda AR(\lambda, A)$ (d.h. $A_\lambda$ ist beschränkt)
 
@@ -248,6 +250,7 @@ Weiter: $A_\lambda f = \lambda R(\lambda, A) A f \to A f, f \in D(A)$
 \end{align*}
 
 $\implies (T_\lambda(t))_{t \geq 0}$ ist Kontraktions-Halbgruppe auf $X$ mit Generator $A_\lambda$, wobei $D(A_\lambda) = X$.
+\end{proof}
 
 \underline{Schritt 3:} Grenzübergang
 
