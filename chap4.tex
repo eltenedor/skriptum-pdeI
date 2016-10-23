@@ -12,28 +12,28 @@ Versehen mit Rand- und Anfangsbedingungen.
 \end{ntion}
 
 \begin{itemize}
-  \item Lösungen der Wellengleichung (hjyperbolische Gleichung) zeigen ein sehr verschiedenes Verhalten im Vergleich zu parabolischen Gleichungen.
-  \item Lösungen nicht in $C^\infty$.
+  \item LÃ¶sungen der Wellengleichung (hjyperbolische Gleichung) zeigen ein sehr verschiedenes Verhalten im Vergleich zu parabolischen Gleichungen.
+  \item LÃ¶sungen nicht in $C^\infty$.
   \item endliche Ausbreitungsgeschwindigkeit
 \end{itemize}
 
 \subsection{Physikalische Interpretation}
 
-$u(x,t)  \hat = $ Auslenkung im Punkt $x$ zur Zeit $t$ einer Stange ($n = 1$), einer Membran ($n = 2$), eines Festkörpers ($n = 3$) für $V \subset \Omega$ glatt.
+$u(x,t)  \hat = $ Auslenkung im Punkt $x$ zur Zeit $t$ einer Stange ($n = 1$), einer Membran ($n = 2$), eines FestkÃ¶rpers ($n = 3$) fÃ¼r $V \subset \Omega$ glatt.
 Dann ist $u_{tt}$ die Beschleunigung und innerhalb von $V$ gilt: 
 $$
-\frac{d^2}{dt^2} \int udx = \int u_{[tt} dx = \text{Masse} \times \tex{Beschleunigung}
+\frac{d^2}{dt^2} \int u dx = \int u_{tt} dx = \text{Masse} \times \text{Beschleunigung}
 $$
 
-Äußere Kraft $-\int_{\partial V} F \cdot \nu d \sigma$, $F \hat =$ Kraft auf $\partial V$, $\nu$ Normale.
+Ã„uÃŸere Kraft $-\int_{\partial V} F \cdot \nu d \sigma$, $F \hat =$ Kraft auf $\partial V$, $\nu$ Normale.
 
 Newton: $\int_V u_{tt} dx = -\int_{\partial V} F \cdot \nu d\sigma = - \int_V \div F dx$, d.h. $u_{tt} = -\div F$.
 
-In vielen Fällen $F = F(\nabla u)$.
+In vielen FÃ¤llen $F = F(\nabla u)$.
 
 Linearisierung: $F(\nabla u) \approx -a \dot \nabla u$, also: $u_{tt} = a \cdot \Delta u$.
 
-Betrachten nun Lösungsdarstellungen für $n = 1$, d.h.
+Betrachten nun LÃ¶sungsdarstellungen fÃ¼r $n = 1$, d.h.
 \begin{align*}
   u_{tt} - u_{xx} &= 0, \quad x \in \R, t > 0 \\
   u(x,0) &= g(x), \quad x \in \R \\
@@ -67,7 +67,7 @@ $\implies u_t(x,t) - u_x(x,t) = h(x - t), x \in \R, t > 0$
 
 Wegen $h(x) = v(x, 0) = u_t(x, 0) - u_x(x, 0) = -g'(x)$ folgt aus ($\ast\ast$): $u(x, t) = \frac{1}{2}(g(x + t) + g(x - t))$ und damit
 
-\subsection{Satz (Lösung der Wellengleichung für $n = 1$}
+\subsection{Satz (LÃ¶sung der Wellengleichung fÃ¼r $n = 1$}
 
 Sei $g \in C^2(\R)$ und $u$ definiert als $u(x,t) = \frac{1}{2}(g(x + t) + g(x - t))$ (d'Alambertsche Formel). Dann:
 \begin{enumerate}[(i)]
@@ -79,8 +79,9 @@ Sei $g \in C^2(\R)$ und $u$ definiert als $u(x,t) = \frac{1}{2}(g(x + t) + g(x -
 \subsection{Bemerkungen}
 
 \begin{enumerate}[a)]
-\item Obige Darstellung zeigt $g \in C^k \implies u \in C^k$ aber keine Glättung im Unterschied zu parabolischen Gleichungen.
-\item Allgemein: $u(x, t) = \frac{1}{2} (g(x + t) + g(x - t) + \int_{x - t}^{x + t} h(s) ds)$ löst
+\item Obige Darstellung zeigt $g \in C^k \implies u \in C^k$ aber keine GlÃ¤ttung im Unterschied zu parabolischen Gleichungen.
+\item Allgemein: $u(x, t) = \frac{1}{2} (g(x + t) + g(x - t) + \int_{x - t}^{x + t} h(s) ds)$ lÃ¶st
+\end{enumerate}
 $$
 \begin{cases}
 u_{tt} - \Delta u &= 0, \quad t > 0, x \in \R \\
@@ -90,17 +91,17 @@ $$
 
 \subsection{Bemerkung:}
 
-Für $n = 1$ auch Fourier-Ansatz möglich. Für $n > 1$ schwer!
+FÃ¼r $n = 1$ auch Fourier-Ansatz mÃ¶glich. FÃ¼r $n > 1$ schwer!
 
-Übungsaufgabe
+Ãœbungsaufgabe
 
-Für $n > 1$ mehrere Zugänge möglich. Standard-Methode: sphärische Mittel, technisch aufwändig (siehe Evans)
+FÃ¼r $n > 1$ mehrere ZugÃ¤nge mÃ¶glich. Standard-Methode: sphÃ¤rische Mittel, technisch aufwÃ¤ndig (siehe Evans)
 
-Hier: Rückführung auf parabolische Gleichung
+Hier: RÃ¼ckfÃ¼hrung auf parabolische Gleichung
 
 \subsection{$n$ ungerade (Evans S204, Ex.9)}
 
-Sei $u$ eine Lösung von 
+Sei $u$ eine LÃ¶sung von 
 $$
 \begin{cases} 
 u_{tt} - \Delta u &= 0, \quad t > 0, x \in \R^n \\ 
@@ -109,9 +110,9 @@ u_t(x, 0) &= 0, \quad x \in \R^n
 \end{cases}
 $$
 
-Annahme $g \in C_c^\infty(\R^n)$. {\tiny{Später unnötig, aber wichtig für die Herleitung}}
+Annahme $g \in C_c^\infty(\R^n)$. {\tiny{SpÃ¤ter unnÃ¶tig, aber wichtig fÃ¼r die Herleitung}}
 
-Für $t < 0$ setze $u(x, t) = u(x, -t)$, also:
+FÃ¼r $t < 0$ setze $u(x, t) = u(x, -t)$, also:
 $$
 u_{tt} - \Delta u = 0, \quad x \in \R^n, t \in \R\setminus\{0\}
 $$
@@ -124,16 +125,16 @@ $$
 Dann
 \begin{align*}
 (4 \pi t)^{\frac{1}{2}} \Delta v(x,t) 
-&= \int_\R e^{-\frac{s^2}{4t}} \Delta u(x,s) ds 
-&= \int_\R e^{-\frac{s^2}{4t} u_{ss}(x,s) ds 
-&\overset{p.I.}{=} \int_\R \frac{s}{2t} e^{\frac{-s^2}{4t}} 4s(x,s) ds
+&= \int_\R e^{-\frac{s^2}{4t}} \Delta u(x,s) ds \\
+&= \int_\R e^{-\frac{s^2}{4t}} u_{ss}(x,s) ds \\
+&\overset{\text{p.I.}}{=} \int_\R \frac{s}{2t} e^{\frac{-s^2}{4t}} 4s(x,s) ds
 \end{align*}
 
-Außerdem: $$v_t(x,t) = \frac{1}{(4\pi t)^{\frac{1}{2}}} \int\left( \frac{s^2}{4t^2} - \frac{1}{2t}\right) e^{-\frac{s^2}{4t}} u(x,s) ds$$
+AuÃŸerdem: $$v_t(x,t) = \frac{1}{(4\pi t)^{\frac{1}{2}}} \int\left( \frac{s^2}{4t^2} - \frac{1}{2t}\right) e^{-\frac{s^2}{4t}} u(x,s) ds$$
 
-$\implies v$ löst $\begin{cases} v_t - \Delta v &= 0, x \in \R^n, t > 0 \\ v(0) &0 g \end{cases}$
+$\implies v$ lÃ¶st $\begin{cases} v_t - \Delta v &= 0, x \in \R^n, t > 0 \\ v(0) &0 g \end{cases}$
 
-$\overset{g \in C^\infty_c}{\implies} $ v beschränkt und $v = G_t \ast g$ ($\ast\ast$).
+$\overset{g \in C^\infty_c}{\implies} $ v beschrÃ¤nkt und $v = G_t \ast g$ ($\ast\ast$).
 
 Vgl. ($\ast$) und ($\ast\ast$):
 \begin{align*}
@@ -162,9 +163,9 @@ Deshalb gilt
 $$
 u(x,t) = \frac{n(n -1)}{n!} \frac{\partial}{\partial t} \left(\frac{1}{t} \frac{\partial}{\partial t}\right)^{\frac{ n -3}{2}} t^{n - 2} \dashint_{\partial B(x, t)} g d\sigma,
 $$
-für $x \in \R^n, t > 0$.
+fÃ¼r $x \in \R^n, t > 0$.
 
-\subsection{Satz (Lösung der Wellengleichung für ungerade Raumdimension)}
+\subsection{Satz (LÃ¶sung der Wellengleichung fÃ¼r ungerade Raumdimension)}
 
 Sei $n \geq 3$ ungerade, $g \in C^{\frac{n + 1}{2} + 1}(\R^n)$ und $n $ wie oben. Dann
 \begin{enumerate}[(i)]
@@ -177,19 +178,19 @@ Beweis: nachrechnen!
 
 \subsection{Bemerkung}
 
-Für $n = 3$ heißt die obige darstellung auch Kirchhoffsche Formel und es gilt:
+FÃ¼r $n = 3$ heiÃŸt die obige darstellung auch Kirchhoffsche Formel und es gilt:
 
-Sei $u_0 \in C^3, u_1 \in C^2$, dann $u(x,t) = \frac{\partial}{\partial t}( \frac{1}{4\pi t} \int_{\partial B(x,t)} g d\sigma) + \frac{1}{4\pi t} \int_{\partial B(x,t)} u_1 d\sigma$ löst $\square u = 0, u(x,0) = u_0(x), u_t(x, 0) = u_1(x)$.
+Sei $u_0 \in C^3, u_1 \in C^2$, dann $u(x,t) = \frac{\partial}{\partial t}( \frac{1}{4\pi t} \int_{\partial B(x,t)} g d\sigma) + \frac{1}{4\pi t} \int_{\partial B(x,t)} u_1 d\sigma$ lÃ¶st $\square u = 0, u(x,0) = u_0(x), u_t(x, 0) = u_1(x)$.
 
 \subsection{Bemerkung}
 
-$u(x,t)$ spürt nur Information en über $u_0, u_1$ auf $\partial B(x,t)$ nicht auf $B(x,t)$.
+$u(x,t)$ spÃ¼rt nur Information en Ã¼ber $u_0, u_1$ auf $\partial B(x,t)$ nicht auf $B(x,t)$.
 
 \subsection{Der Fall $n = 2$, die Absteigemethode}
 
-Idee: Wir führen den Fall $n = 2$ auf $n = 3$ zurück.
+Idee: Wir fÃ¼hren den Fall $n = 2$ auf $n = 3$ zurÃ¼ck.
 
-Sei $u(x_1, x_2, t)$ Lösung der Wärmeleitungsgleichung für $a = 2$. 
+Sei $u(x_1, x_2, t)$ LÃ¶sung der WÃ¤rmeleitungsgleichung fÃ¼r $a = 2$. 
 Setze $\overline u(x_1, x_2, x_3, t) = u(x_1, x_2, t)$
 
 Dann gilt:
@@ -215,19 +216,19 @@ $$
 u(x,t) = \frac{n \cdot (n - 1)}{n!} \frac{\partial }{\partial t} (\frac{1}{t} \frac{\partial }{\partial t})^{\frac{n - 3}{2}} t^{n - 2} \dashint_{\partial B(x,t)} g d\sigma, x \in \R^n, t > 0.
 $$
 
-\subsection{Satz (Lösung der Wellengleicbhung in $\R^2$)}
+\subsection{Satz (LÃ¶sung der Wellengleicbhung in $\R^2$)}
 
 Sei $n = 2$, $u_0 \in C^3(\R^2), u_1 \in C^2(\R^2)$.
 Dann ist $u$ definiert als
 $$
 u(x,t) 
 = \left(\frac{\partial}{\partial t} \frac{1}{2\pi} \int_{B(x,t)} \frac{u_0(y)}{\sqrt{t^2 
-- |x - y|^2}} dy\right) + \frac{1}{2\pi} \int_{B(x,t)} \rac{u_1(y)}{\sqrt{t^2 - |x - y|^2} } dy
+- |x - y|^2}} dy\right) + \frac{1}{2\pi} \int_{B(x,t)} \frac{u_1(y)}{\sqrt{t^2 - |x - y|^2} } dy
 $$
-eine Lösung von
+eine LÃ¶sung von
 $$
 \begin{cases}
-\sqare u(x, t) &= 0, \quad t > 0, x \in \R^2 \\
+\square u(x, t) &= 0, \quad t > 0, x \in \R^2 \\
 u(x,0) &= u_0(x), \quad x \in \R^2 \\
 u_t(x, 0) &= u_1(x), \quad x \in \R^2
 \end{cases}
@@ -242,7 +243,7 @@ n = 3 \colon u(t,x) &= \frac{\partial}{\partial t} \frac{1}{4\pi t}\int_{\partia
 
 \subsection{Bemerkung}
 
-Im Gegensatz zu $n = 3$ (hier Lösung abhängig von $\partial B_t(x)$) ist Lösung für $n = 2$ nur abhängig von $B_t(x)$.
+Im Gegensatz zu $n = 3$ (hier LÃ¶sung abhÃ¤ngig von $\partial B_t(x)$) ist LÃ¶sung fÃ¼r $n = 2$ nur abhÃ¤ngig von $B_t(x)$.
 
 $u_0 = 0, u_1 = $"funktion in $y = x$ konzentriert" $\leadsto$ Distribution
 
@@ -251,9 +252,9 @@ n = 3 \colon &u(t,x) \neq 0 \iff y \in \partial B_t(x) \\
 n = 2 \colon &u(t,x) \neq 0 \iff y \in B_t(x)
 \end{align*}
 
-\subsection{Satz (Eindeutigkleit der Wärmeleitungsgleichung)}
+\subsection{Satz (Eindeutigkleit der WÃ¤rmeleitungsgleichung)}
 
-Sei $\Omega \subseteq \R^3$ offen, beschränkt, $\partial \Omega$ glatt. Betrachte
+Sei $\Omega \subseteq \R^3$ offen, beschrÃ¤nkt, $\partial \Omega$ glatt. Betrachte
 $$
 (\ast) 
 \begin{cases} 
@@ -263,15 +264,15 @@ u_t(0,x) = u_1(x)
 \end{cases}
 $$
 
-$\implies$ es existiert höchstens eine Lösung $u \in C(\overline \Omega \times [0, T])$ von ($\ast$).
+$\implies$ es existiert hÃ¶chstens eine LÃ¶sung $u \in C(\overline \Omega \times [0, T])$ von ($\ast$).
 
 \begin{proof} (Energiemethode)
 
-Sei $\tilde u$ weitere Lösung, setze $w := u - \tilde u$.
+Sei $\tilde u$ weitere LÃ¶sung, setze $w := u - \tilde u$.
 \begin{align*}
 w_{tt} - \Delta w &= 0 \quad \text{in } Q_T \\
 w &= 0 \quad \text{auf } \Gamma_T \\
-w_t &= 0 \quad\tex{auf } \Omega \times \{0\}
+w_t &= 0 \quad\text{auf } \Omega \times \{0\}
 \end{align*}
 
 Definiere Energie:
@@ -290,6 +291,7 @@ Definiere:
 $$
 C_{x_0, t_0} := \{ (x,t) \in \R^n \times \R_+  \colon 0 < t \leq  t_0, |x - x_0 \leq t_0 - t \}
 $$
+\end{proof}
 
 \subsection{Satz (endliche Ausbreitungsgeschwindigkeit)}
 
@@ -303,13 +305,13 @@ $$
 Dann
 \begin{align*}
 E'(t) 
-&\overset{Anhang C.4 Thm 6 Evans}{:=} \int_{B_{x_0}(t_0 - t) u_t u_{tt} + \nabla u \cdot \nabla u_t dx - \frac{1}{2} \int \int_{\partial B_{x_0}(t_0 - t)} (u_t^2 + |\nabla u|^2) d\sigma \\
+&\overset{Anhang C.4 Thm 6 Evans}{:=} \int_{B_{x_0}}(t_0 - t) u_t u_{tt} + \nabla u \cdot \nabla u_t dx - \frac{1}{2} \int \int_{\partial B_{x_0}(t_0 - t)} (u_t^2 + |\nabla u|^2) d\sigma \\
 &= \int_B u_t \underbrace{(u_{tt} - \Delta u)}_{=0} dx + \int_{\partial B} \frac{\partial u}{\partial \nu} u_t d\sigma - \frac{1}{2} \int_{\partial B} (u_t^2 + |\nabla u|^2 d\sigma \\
 &\leq 0
 \end{align*}
-{\tiny{$|\cdot| \overset{\text{C.S.}}{\leq} C|u_t||\nabla u|$}}
+{\tiny{$|\cdot| \overset{\text{C.S.}}{\leq} C|u_t| |\nabla u|$}}
 
-$\implies E(t) \leq E(0) = 0$ für alle $t \in (0,t_0) \implies u_t \equiv 0 \equiv \nabla u$
+$\implies E(t) \leq E(0) = 0$ fÃ¼r alle $t \in (0,t_0) \implies u_t \equiv 0 \equiv \nabla u$
 
 $\implies u \equiv 0$ in $C_{x_0, t_0}$.
 \end{proof}
