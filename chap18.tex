@@ -46,6 +46,7 @@ wobei
 $$
 D(A) := \{ f \in X \colon \lim_{t \to 0} \frac{T(t) f - f}{t} \text{ existiert in } X\}.
 $$
+{\tiny{Man kann $A$ als Ableitung von $T(t)$ in $t = 0$ interpretieren.}}
 
 Dann heißt $(A, D(A))$ \underline{Generator} von $T$, $D(A)$ heißt \underline{Definitionsbereich} von $A$.
 
@@ -55,7 +56,7 @@ Dann heißt $(A, D(A))$ \underline{Generator} von $T$, $D(A)$ heißt \underline{
 
 \subsection{Lemma}
 
-Sei $T$ $C_0$-Halbgruppe auf $X$ mit Generator $A$ und $f \in D(A)$. Dann:
+Sei $T$ eine $C_0$-Halbgruppe auf $X$ mit Generator $A$ und $f \in D(A)$. Dann:
 \begin{enumerate}[i)]
   \item $T(t) f \in D(A)$ für alle $t \geq 0$.
   \item $AT(t) f = T(t) A f$ für alle $t \geq 0$.
@@ -102,44 +103,46 @@ i) Für $f \in X$ betrachte das Bochner-Integral
 $$
 \int_0^t T(s) f ds.
 $$
+{\tiny{Aufgrund der Stetigkeit von $s \mapsto \norm{T(s)f}$ und der Kompaktheit von $[0,t]$ gilt $\int_0^t \norm{T(s)f} ds < \infty$ und damit ist $T(s)f$ über diesem Intervall Bochner-integrierbar.}}
 
 Dann folgt
 $$
 \frac{1}{t} \int_0^t T(s) f ds \overset{t \to 0}{\to} f
 $$
-da $T$ stark stetig ist. {\tiny{Hier gilt anscheinend eine Art Differentiationssatz}}
+da $T$ stark stetig ist. {\tiny{Differentiationssatz für Bochner-Integrale \url{https://www.math.ucdavis.edu/~hunter/pdes/ch6A.pdf}}}
 
 Zu zeigen ist nun, dass $f\in D(A)$ gilt.
 Für $h > 0$ betrachten wir dazu
 \begin{align*}
 \frac{T(h) - \id}{h} \int_0^t T(s) f ds 
 &= \frac{1}{h} \int_0^t T(s + h) f - T(s) f ds \\
-&= \frac{1}{h} \int_t^{t + h} T(s) f ds - \frac{1}{h} \int_0^h T(s) f ds \overset{h \to 0}{\to} T(t) f - f,
+&= \frac{1}{h} \int_t^{t + h} T(s) f ds - \frac{1}{h} \int_0^h T(s) f ds \\
+&\overset{h \to 0}{\to} T(t) f - f \quad{\text{\tiny{Differentiationssatz}}},
 \end{align*}
-also gilt
+also gilt ($\ast$)
 $$A \int_0^t T(s) f ds = T(t) f - f.$$
-Dies implieziert wiederum
+Dies impliziert wiederum
 $$\int_0^t T(s) f ds \in D(A),$$
 woraus letztlich Behauptung $(i)$ folgt.
 
 ii) Angenommen es gelten $f_n \to f$ und $A f_n \to g$.
 Dann folgen
 $$
-T(t) f_n - f_n = \int_0^t \frac{d}{ds} T(s) f_n ds = \int_0^tT(s) Af_n ds \to \int_0^t T(s) g ds
+T(t) f_n - f_n = \int_0^t \frac{d}{ds} T(s) f_n ds \overset{18.4}{=} \int_0^tT(s) Af_n ds \to \int_0^t T(s) g ds \quad{\text{\tiny{Stetigkeit des B-Integrals}}}
 $$
 und
 $$
-T(t) f_n - f_n \to T(t) f - f = A \int_0^t T(s) f ds.
+T(t) f_n - f_n \to T(t) f - f \overset{(\ast)}{=} A \int_0^t T(s) f ds.
 $$
 
-Dies implieziert $f \in D(A)$ und $Af = g$.
+Dies impliziert $f \in D(A)$ und $Af = g$.
 
 {\tiny{$Af = \lim_{t \to 0} \frac{T(t) f - f}{t} = \lim_{t \to 0} \frac{1}{t} \int_0^t T(s) g ds = T(0) g = g$}}
 \end{proof}
 
 \subsection{Definition}
 
-Sei $A \colon D(A) \to X$ abgeschlossen.
+Sei $A \colon D(A) \to X$ abgeschlossen. {\tiny{In diesem Fall sind bijektive lineare Abbildungen stetig invertierbar}}
 \begin{enumerate}[i)]
   \item Die Menge
   $$
@@ -206,7 +209,7 @@ Für $h > 0$ gilt
 &= \frac{1}{h} \int_0^\infty e^{-\lambda t} (T (t + h) f - T(t) f) dt \\
 &= \frac{1}{h} \int_h^\infty e^{-\lambda (t - h)} T(t)f dt - \frac{1}{h}\int_0^\infty T(t) f) dt \tag{Trafo}\\
 &= -\frac{1}{h}\int_0^h e^{-\lambda(t - h)} T(t) f dt + \frac{1}{h} \int_0^\infty (e^{-\lambda(t - h)} - e^{-\lambda t}) T(t) f dt \\
-&= -\frac{e^{\lambda h}}{h} \int_0^h e^{-\lambda t} T(t) fdt + \underbrace{\left(\frac{e^{\lambda h} - 1}{h}\right)}_{= \frac{d}{dt} e^{\lambda t}|_{t = 0} = \lambda} \int_0^\infty e^{-\lambda t} T(t) f dt \\
+&= -\frac{e^{\lambda h}}{h} \int_0^h e^{-\lambda t} T(t) fdt + \underbrace{\left(\frac{e^{\lambda h} - 1}{h}\right)}_{\to \frac{d}{dt} e^{\lambda t}|_{t = 0} = \lambda} \int_0^\infty e^{-\lambda t} T(t) f dt \\
 &\overset{h \to 0}{\to } -f + \lambda R_\lambda f
 \end{align*}
 
@@ -225,31 +228,32 @@ Also folgt $R_\lambda(\lambda - A) f = f$ und wir erhalten $R_\lambda = (\lambda
 
 ``$\Leftarrow$'': Wir verwenden die sogenannte ``Yosida Approximation''.
 
-Für $\lambda > 0$ setze $A_\lambda := -\lambda + \lambda^2 R(\lambda, A) \overset{\text{G25}}{=} \lambda AR(\lambda, A)$ (d.h. $A_\lambda$ ist beschränkt)
+Für $\lambda > 0$ setze $A_\lambda := -\lambda + \lambda^2 R(\lambda, A) \overset{\text{G25}}{=} \lambda AR(\lambda, A)$ (d.h. $A_\lambda$ ist beschränkt), {\tiny{da $R(\lambda, A)$ beschränkt ist}}
 
 \underline{Schritt 1:} $A_\lambda f \to A f$ für $\lambda \to \infty, f \in D(A)$.
 
-Da $\lambda R(\lambda, A) f - f = AR(\lambda, A) f = R(\lambda, A) Af$ gilt:
+Da $\lambda R(\lambda, A) f - f = AR(\lambda, A) f \overset{18.7 i)}{=} R(\lambda, A) Af$ gilt:
 
-$\norm{\lambda R(\lambda, A) f - f} \leq \norm{R(\lambda, A)} \norm{Af } \leq \frac{1}{\lambda} \norm{Af} \overset{\lambda \to \infty}{\to} 0$
+$$\norm{\lambda R(\lambda, A) f - f} \leq \norm{R(\lambda, A)} \norm{Af } \overset{\text{Vor}}{\leq} \frac{1}{\lambda} \norm{Af} \overset{\lambda \to \infty}{\to} 0.$$
 
-$\implies \lambda R(\lambda, A) f \to f$ für alle $f \in X$.
-
-Da nach Voraussetzung $\norm{\lambda R(\lambda, A)} \leq 1, \lambda > 0$ und $\overline{D(A)} = X$
-
-$\implies \lambda R(\lambda, A) f \to f$ für alle $f \in X$.
+Dies impliziert $\lambda R(\lambda, A) f \to f$ für alle $f \in X$. Da nach Voraussetzung $\norm{\lambda R(\lambda, A)} \leq 1, \lambda > 0$ und $\overline{D(A)} = X$ gelten folgt $\lambda R(\lambda, A) f \to f$ für alle $f \in X$.
 
 Weiter: $A_\lambda f = \lambda R(\lambda, A) A f \to A f, f \in D(A)$
 
 \underline{Schritt 2:} Setze $T_\lambda(t) := e^{tA_\lambda}$
-\begin{align*}
-& T_\lambda(t) = e^{-\lambda t} e^{\lambda^2 t R(\lambda A)}
-= e^{-\lambda t} \sum_{j = 0}^\infty \frac{\lambda^2 t)^j}{j!} R(\lambda, A)^j, \lambda > 0 \\
-&\implies \norm{T_\lambda(t)} \leq e^{-\lambda t } \sum_{j = 0}^\infty \frac{\lambda^2 t)^j}{j!} \underbrace{\norm{R(\lambda, A)}^j}_{\leq \frac{1}{\lambda}} \\
-&= e^{-\lambda t} \sum_{j = 0}^\infty \sum_{j = 0}^\infty \frac{\lambda^j t^j}{j!} = e^{-\lambda t} e^{\lambda t} = 1
-\end{align*}
+$$ T_\lambda(t) = e^{-\lambda t} e^{\lambda^2 t R(\lambda A)}
+= e^{-\lambda t} \sum_{j = 0}^\infty \frac{(\lambda^2 t)^j}{j!} R(\lambda, A)^j, \lambda > 0 .
+$$
+Daraus folgt
+$$
+ \norm{T_\lambda(t)} 
+ \leq e^{-\lambda t } \sum_{j = 0}^\infty \frac{(\lambda^2 t)^j}{j!} \underbrace{\norm{R(\lambda, A)}^j}_{\leq \frac{1}{\lambda}} 
+= e^{-\lambda t} \sum_{j = 0}^\infty \sum_{j = 0}^\infty \frac{\lambda^j t^j}{j!} 
+= e^{-\lambda t} e^{\lambda t} 
+= 1
+$$
 
-$\implies (T_\lambda(t))_{t \geq 0}$ ist Kontraktions-Halbgruppe auf $X$ mit Generator $A_\lambda$, wobei $D(A_\lambda) = X$.
+Also ist $(T_\lambda(t))_{t \geq 0}$ Kontraktions-Halbgruppe auf $X$ mit Generator $A_\lambda$, wobei $D(A_\lambda) = X$.
 \end{proof}
 
 \underline{Schritt 3:} Grenzübergang
@@ -262,8 +266,10 @@ A_\mu T_\lambda(t) = T_\lambda(t) A_\mu, \quad t >0
 $$
 Für $f \in D(A)$ gilt
 $$
-T_\lambda(t) f - T_\mu(t) f = \int_0^t \frac{d}{ds} [T_\mu(t - s) T_\lambda(s) f ] ds = \int_0^t \underbrace{T_\mu(t - s) T_\lambda(s)}_{\norm{\cdot} \leq 1} [A_\lambda f - A_\mu f] ds
+T_\lambda(t) f - T_\mu(t) f = \int_0^t \frac{d}{ds} [T_\mu(t - s) T_\lambda(s) f ] ds = \int_0^t \underbrace{T_\mu(t - s) T_\lambda(s)}_{\norm{\cdot} \leq 1} [A_\lambda f - A_\mu f] ds,
 $$
+wobei wir die Produkt- und Kettenregel der Frechet-Ableitung verwendet haben.
+
 
 $\implies \norm{T_\lambda(t) f - T_\mu(t) f } \leq t \norm{A_\lambda f - A_\mu f } \overset{\text{Schritt 1}}{\to} 0$, für $\lambda, \mu \to \infty$.
 
